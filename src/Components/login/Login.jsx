@@ -26,6 +26,7 @@ class Login extends React.Component {
   render(){
     return(
       <div className = "Container">
+      <Granim id="granim" states={this.states} style={GradStyle} ></Granim>
         <div className = "Form">
           <form className = "Box">
             <div className = "Form-Head">
@@ -43,10 +44,21 @@ class Login extends React.Component {
             </div>
           </form>
         </div>
-        <Granim id="granim" states={this.states}></Granim>
       </div>
     );
   }
+}
+
+const GradStyle = {
+  position: 'absolute',
+  display: 'block',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  zIndex: -10000
 }
 
 export default Login;
