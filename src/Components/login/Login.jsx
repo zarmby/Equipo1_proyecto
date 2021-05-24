@@ -18,6 +18,7 @@ class Login extends React.Component {
               ['#DD1F26', '#DD1F26'],
               ['#DD1F26', '#212B35'],
               ['#212B35', '#212B35'],
+              ['#212B35', '#212B35'],
           ]
       }
     }
@@ -26,7 +27,7 @@ class Login extends React.Component {
   render(){
     return(
       <div className = "Container">
-      <Granim id="granim" states={this.states} style={GradStyle} ></Granim>
+        <Granim id="granim" states={this.states} style={GradStyle} ></Granim>
         <div className = "Form">
           <form className = "Box">
             <div className = "Form-Head">
