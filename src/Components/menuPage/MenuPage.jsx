@@ -1,32 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MenuPageStyles.css'
 
-import inventario from '../../assets/img/inventario.png';
+import inventario from '../../assets/img/inventario_azul.png';
+import usuario from '../../assets/img/usuario.png';
 
-class MenuPage extends React.Component {
-  render(){
+function MenuPage() {
+
+  const [img1State,setImg1State] = useState (inventario);
+
+  const cambiarImagen = () => {
+            inventario.src="../../assets/img/inventario_rojo.png";
+        }
+
+  function restaurarImagen() {
+            inventario.src="../../assets/img/usuario_azul.png";
+        }
+
     return(
       <div>
         <div class="content">
-          <div class="card">
-            <div class="icon"><img class="material-icons md-18" src = {inventario}></img></div>
+          <div class="card" onmouseover={cambiarImagen}>
+            <div class="icon"><img class="material-icons md-18" src = {inventario}  onmouseout="restaurarImagen()"></img></div>
               <p class="title">Inventario</p>
               <p class="text">Administra el inventario de equipos disponibles y assi</p>
             </div>
           <div class="card">
-          <div class="icon"><img class="material-icons md-18" src = {inventario}></img></div>
+          <div class="icon"><img class="material-icons md-18" src = {usuario}></img></div>
             <p class="title">Reportes y Notificaciones</p>
             <p class="text">Descripcion del modulo</p>
           </div>
-          <div class="card">
-            <div class="icon"><img class="material-icons md-18" src = {inventario}></img></div>
-              <p class="title">Administracion de aplicacion</p>
-              <p class="text">Descripcion del modulo</p>
-            </div>
+
           </div>
       </div>
     );
   }
-}
 
 export default MenuPage;

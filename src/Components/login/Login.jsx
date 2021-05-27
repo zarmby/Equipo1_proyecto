@@ -19,28 +19,36 @@ class Login extends React.Component {
               ['#DD1F26', '#212B35'],
               ['#212B35', '#212B35'],
               ['#212B35', '#212B35'],
-          ]
+          ],
+          transitionSpeed: 1000
       }
     }
   }
 
   render(){
     return(
-      <div className = "Container">
+      <div className = "login-container">
         <Granim id="granim" states={this.states} style={GradStyle} ></Granim>
-        <div className = "Form">
-          <form className = "Box">
-            <div className = "Form-Head">
-              <img src = {logo} className = "logo"></img>
+        <div id="login-back"/>
+        <div id = "login-form-container">
+          <form id = "login-form">
+            <div id="login-form-head" className = "full-width">
+              <img src = {logo} ></img>
             </div>
-            <div className = "Form-Body">
-              <div className = "userInfo">
-                <img src = {userIcon} className = "userIcon"></img>
-                <input type="text" placeholder="Usuario" className = "InputT"></input>
+            <span className="full-width">Inventory Arkus Center</span>
+            <div id="login-form-body" className = "full-width">
+              <div id="login-user-info" className="ajas">
+                <img src = {userIcon} id = "login-user-icon" className="login-icon" />
+                <input type="text" placeholder="Usuario"  id = "login-user-input" className = "login-input" />
               </div>
-              <div className = "PasswordInfo">
-                <img src = {passWordIcon} className = "userIcon"></img>
-                <input type="text" placeholder="Contraseña" className = "InputT"></input>
+
+              <div id="login-password-info">
+                <img src = {passWordIcon} id = "login-password-icon" className="login-icon" />
+                <input type="password" placeholder="Contraseña" id = "login-password-input" className = "login-input"></input>
+              </div>
+
+              <div id="login-submit-info">
+                <input type="submit" id="login-submit" value="Ingresar" />
               </div>
             </div>
           </form>
