@@ -25,10 +25,11 @@ class Login extends React.Component {
           transitionSpeed: 1000
       }
     };
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleLogin(){
+  handleSubmit(e){    
+    e.preventDefault();
     Alertify.alert("aja","Jala");
   }
 
@@ -38,7 +39,7 @@ class Login extends React.Component {
         <Granim id="granim" states={this.state} style={GradStyle} ></Granim>
         <div id="login_back"/>
         <div id = "login_form_container">
-          <form id = "login_form">
+          <form id = "login_form" onSubmit={this.handleSubmit}>
             <div id="login_form_head" className = "full_width">
               <img src = {logo} alt="Logo Arkus"></img>
             </div>
@@ -53,7 +54,7 @@ class Login extends React.Component {
                 <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" />
               </div>
               <div id="login_submit_info"> 
-                <input type="submit" id="login_submit" className="btn_login" value="Ingresar" onClick={()=>{this.handleLogin()}} />
+                <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
               </div>
               <hr id="separator" className="login_info_container" />
               <button id="login_register" className="btn_login">Registrarse</button>
