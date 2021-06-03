@@ -62,7 +62,7 @@ body {
    justify-content: center;
    align-items: center;
    color: white;
-   transition: all 0.8s ease;
+   transition: all 0.3s ease;
    background-position: 0px;
    background-size: 200px;
 }
@@ -115,7 +115,7 @@ body {
 
 .card:hover .icon {
    background-position: -120px;
-   transition: all 0.3s ease;
+   transition: all 0.2s ease;
    background-color: #212B35;
 }
 
