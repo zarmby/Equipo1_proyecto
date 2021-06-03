@@ -28,7 +28,7 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e){    
+  handleSubmit(e){
     e.preventDefault();
     Alertify.alert("aja","Jala");
   }
@@ -53,7 +53,7 @@ class Login extends React.Component {
                 <img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" />
                 <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" />
               </div>
-              <div id="login_submit_info"> 
+              <div id="login_submit_info">
                 <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
               </div>
               <hr id="separator" className="login_info_container" />
