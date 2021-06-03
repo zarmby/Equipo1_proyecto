@@ -96,6 +96,14 @@
           grid-row: 6 / 7;
           grid-column: 2 / 3;
         }
+        
+
+        #login_submit{
+          background-color: #212B35;
+          &:hover{            
+            background-color: #DD1F26; 
+          }
+        }
 
         .btn_login{
           width: 50%;
@@ -109,14 +117,10 @@
           transition: 0.4s;
           box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
           &:hover{
-            cursor: pointer;
-            background-color: #DD1F26;  
+            background-color: #DD1F26; 
+            cursor: pointer; 
             font-weight: bold;
           }
-        }
-
-        #login_submit{
-          background-color: #212B35;
         }
 
         #separator{
@@ -132,6 +136,11 @@
           color:#212B35;
           grid-row: 9 / 10;
           grid-column: 2 / 3;
+          background-color: #ccc;
+          &:hover{            
+            background-color: #DD1F26; 
+            color: white;
+          }
         }
 
 

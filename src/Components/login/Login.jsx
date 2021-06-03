@@ -47,11 +47,11 @@ class Login extends React.Component {
             <div id="login_form_body" className = "full_width">
               <div id="login_user_info" className="login_info_container">
                 <img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" />
-                <input type="text" placeholder="Usuario"  id = "login_user_input" className = "login_input" />
+                <input type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" required />
               </div>
               <div id="login_password_info" className="login_info_container">
                 <img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" />
-                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" />
+                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" required />
               </div>
               <div id="login_submit_info">
                 <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
