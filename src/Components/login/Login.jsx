@@ -1,7 +1,9 @@
 import React from 'react';
 import Granim from 'react-granim'
+import Alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 
-import './LoginStyles.css'
+import './LoginStyles.scss'
 
 import logo from '../../assets/img/Logo.png';
 import userIcon from '../../assets/img/user.png';
@@ -11,7 +13,7 @@ class Login extends React.Component {
 
   constructor (props){
     super(props);
-    this.states = {
+    this.state = {
       "default-state": {
           gradients: [
               ['#212B35', '#DD1F26'],
@@ -22,34 +24,40 @@ class Login extends React.Component {
           ],
           transitionSpeed: 1000
       }
-    }
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e){    
+    e.preventDefault();
+    Alertify.alert("aja","Jala");
   }
 
   render(){
     return(
-      <div className = "login-container">
-        <Granim id="granim" states={this.states} style={GradStyle} ></Granim>
-        <div id="login-back"/>
-        <div id = "login-form-container">
-          <form id = "login-form">
-            <div id="login-form-head" className = "full-width">
-              <img src = {logo} ></img>
+      <div className = "login_container">
+        <Granim id="granim" states={this.state} style={GradStyle} ></Granim>
+        <div id="login_back"/>
+        <div id = "login_form_container">
+          <form id = "login_form" onSubmit={this.handleSubmit}>
+            <div id="login_form_head" className = "full_width">
+              <img src = {logo} alt="Logo Arkus"></img>
             </div>
-            <span className="full-width">Inventory Arkus Center</span>
-            <div id="login-form-body" className = "full-width">
-              <div id="login-user-info" className="ajas">
-                <img src = {userIcon} id = "login-user-icon" className="login-icon" />
-                <input type="text" placeholder="Usuario"  id = "login-user-input" className = "login-input" />
+            <span className="full_width">Inventory Arkus Center</span>
+            <div id="login_form_body" className = "full_width">
+              <div id="login_user_info" className="login_info_container">
+                <img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" />
+                <input type="text" placeholder="Usuario"  id = "login_user_input" className = "login_input" />
               </div>
-
-              <div id="login-password-info">
-                <img src = {passWordIcon} id = "login-password-icon" className="login-icon" />
-                <input type="password" placeholder="Contraseña" id = "login-password-input" className = "login-input"></input>
+              <div id="login_password_info" className="login_info_container">
+                <img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" />
+                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" />
               </div>
-
-              <div id="login-submit-info">
-                <input type="submit" id="login-submit" value="Ingresar" />
+              <div id="login_submit_info"> 
+                <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
               </div>
+              <hr id="separator" className="login_info_container" />
+              <button id="login_register" className="btn_login">Registrarse</button>
             </div>
           </form>
         </div>
