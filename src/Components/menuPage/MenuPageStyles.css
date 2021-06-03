@@ -62,11 +62,8 @@ body {
    justify-content: center;
    align-items: center;
    color: white;
-<<<<<<< HEAD
    transition: all 0.8s ease;
-=======
    transition: all 0.3s ease;
->>>>>>> e400c26bdee7cbb1382c146cdaec3c4f21dbc9d2
    background-position: 0px;
    background-size: 200px;
 }
@@ -119,11 +116,8 @@ body {
 
 .card:hover .icon {
    background-position: -120px;
-<<<<<<< HEAD
    transition: all 0.3s ease;
-=======
    transition: all 0.2s ease;
->>>>>>> e400c26bdee7cbb1382c146cdaec3c4f21dbc9d2
    background-color: #212B35;
 }
 
