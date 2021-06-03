@@ -9,7 +9,7 @@ import MenuPage from './Components/menuPage/MenuPage'
 function App() {
 
   return (
-    <Login />
+    <MenuPage />
   );
 }
 
