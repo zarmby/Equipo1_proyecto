@@ -9,6 +9,8 @@ import logo from '../../assets/img/Logo.png';
 import userIcon from '../../assets/img/user.png';
 import passWordIcon from '../../assets/img/password.png';
 
+import Menu from '../menuPage/MenuPage';
+
 class Login extends React.Component {
 
   constructor (props){
@@ -23,7 +25,8 @@ class Login extends React.Component {
               ['#212B35', '#212B35'],
           ],
           transitionSpeed: 1000
-      }
+      },
+      access : false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -31,6 +34,8 @@ class Login extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     Alertify.alert("aja","Jala");
+    //ruta de prueba
+    window.location='/menu';
   }
 
   render(){
@@ -47,11 +52,11 @@ class Login extends React.Component {
             <div id="login_form_body" className = "full_width">
               <div id="login_user_info" className="login_info_container">
                 <img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" />
-                <input type="text" placeholder="Usuario"  id = "login_user_input" className = "login_input" />
+                <input type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" required />
               </div>
               <div id="login_password_info" className="login_info_container">
                 <img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" />
-                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" />
+                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" requires/>
               </div>
               <div id="login_submit_info">
                 <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
