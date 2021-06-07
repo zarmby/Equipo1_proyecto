@@ -14,13 +14,14 @@ function MenuPage() {
 
     return(
       <div>
+        <Navbar />
         <div class="content">
           <div class="card"  onMouseEnter={() => setImg1State(inventarioS)} onMouseLeave={() => setImg1State(inventarioU)}>
             <div class="icon"><img class="material-icons md-18" src = {img1State}  onmouseout="restaurarImagen()"></img></div>
             <p class="title">Inventario</p>
             <p class="text">Administra el inventario de equipos disponibles y asi</p>
           </div>
-          <Link to="/user">
+          <Link to="/user" className="link">
             <div class="card">
               <div class="icon"><img class="material-icons md-18" src = {usuario}></img></div>
               <p class="title">Reportes y Notificaciones</p>

@@ -28,7 +28,11 @@ class Login extends React.Component {
       },
       access : false
     };
+    this.input_user = React.createRef(); 
+    this.input_pass = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleSubmit(e){
@@ -36,6 +40,20 @@ class Login extends React.Component {
     Alertify.alert("aja","Jala");
     //ruta de prueba
     window.location='/menu';
+  }
+
+  handleFocus(e){
+    if(e.target.id==="login_user_input")
+      this.input_user.current.className="login_info_container login_input_focus";
+    else
+      this.input_pass.current.className="login_info_container login_input_focus";
+  }
+
+  handleBlur(e){
+    if(e.target.id==="login_user_input")
+      this.input_user.current.className="login_info_container";
+    else
+      this.input_pass.current.className="login_info_container";
   }
 
   render(){
@@ -48,15 +66,15 @@ class Login extends React.Component {
             <div id="login_form_head" className = "full_width">
               <img src = {logo} alt="Logo Arkus"></img>
             </div>
-            <span className="full_width">Inventory Arkus Center</span>
+            <span>Inventory Arkus Center</span>
             <div id="login_form_body" className = "full_width">
-              <div id="login_user_info" className="login_info_container">
-                <img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" />
-                <input type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" required />
+              <div  ref={this.input_user} id="login_user_info" className="login_info_container">
+                <label htmlFor="login_user_input"><img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" /></label>
+                <input type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
               </div>
-              <div id="login_password_info" className="login_info_container">
-                <img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" />
-                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" requires/>
+              <div ref={this.input_pass} id="login_password_info" className="login_info_container">
+              <label htmlFor="login_password_input"><img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" /></label>
+                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
               </div>
               <div id="login_submit_info">
                 <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
