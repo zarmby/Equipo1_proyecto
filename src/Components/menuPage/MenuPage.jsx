@@ -4,12 +4,14 @@ import {Link} from 'react-router-dom';
 
 import inventarioU from '../../assets/img/inventario_azul.png';
 import inventarioS from '../../assets/img/inventario_rojo.png';
-import usuario from '../../assets/img/usuario.png';
+import usuarioA from '../../assets/img/usuario_azul.png';
+import usuarioR from '../../assets/img/usuario_rojo.png';
 import Navbar from '../navbar/Navbar';
 
 function MenuPage() {
 
   const [img1State,setImg1State] = useState (inventarioU);
+  const [img2State,setImg2State] = useState (usuarioA);
 
 
     return(
@@ -24,8 +26,8 @@ function MenuPage() {
             </div>
         </Link>
         <Link to="/user" className="link">
-          <div class="card">
-            <div class="icon"><img class="material-icons md-18" src = {usuario}></img></div>
+          <div class="card"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
+            <div class="icon"><img class="material-icons md-18" src = {img2State}></img></div>
               <p class="title">Reportes y Notificaciones</p>
               <p class="text">Descripcion del modulo</p>
             </div>
