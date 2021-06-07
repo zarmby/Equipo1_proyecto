@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import Login from './Components/login/Login'
 import MenuPage from './Components/menuPage/MenuPage'
 import SideFilter from './Components/inventory/sideFilters/SideFilters'
+import User from './Components/user/User'
 ////Images///
 
 
@@ -23,7 +24,7 @@ function App() {
           <SideFilter />
         </Route>
         <Route path="/user">
-          <SideFilter />
+          <User/>
         </Route>
         <Route path="/*">
           <Login />

@@ -22,7 +22,7 @@ class Navbar extends React.Component{
                 <div class="dropdown" id="navbar_user">
                     <button class="dropbtn">Cuenta</button>
                     <div class="dropdown-content">
-                        <a href="/menu">Cambiar contraseña</a>
+                        <a href="/HomePage">Cambiar contraseña</a>
                         <hr />
                         <a href="/">Salir</a>
                     </div>
