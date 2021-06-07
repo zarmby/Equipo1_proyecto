@@ -22,6 +22,9 @@ function App() {
         <Route path="/InventoryCenter">
           <SideFilter />
         </Route>
+        <Route path="/user">
+          <SideFilter />
+        </Route>
         <Route path="/*">
           <Login />
         </Route>
