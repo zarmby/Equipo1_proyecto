@@ -2,6 +2,7 @@ import React from 'react';
 import Granim from 'react-granim'
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
+import { Link } from "react-router-dom";
 
 import './LoginStyles.scss'
 
@@ -25,7 +26,7 @@ class Login extends React.Component {
           transitionSpeed: 1000
       }
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e){
@@ -54,7 +55,9 @@ class Login extends React.Component {
                 <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" required />
               </div>
               <div id="login_submit_info">
-                <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
+                <Link to = "/HomePage">
+                  <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
+                </Link>
               </div>
               <hr id="separator" className="login_info_container" />
               <button id="login_register" className="btn_login">Registrarse</button>
