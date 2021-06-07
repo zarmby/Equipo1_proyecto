@@ -15,14 +15,14 @@ class Navbar extends React.Component{
                 <div class="dropdown" id="navbar_menu">
                     <button class="dropbtn">Menu</button>
                     <div class="dropdown-content">
-                        <a href="#">Inventario</a>
-                        <a href="#">Usuario</a>
+                        <a href="/InventoryCenter">Inventario</a>
+                        <a href="/user">Usuario</a>
                     </div>
                 </div>
                 <div class="dropdown" id="navbar_user">
                     <button class="dropbtn">Cuenta</button>
                     <div class="dropdown-content">
-                        <a href="#">Cambiar contraseña</a>
+                        <a href="/menu">Cambiar contraseña</a>
                         <hr />
                         <a href="/">Salir</a>
                     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Granim from 'react-granim'
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
+import { Link } from "react-router-dom";
 
 import './LoginStyles.scss'
 
@@ -70,11 +71,11 @@ class Login extends React.Component {
             <div id="login_form_body" className = "full_width">
               <div  ref={this.input_user} id="login_user_info" className="login_info_container">
                 <label htmlFor="login_user_input"><img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" /></label>
-                <input type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                <input type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" maxLength="50" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
               </div>
               <div ref={this.input_pass} id="login_password_info" className="login_info_container">
               <label htmlFor="login_password_input"><img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" /></label>
-                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" maxLength="20" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
               </div>
               <div id="login_submit_info">
                 <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />

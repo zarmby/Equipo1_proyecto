@@ -4,6 +4,8 @@ import './App.css';
 import Login from './Components/login/Login';
 import MenuPage from './Components/menuPage/MenuPage';
 import User from './Components/user/User';
+import SideFilters from './Components/inventory/sideFilters/SideFilters';
+
 ////Routing///
 import {
   BrowserRouter as Router,
@@ -22,6 +24,7 @@ function App() {
       <Switch>
           <Route path="/menu" component={MenuPage} />
           <Route path="/user" component={User} />
+          <Route path="/InventoryCenter" component={SideFilters} />
           <Route exact path="/" component={Login} />
           <Route>Not Found</Route>
         </Switch>

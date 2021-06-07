@@ -82,7 +82,9 @@ body {
    font-weight: 600;
    text-transform: uppercase;
    letter-spacing: 4px;
+   text-decoration: none;
 }
+
 
 .card .text {
    width: 80%;
