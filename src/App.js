@@ -3,8 +3,8 @@ import './App.css';
 ///Components///
 import Login from './Components/login/Login'
 import MenuPage from './Components/menuPage/MenuPage'
-import SideFilter from './Components/inventory/sideFilters/SideFilters'
 import User from './Components/user/User'
+import InventoryStock from './Components/inventory/inventoryStock/InventoryStock'
 ////Images///
 
 //Routes
@@ -28,7 +28,7 @@ function App() {
           <MenuPage />
         </Route>
         <Route path="/InventoryCenter">
-          <SideFilter />
+          <InventoryStock />
         </Route>
         <Route path="/user">
           <User />
