@@ -1,5 +1,4 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 
 ///Components///
 import Login from './Components/login/Login'
@@ -8,10 +7,18 @@ import User from './Components/user/User'
 import InventoryStock from './Components/inventory/inventoryStock/InventoryStock'
 ////Images///
 
+//Routes
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+
 
 function App() {
 
   return (
+    //<Login />
     <Router>
       <Switch>
         <Route path="/Login">
@@ -24,7 +31,7 @@ function App() {
           <InventoryStock />
         </Route>
         <Route path="/user">
-          <User/>
+          <User />
         </Route>
         <Route path="/*">
           <Login />

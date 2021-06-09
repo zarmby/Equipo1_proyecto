@@ -5,7 +5,6 @@ body {
    font-family: helvetica;
 }
 
-
 @media screen and (max-width: 767px) {
    .wrapper {
       height: 700px;
@@ -130,4 +129,8 @@ body {
 	-webkit-text-fill-color: transparent;
    opacity: 1;
    transition: all 0.3s ease;
+}
+
+.link{
+   text-decoration: none;
 }
