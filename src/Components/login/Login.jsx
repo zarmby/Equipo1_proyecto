@@ -30,6 +30,8 @@ class Login extends React.Component {
 
     this.input_user = React.createRef();
     this.input_pass = React.createRef();
+    this.container_input_user = React.createRef();
+    this.container_input_pass = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
@@ -37,23 +39,27 @@ class Login extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    Alertify.alert("aja","Jala");
-    //ruta de prueba
-    window.location='/menu';
+    let dominio  = this.input_user.current.value;
+    dominio = dominio.split('@')[1];
+    if(dominio === "arkusnexus.com")
+      //ruta de prueba
+      window.location='/HomePage';
+    else
+      Alertify.alert("Dominio erroneo","El correo no es valido, verifique bien sus datos");
   }
 
   handleFocus(e){
     if(e.target.id==="login_user_input")
-      this.input_user.current.className="login_info_container login_input_focus";
+      this.container_input_user.current.className="login_info_container login_input_focus";
     else
-      this.input_pass.current.className="login_info_container login_input_focus";
+      this.container_input_pass.current.className="login_info_container login_input_focus";
   }
 
   handleBlur(e){
     if(e.target.id==="login_user_input")
-      this.input_user.current.className="login_info_container";
+      this.container_input_user.current.className="login_info_container";
     else
-      this.input_pass.current.className="login_info_container";
+      this.container_input_pass.current.className="login_info_container";
   }
 
   render(){
@@ -62,29 +68,30 @@ class Login extends React.Component {
         <Granim id="granim" states={this.state} style={GradStyle} ></Granim>
         <div id="login_back"/>
         <div id = "login_form_container">
-          <form id = "login_form" onSubmit={this.handleSubmit}>
-            <div id="login_form_head" className = "full_width">
-              <img src = {logo} alt="Logo Arkus"></img>
-            </div>
-            <span>Inventory Arkus Center</span>
-            <div id="login_form_body" className = "full_width">
-              <div  ref={this.input_user} id="login_user_info" className="login_info_container">
-                <label htmlFor="login_user_input"><img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" /></label>
-                <input type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" maxLength="50" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+          <div id="login_form_div">
+            <form id = "login_form" onSubmit={this.handleSubmit}>
+              <div id="login_form_head">
+                <img src = {logo} alt="Logo Arkus"></img>
               </div>
-              <div ref={this.input_pass} id="login_password_info" className="login_info_container">
-              <label htmlFor="login_password_input"><img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" /></label>
-                <input type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" maxLength="20" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
+              <span>Inventory Arkus Center</span>
+              <div id="login_form_body">
+                <div  ref={this.container_input_user} id="login_user_info" className="login_info_container">
+                  <label htmlFor="login_user_input"><img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" /></label>
+                  <input ref={this.input_user} type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" maxLength="50" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                </div>
+                <div ref={this.container_input_pass} id="login_password_info" className="login_info_container">
+                  <label htmlFor="login_password_input"><img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" /></label>
+                  <input ref={this.input_pass} type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" maxLength="20" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                </div>
+                <div id="login_submit_info">
+                  <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
+                </div>
+                
               </div>
-              <div id="login_submit_info">
-              <Link to = "/HomePage">
-                <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
-              </Link>
-              </div>
-              <hr id="separator" className="login_info_container" />
-              <button id="login_register" className="btn_login">Registrarse</button>
-            </div>
-          </form>
+            </form>
+            <hr id="separator" className="login_info_container" />
+            <button id="login_register" className="btn_login">Registrarse</button>
+          </div>
         </div>
       </div>
     );
