@@ -22,13 +22,8 @@ function MenuPage() {
               <p class="text">Administra el inventario de equipos y mira la informacion disponible sobre ellos.</p>
             </div>
         </Link>
-<<<<<<< HEAD
-        <Link to="/user" style={{ textDecoration: 'none' }}>
-          <div class="option"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
-=======
         <Link to="/user" className="link">
-          <div class="card"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
->>>>>>> 2f2ecaae415f8add03ecbf41e565c8629a8005f6
+          <div class="option"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
             <div class="icon"><img class="material-icons md-18" src = {img2State}></img></div>
               <p class="title">Reportes y Notificaciones</p>
               <p class="text">Descripcion del modulo</p>
