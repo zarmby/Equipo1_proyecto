@@ -57,6 +57,7 @@
             overflow: hidden;
             margin-top: 25px;
             transition: 0.3s;
+            box-sizing: border-box;
             label{
               width: 100%;
               height: 100%;
@@ -65,7 +66,7 @@
             }
           }
           .login_icon{
-            width: 90%;
+            width: 70%;
             margin-left: 5%;
             height: auto;
             margin: auto;
@@ -106,10 +107,10 @@
       #separator{
         background-color: #ccc;
         border-radius: 100%;
-        height: 2px;
-        width: calc(100% - 40px);
-        filter: blur(2px);
+        height: 4px;
+        width: calc(100% - 80px);
         margin-top: 50px;
+        filter: blur(2px);
       }
       #login_register{
         width: calc(50% - 20px);
@@ -154,6 +155,9 @@
     height: 80% !important;
     top: 10% !important;  
     margin-left: 0 !important;
+    .login_icon{
+      width: 90% !important;
+    }
   }
 }
 
