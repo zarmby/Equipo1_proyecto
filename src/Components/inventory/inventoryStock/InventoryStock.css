@@ -1,11 +1,13 @@
 .grid{
   margin-left: 70px;
+  margin-top: 80px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
 }
 
-.container{
+.cont-list{
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
 }

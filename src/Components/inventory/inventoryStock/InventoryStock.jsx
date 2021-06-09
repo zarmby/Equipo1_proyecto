@@ -8,8 +8,9 @@ function InventoryStock() {
 
   return(
     <div>
+      <Navbar />
       <SideFilter />
-      <div class="container">
+      <div class="cont-list">
       <div class ="grid">
         <SingleElement />
         <SingleElement />

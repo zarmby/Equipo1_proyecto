@@ -14,7 +14,7 @@ function MenuPage() {
     return(
       <div>
         <Navbar />
-        <div class="content">
+        <div class="content-option">
         <Link to="InventoryCenter" style={{ textDecoration: 'none' }}>
           <div class="option"  onMouseEnter={() => setImg1State(inventarioS)} onMouseLeave={() => setImg1State(inventarioU)}>
             <div class="icon "><img class="material-icons md-18" src = {img1State}  onmouseout="restaurarImagen()"></img></div>

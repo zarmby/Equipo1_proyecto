@@ -1,16 +1,17 @@
 #navbar_principal{
     background-color: #F7F7F7;
-    position: relative;
+    position: fixed;
     height: 70px;
     box-shadow: 0 5px 20px #aaa;
-
+    z-index: 1000;
+    width: 100%;
     img{
         position: relative;
         height: 80%;
         top: 10%;
     }
 
-    
+
     .dropdown {
         position: absolute;
         display: inline-block;
@@ -19,7 +20,7 @@
         top: 0;
         &:hover .dropdown-content {display: block;}
         &:hover .dropbtn {background-color: #ddd;color:#DD1F26;}
-        
+
         .dropbtn {
             position: relative;
             background-color: #F7F7F7;
@@ -59,12 +60,12 @@
     #navbar_user{
         right: 10px;
     }
-    
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
+
 }
