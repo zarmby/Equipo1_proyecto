@@ -1,19 +1,18 @@
 import './App.css';
 
 ///Components///
-import Login from './Components/login/Login';
-import MenuPage from './Components/menuPage/MenuPage';
-import User from './Components/user/User';
-import SideFilters from './Components/inventory/sideFilters/SideFilters';
+import Login from './Components/login/Login'
+import MenuPage from './Components/menuPage/MenuPage'
+import SideFilter from './Components/inventory/sideFilters/SideFilters'
+import User from './Components/user/User'
+////Images///
 
-////Routing///
+//Routes
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
+  Route
+} from 'react-router-dom';
 
 
 function App() {
@@ -22,12 +21,22 @@ function App() {
     //<Login />
     <Router>
       <Switch>
-          <Route path="/menu" component={MenuPage} />
-          <Route path="/user" component={User} />
-          <Route path="/InventoryCenter" component={SideFilters} />
-          <Route exact path="/" component={Login} />
-          <Route>Not Found</Route>
-        </Switch>
+        <Route path="/Login">
+          <Login />
+        </Route>
+        <Route path="/HomePage">
+          <MenuPage />
+        </Route>
+        <Route path="/InventoryCenter">
+          <SideFilter />
+        </Route>
+        <Route path="/user">
+          <User />
+        </Route>
+        <Route path="/*">
+          <Login />
+        </Route>
+      </Switch>
     </Router>
   );
 }

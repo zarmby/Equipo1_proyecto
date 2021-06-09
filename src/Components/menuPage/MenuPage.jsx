@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './MenuPageStyles.css';
 import {Link} from 'react-router-dom';
-
 import inventarioU from '../../assets/img/inventario_azul.png';
 import inventarioS from '../../assets/img/inventario_rojo.png';
 import usuarioA from '../../assets/img/usuario_azul.png';
@@ -9,10 +8,8 @@ import usuarioR from '../../assets/img/usuario_rojo.png';
 import Navbar from '../navbar/Navbar';
 
 function MenuPage() {
-
   const [img1State,setImg1State] = useState (inventarioU);
   const [img2State,setImg2State] = useState (usuarioA);
-
 
     return(
       <div>
@@ -36,5 +33,4 @@ function MenuPage() {
       </div>
     );
   }
-
 export default MenuPage;
