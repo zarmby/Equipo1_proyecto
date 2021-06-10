@@ -5,9 +5,7 @@
 width:250px;
 overflow:visible;
 background:#212B35;
-border-right:1px solid #e5e5e5;
 position:fixed;
-top:70px;
 bottom:0;
 height:calc(100% - 70px);
 left:0;
@@ -16,11 +14,12 @@ overflow:auto;
 transition:width .05s linear;
 -webkit-transform:translateZ(0) scale(1,1);
 z-index:1000;
-color: #212B35;
+color: rgba(0, 0, 0, 0);
 }
 
 .main-menu {
 position:fixed;
+color: #212B35;
 top:70px;
 bottom:0;
 height:calc(100% - 70px);
@@ -32,6 +31,7 @@ transition:width .05s linear;
 -webkit-transform:translateZ(0) scale(1,1);
 z-index:1000;
 text-decoration: none;
+display: flex;
 }
 
 .main-menu>ul {
@@ -46,7 +46,8 @@ width:100%;
 
 .face-side{
   position: fixed;
-  margin-top: 22rem;  
+  z-index: 10000;
+  align-self: center;
 }
 
 .main-menu li>a {
@@ -68,6 +69,7 @@ position:relative;
 display:table-cell;
 vertical-align:middle;
 font-size:20px;
+padding-left: 35px;
 color: #F7F7F7;
 width:100em;
   font-family: 'Titillium Web', sans-serif;
