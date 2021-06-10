@@ -25,15 +25,21 @@ class Login extends React.Component {
           ],
           transitionSpeed: 1000
       },
-      access : false
+      access : false,
+      width_container : 0
     };
 
+    this.login_register_div = React.createRef();
+    this.div_login = React.createRef();
+    this.div_register = React.createRef();
     this.form_user = React.createRef();
     this.input_user = React.createRef();
     this.input_pass = React.createRef();
     this.container_input_user = React.createRef();
     this.container_input_pass = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+    this.handleCancelRegister = this.handleCancelRegister.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
@@ -51,13 +57,24 @@ class Login extends React.Component {
             }
           }
       };
-  }
+    }
   }
 
   handleSubmit(e){
     e.preventDefault();
     //ruta de prueba
     window.location='/HomePage';
+  }
+
+  handleRegister(){
+    this.setState({width_container : this.login_register_div.current.clientWidth});
+    this.div_login.current.style.transform = "translateX(-"+this.state.width_container+"px)";
+    this.div_register.current.style.transform = "translateX(-"+this.state.width_container+"px)";
+  }
+  handleCancelRegister(){
+    this.setState({width_container : this.login_register_div.current.clientWidth});
+    this.div_login.current.style.transform = "translateX(0px)";
+    this.div_register.current.style.transform = "translateX("+this.state.width_container+"px)";
   }
 
   handleFocus(e){
@@ -83,29 +100,33 @@ class Login extends React.Component {
         <Granim id="granim" states={this.state} style={GradStyle} ></Granim>
         <div id="login_back"/>
         <div id = "login_form_container">
-          <div id="login_form_div">
-            <form id = "login_form" onSubmit={this.handleSubmit} ref={this.form_user}>
-              <div id="login_form_head">
-                <img src = {logo} alt="Logo Arkus"></img>
-              </div>
-              <span>Inventory Arkus Center</span>
-              <div id="login_form_body">
-                <div  ref={this.container_input_user} id="login_user_info" className="login_info_container">
-                  <label htmlFor="login_user_input"><img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" /></label>
-                  <input ref={this.input_user} type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" maxLength="50" pattern="[a-z0-9._%+-]+@arkusnexus.com" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+          <div id="login_register_container" ref={this.login_register_div}>
+            <div id="login_form_div" ref={this.div_login}>
+              <form id = "login_form" onSubmit={this.handleSubmit} ref={this.form_user}>
+                <div id="login_form_head">
+                  <img src = {logo} alt="Logo Arkus"></img>
                 </div>
-                <div ref={this.container_input_pass} id="login_password_info" className="login_info_container">
-                  <label htmlFor="login_password_input"><img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" /></label>
-                  <input ref={this.input_pass} type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" maxLength="20" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                <span>Inventory Arkus Center</span>
+                <div id="login_form_body">
+                  <div  ref={this.container_input_user} id="login_user_info" className="login_info_container">
+                    <label htmlFor="login_user_input"><img src = {userIcon} id = "login_user_icon" className="login_icon" alt="Icono usuario" /></label>
+                    <input ref={this.input_user} type="email" placeholder="Usuario"  id = "login_user_input" className = "login_input" maxLength="50" pattern="[a-z0-9._%+-]+@arkusnexus.com" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                  </div>
+                  <div ref={this.container_input_pass} id="login_password_info" className="login_info_container">
+                    <label htmlFor="login_password_input"><img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" /></label>
+                    <input ref={this.input_pass} type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" maxLength="20" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                  </div>
+                  <div id="login_submit_info">
+                    <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
+                  </div>
                 </div>
-                <div id="login_submit_info">
-                  <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
-                </div>
-                
-              </div>
-            </form>
-            <hr id="separator" className="login_info_container" />
-            <button id="login_register" className="btn_login">Registrarse</button>
+              </form>
+              <hr id="separator" className="login_info_container" />
+              <button id="login_register" className="btn_login" onClick={this.handleRegister}>Registrarse</button>
+            </div>
+            <div id="register_form_div" ref={this.div_register}>
+              <button className="btn_login" onClick={this.handleCancelRegister}>jajaja</button>
+            </div>
           </div>
         </div>
       </div>
