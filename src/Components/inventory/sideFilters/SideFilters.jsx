@@ -9,17 +9,32 @@ function SideFilters(){
       <div class="area"></div>
       <nav class="main-menu">
       <spam class="face-side">
-        <i class="fas fa-arrow-circle-right fa-2x"></i>
+        <i class="fas fa-angle-right fa-3x"></i>
       </spam>
         <ul>
           <li>
             <a href="">
-              <span class="nav-text">Computadoras</span>
+              <span class="nav-text">Audifonos</span>
             </a>
           </li>
           <li>
             <a href="">
               <span class="nav-text">Laptops</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="nav-text">HDMI</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="nav-text">Monitores</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="nav-text">Teclados</span>
             </a>
           </li>
         </ul>
