@@ -15,6 +15,7 @@ transition:width .05s linear;
 -webkit-transform:translateZ(0) scale(1,1);
 z-index:1000;
 color: rgba(0, 0, 0, 0);
+border-right: 2px solid white;
 }
 
 .main-menu {

@@ -7,21 +7,21 @@ import SingleElement from './SingleElement';
 function InventoryStock() {
 
   return(
-    <div>
+    <div class="inv-cont">
       <Navbar />
       <SideFilter />
-      <div class="cont-list">
-      <div class ="grid">
-        <SingleElement />
-        <SingleElement />
-        <SingleElement />
-        <SingleElement />
-        <SingleElement />
-        <SingleElement />
-        <SingleElement />
-        <SingleElement />
-        <SingleElement />
+      <div clas="Filters">
+
       </div>
+      <div class="cont-list">
+        <div class ="grid">
+          <SingleElement />
+          <SingleElement />
+          <SingleElement />
+          <SingleElement />
+          <SingleElement />
+          <SingleElement />
+        </div>
       </div>
     </div>
   );
