@@ -68,7 +68,6 @@ body {
 
 .card__arc {
   position: absolute;
-
 }
 
 .card:hover .card__header {
