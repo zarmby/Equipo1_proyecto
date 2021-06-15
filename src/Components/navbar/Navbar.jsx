@@ -13,7 +13,7 @@ class Navbar extends React.Component{
             <nav id="navbar_principal">
                 <img src={logo} alt="" />
                 <div class="dropdown" id="navbar_menu">
-                    <button class="dropbtn">Menu</button>
+                    <a href="/HomePage"><button class="dropbtn">Menu</button></a>
                     <div class="dropdown-content">
                         <a href="/InventoryCenter">Inventario</a>
                         <a href="/user">Usuario</a>

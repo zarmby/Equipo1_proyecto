@@ -5,6 +5,7 @@ import Login from './Components/login/Login'
 import MenuPage from './Components/menuPage/MenuPage'
 import User from './Components/user/User'
 import InventoryStock from './Components/inventory/inventoryStock/InventoryStock'
+import Carrousel from './Components/inventory/carousel/Carousel';
 ////Images///
 
 //Routes
@@ -28,7 +29,7 @@ function App() {
           <MenuPage />
         </Route>
         <Route path="/InventoryCenter">
-          <InventoryStock />
+          <Carrousel />
         </Route>
         <Route path="/user">
           <User />

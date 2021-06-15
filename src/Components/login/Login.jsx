@@ -109,8 +109,8 @@ class Login extends React.Component {
       case 'register_confirm_input': 
         document.getElementById('register_confirm_info').className="info_container input_focus";
         break;
-      case 'register_cede_input': 
-        document.getElementById('register_cede_info').className="info_container input_focus";
+      case 'register_sede_input': 
+        document.getElementById('register_sede_info').className="info_container input_focus";
         break;
     }
   }
@@ -173,16 +173,16 @@ class Login extends React.Component {
                     <input type="email" placeholder="Correo electronico"  id = "register_email_input" className = "register_input" maxLength="50" maxLength="50" pattern="[A-Za-z0-9._%+-]+@arkusnexus.com" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
                   </div>
                   <div id="register_phone_info" className="info_container">
-                    <input type="text" placeholder="Telefono"  id = "register_phone_input" className = "register_input" maxLength="50" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                    <input type="text" placeholder="Telefono"  id = "register_phone_input" className = "register_input" maxLength="15" pattern="[0-9]" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
                   </div>
                   <div id="register_password_info" className="info_container">
-                    <input type="password" placeholder="Contraseña"  id = "register_password_input" className = "register_input" maxLength="50" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                    <input type="password" placeholder="Contraseña"  id = "register_password_input" className = "register_input" minLength="10" maxLength="20" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
                   </div>
                   <div id="register_confirm_info" className="info_container">
-                    <input type="password" placeholder="Confirmacion de la contraseña"  id = "register_confirm_input" className = "register_input" maxLength="50" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                    <input type="password" placeholder="Confirmacion de la contraseña"  id = "register_confirm_input" className = "register_input" minLength="10" maxLength="20" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
                   </div>
-                  <div id="register_cede_info" className="info_container">
-                    <select id = "register_cede_input" className="register_input" required onFocus={this.handleFocus} onBlur={this.handleBlur} >
+                  <div id="register_sede_info" className="info_container">
+                    <select id = "register_sede_input" className="register_input" required onFocus={this.handleFocus} onBlur={this.handleBlur} >
                       <option value="d" hidden disabled selected>Sede</option>
                       <option value="d">f</option>
                       <option value="d">f</option>

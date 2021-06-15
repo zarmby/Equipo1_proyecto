@@ -1,0 +1,33 @@
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+
+.carousel_container{
+    box-sizing: border-box;
+    #carousel_items_contain{
+        position: absolute;
+        box-sizing: border-box;
+        background-color: blue;
+        width: 80%;
+        height: 300px;
+        margin-top: calc(50vh - 150px);
+        margin-left: 10%;
+        .glide{
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            .glide__slides{
+                width: 100%;
+                height: 100%;
+                background-color: chartreuse;
+                .glide__slide{
+                    height: 240px;
+                    background-color: brown;
+                    &:focus{
+                        background-color:chartreuse;
+                    }
+                }
+            }
+        }
+    }
+}
