@@ -5,6 +5,7 @@ import Login from './Components/login/Login'
 import MenuPage from './Components/menuPage/MenuPage'
 import User from './Components/user/User'
 import InventoryStock from './Components/inventory/inventoryStock/InventoryStock'
+import ScannerC from './Components/inventory/Scanner/ScannerC'
 ////Images///
 
 //Routes
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route path="/user">
           <User />
+        </Route>
+        <Route path="/Scanner">
+          <ScannerC />
         </Route>
         <Route path="/*">
           <Login />

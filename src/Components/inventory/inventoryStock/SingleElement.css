@@ -105,10 +105,15 @@ body {
   border-top: 1px solid #DD1F26;
   padding: 1em 2em 2em;
   margin: 0;
+  font-size: 15px;
   color: white;
-  font-family: "MockFlowFont";
+  font-family: sans-serif;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
+}
+
+.card:hover{
+  transition: 1000ms
 }

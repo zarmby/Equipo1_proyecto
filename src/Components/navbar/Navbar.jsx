@@ -17,6 +17,7 @@ class Navbar extends React.Component{
                     <div class="dropdown-content">
                         <a href="/InventoryCenter">Inventario</a>
                         <a href="/user">Usuario</a>
+                        <a href="/scanner">Scanner</a>
                     </div>
                 </div>
                 <div class="dropdown" id="navbar_user">
