@@ -10,8 +10,8 @@ function InventoryStock() {
     <div>
       <Navbar />
       <SideFilter />
-      <div class="cont-list">
-      <div class ="grid">
+      <div className="cont-list">
+      <div className ="grid">
         <SingleElement />
         <SingleElement />
         <SingleElement />

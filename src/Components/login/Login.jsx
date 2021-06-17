@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Granim from 'react-granim'
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Loading from '../loading/Loading';
+import {LoginApiGet} from '../../services/utils/Api';
 
 import './LoginStyles.scss'
 
@@ -26,7 +27,8 @@ class Login extends React.Component {
           ],
           transitionSpeed: 1000
       },
-      access : false
+      user : '',
+      loading: false
     };
 
     this.login_register_div = React.createRef();
@@ -34,8 +36,8 @@ class Login extends React.Component {
     this.div_register = React.createRef();
     this.form_user = React.createRef();
     this.register_user = React.createRef();
-    /*this.input_user = React.createRef();
-    this.input_pass = React.createRef();*/
+    this.input_user = React.createRef();
+    this.input_pass = React.createRef();
     this.container_input_user = React.createRef();
     this.container_input_pass = React.createRef();
     this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
@@ -45,6 +47,8 @@ class Login extends React.Component {
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
+
+
   componentDidMount(){
     let inputElements = document.getElementsByClassName('login_input');
     for (var i = 0; i < inputElements.length; i++) {
@@ -62,10 +66,21 @@ class Login extends React.Component {
     }
   }
 
-  handleSubmitLogin(e){
+  async handleSubmitLogin(e){
     e.preventDefault();
-    //ruta de prueba
-    window.location='/HomePage';
+    this.setState({loading:true});
+    try {
+      const res = await LoginApiGet("user/login",[this.input_user.current.value, this.input_pass.current.value]);
+      const data = await res;
+      console.log(data);
+      localStorage.setItem("UserLogged", JSON.stringify(data.result));
+      Alertify.success("entraste prro");
+      window.location.href ='/HomePage'; 
+    }
+    catch (e) {
+      Alertify.error("Datos erroneos"+e);
+      this.setState({loading:false}); 
+    }    
   }
 
   handleSubmitRegister(e){
@@ -133,6 +148,7 @@ class Login extends React.Component {
   render(){
     return(
       <div className = "login_container">
+        {(this.state.loading) ? <Loading/> : null}
         <Granim id="granim" states={this.state} style={GradStyle} ></Granim>
         <div id="login_back"/>
         <div id = "login_form_container">
@@ -150,7 +166,7 @@ class Login extends React.Component {
                   </div>
                   <div ref={this.container_input_pass} id="login_password_info" className="info_container">
                     <label htmlFor="login_password_input"><img src = {passWordIcon} id = "login_password_icon" className="login_icon" alt="Icono contraseña" /></label>
-                    <input ref={this.input_pass} type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" maxLength="20" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                    <input ref={this.input_pass} type="password" placeholder="Contraseña" id = "login_password_input" className = "login_input" minLength="6" maxLength="20" required  onFocus={this.handleFocus} onBlur={this.handleBlur} />
                   </div>
                   <div id="login_submit_info">
                     <input type="submit" id="login_submit" className="btn_login" value="Ingresar" />
@@ -170,7 +186,7 @@ class Login extends React.Component {
                     <input type="text" placeholder="Apellido"  id = "register_last_input" className = "register_input" maxLength="50" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
                   </div>
                   <div id="register_email_info" className="info_container">
-                    <input type="email" placeholder="Correo electronico"  id = "register_email_input" className = "register_input" maxLength="50" maxLength="50" pattern="[A-Za-z0-9._%+-]+@arkusnexus.com" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                    <input type="email" placeholder="Correo electronico"  id = "register_email_input" className = "register_input" maxLength="50" pattern="[A-Za-z0-9._%+-]+@arkusnexus.com" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
                   </div>
                   <div id="register_phone_info" className="info_container">
                     <input type="text" placeholder="Telefono"  id = "register_phone_input" className = "register_input" maxLength="15" pattern="[0-9]" required onFocus={this.handleFocus} onBlur={this.handleBlur} />
