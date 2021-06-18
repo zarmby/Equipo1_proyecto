@@ -54,7 +54,7 @@ class Login extends React.Component {
     let inputElements = document.getElementsByClassName('login_input');
     for (var i = 0; i < inputElements.length; i++) {
       inputElements[i].oninvalid = function (e) {
-          e.target.setCustomValidity(""); 
+          e.target.setCustomValidity("");
           if (!e.target.validity.valid) {
             if (e.target.id == "login_user_input") {
               e.target.setCustomValidity("El correo no es valido, verifique bien sus datos. El dominio debe ser arkusnexus.com");
@@ -74,8 +74,8 @@ class Login extends React.Component {
     catch(e){
       console.log(e);
     }
-    
-    this.setState({loading:false}); 
+
+    this.setState({loading:false});
   }
 
   async handleSubmitLogin(e){
@@ -90,8 +90,8 @@ class Login extends React.Component {
     }
     catch (e) {
       Alertify.error("Datos erroneos"+e);
-      this.setState({loading:false}); 
-    }    
+      this.setState({loading:false});
+    }
   }
 
   handleSubmitRegister(e){
@@ -111,31 +111,31 @@ class Login extends React.Component {
 
   handleFocus(e){
     switch(e.target.id){
-      case 'login_user_input': 
+      case 'login_user_input':
         document.getElementById('login_user_info').className="info_container input_focus";
         break;
-      case 'login_password_input': 
+      case 'login_password_input':
         document.getElementById('login_password_info').className="info_container input_focus";
         break;
-      case 'register_name_input': 
+      case 'register_name_input':
         document.getElementById('register_name_info').className="info_container input_focus";
         break;
-      case 'register_last_input': 
+      case 'register_last_input':
         document.getElementById('register_last_info').className="info_container input_focus";
         break;
-      case 'register_email_input': 
+      case 'register_email_input':
         document.getElementById('register_email_info').className="info_container input_focus";
         break;
-      case 'register_phone_input': 
+      case 'register_phone_input':
         document.getElementById('register_phone_info').className="info_container input_focus";
         break;
-      case 'register_password_input': 
+      case 'register_password_input':
         document.getElementById('register_password_info').className="info_container input_focus";
         break;
-      case 'register_confirm_input': 
+      case 'register_confirm_input':
         document.getElementById('register_confirm_info').className="info_container input_focus";
         break;
-      case 'register_sede_input': 
+      case 'register_sede_input':
         document.getElementById('register_sede_info').className="info_container input_focus";
         break;
     }
@@ -151,7 +151,7 @@ class Login extends React.Component {
       let inputsArray = document.getElementsByClassName('info_container');
       for (let index = 0; index < inputsArray.length; index++) {
         inputsArray[index].className="info_container";
-        
+
       }
     }
   }
@@ -215,14 +215,14 @@ class Login extends React.Component {
                       <option value="d">f</option>
                       <option value="d">f</option>
                       <option value="d">f</option>
-                    </select>  
+                    </select>
                   </div>
                 </div>
                 <br />
                 <input type="submit" id="register_submit" className="btn_login" value="Registrarse"></input>
-                
+
               </form>
-              
+
               <button id="register_cancel" className="btn_login" onClick={this.handleCancelRegister}>Cancelar</button>
             </div>
           </div>

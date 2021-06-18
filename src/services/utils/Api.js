@@ -5,9 +5,9 @@ export const LoginApiGet = async (path, params = null) => {
 
     let data = {
         email : params[0],
-        password : params[1] 
+        password : params[1]
     }
-    
+
     let response = await fetch(
         url,
         {
@@ -23,7 +23,7 @@ export const LoginApiGet = async (path, params = null) => {
             result: await response.json(),
             status: response.status
         }
-    else 
+    else
         throw new Error(response.status);
 }
 

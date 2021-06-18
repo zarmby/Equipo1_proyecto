@@ -10,9 +10,9 @@ import './Carousel.scss'
 
 class Carrousel extends React.Component {
     constructor (props){
-      super(props); 
+      super(props);
     }
-    
+
     componentDidMount(){
         new Glide(".glide", {
             type: "carousel",
@@ -22,14 +22,14 @@ class Carrousel extends React.Component {
             starAt: 0,
             autoplay: 2000,
             hoverpause: false,
-            keyboard: true, 
+            keyboard: true,
             peek: {
                 before: -100,
                 after: -100
               }
         }).mount();
     }
-      
+
 
     render(){
         return(
@@ -44,7 +44,7 @@ class Carrousel extends React.Component {
                         </div>
                         <div className="glide__track" data-glide-el="track">
                             <ul className="glide__slides">
-                                <li className="glide__slide"><h1>0</h1></li>
+                                <li className="glide__slide"><img class="carousel-Item" src="https://images-na.ssl-images-amazon.com/images/I/61U5WlgRiPL._AC_SY355_.jpg"></img></li>
                                 <li className="glide__slide"><h1>1</h1></li>
                                 <li className="glide__slide"><h1>2</h1></li>
                                 <li className="glide__slide"><h1>3</h1></li>
