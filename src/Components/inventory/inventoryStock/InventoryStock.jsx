@@ -11,7 +11,6 @@ function InventoryStock() {
       <Navbar />
       <SideFilter />
       <div clas="Filters">
-
       </div>
       <div class="cont-list">
         <div class ="grid">
