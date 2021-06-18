@@ -18,19 +18,19 @@ import {
 
 
 const App = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
 
-  /*useEffect(() => {
-    cons loggedUser = window.localStorage.getItem('UserLogged');
-  });*/
+  useEffect(() => { 
+    const loggedUser = window.localStorage.getItem('UserLogged');
+    if(loggedUser){
+      const UserLogged = JSON.parse(loggedUser)
+      setUser(UserLogged);
+    }
+  },[]);
 
-  return (
-    //<Login />
-    <Router>
+  const routerLogged = () =>{
+    return(
       <Switch>
-        <Route path="/Login">
-          <Login />
-        </Route>
         <Route path="/HomePage">
           <MenuPage />
         </Route>
@@ -41,9 +41,28 @@ const App = () => {
           <User />
         </Route>
         <Route path="/*">
+          <MenuPage />
+        </Route>
+      </Switch>
+    )
+  }
+
+  const routerUnlogged = ()=>{
+    return(
+      <Switch>
+        <Route path="/Login">
+          <Login />
+        </Route>
+        <Route path="/*">
           <Login />
         </Route>
       </Switch>
+    )
+  }
+
+  return (
+    <Router>
+      {user === null ? routerUnlogged() : routerLogged() }
     </Router>
   );
 }

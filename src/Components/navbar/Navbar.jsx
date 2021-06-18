@@ -1,11 +1,28 @@
 import React from 'react';
 import './Navbar.scss';
-import {Link} from 'react-router-dom';
 import logo from '../../assets/img/Logo.png';
 
 class Navbar extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            username : ""
+        }
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    componentDidMount(){
+        let loggedUser = window.localStorage.getItem('UserLogged');
+        if(loggedUser){
+        let UserLogged = JSON.parse(loggedUser)
+        let nameUser = UserLogged.name + " " + UserLogged.lastname; 
+        this.setState({username : nameUser});
+        }
+    }
+
+    handleLogout(){
+        window.localStorage.removeItem("UserLogged");
+        window.location.href = "/";
     }
 
     render(){
@@ -22,9 +39,9 @@ class Navbar extends React.Component{
                 <div class="dropdown" id="navbar_user">
                     <button class="dropbtn">Cuenta</button>
                     <div class="dropdown-content">
-                        <a href="/HomePage">Cambiar contraseña</a>
+                        <a href="/HomePage">{this.state.username}</a>
                         <hr />
-                        <a href="/">Salir</a>
+                        <a onClick={this.handleLogout} >Salir</a>
                     </div>
                 </div>
             </nav>

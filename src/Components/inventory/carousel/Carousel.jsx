@@ -23,7 +23,6 @@ class Carrousel extends React.Component {
             autoplay: 2000,
             hoverpause: false,
             keyboard: true, 
-            animationDuration: 500,
             peek: {
                 before: -100,
                 after: -100
@@ -39,22 +38,22 @@ class Carrousel extends React.Component {
                 <div id="carousel_items_contain">
                     <div className="glide">
                         <div className="glide__arrows" data-glide-el="controls">
-                            <button className="glide__arrow glide__arrow--left" data-glide-dir="<<">
+                            <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
                                 Prev
                             </button>
                         </div>
                         <div className="glide__track" data-glide-el="track">
                             <ul className="glide__slides">
-                                <li className="glide__slide">0</li>
-                                <li className="glide__slide">1</li>
-                                <li className="glide__slide">2</li>
-                                <li className="glide__slide">3</li>
-                                <li className="glide__slide">4</li>
-                                <li className="glide__slide">5</li>
+                                <li className="glide__slide"><h1>0</h1></li>
+                                <li className="glide__slide"><h1>1</h1></li>
+                                <li className="glide__slide"><h1>2</h1></li>
+                                <li className="glide__slide"><h1>3</h1></li>
+                                <li className="glide__slide"><h1>4</h1></li>
+                                <li className="glide__slide"><h1>5</h1></li>
                             </ul>
                         </div>
                         <div className="glide__arrows" data-glide-el="controls">
-                            <button className="glide__arrow glide__arrow--right" data-glide-dir=">>">
+                            <button className="glide__arrow glide__arrow--right" data-glide-dir=">">
                                 Next
                             </button>
                         </div>

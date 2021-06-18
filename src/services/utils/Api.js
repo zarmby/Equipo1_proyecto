@@ -25,8 +25,16 @@ export const LoginApiGet = async (path, params = null) => {
         }
     else 
         throw new Error(response.status);
-    /*const getApiCall = async (search) => {
-        const res = await fetch(POKEMON_API + search);
-        return res.json();
-    }*/
+}
+
+export const SedeApiGet = async (path) => {
+    const url = BACK_API + path;
+    let response = await fetch(url);
+    if (response.ok || response.status === 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else
+        throw new Error(response.status);
 }

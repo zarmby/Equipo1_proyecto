@@ -4,7 +4,7 @@ import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import { Redirect } from "react-router-dom";
 import Loading from '../loading/Loading';
-import {LoginApiGet} from '../../services/utils/Api';
+import {LoginApiGet,SedeApiGet} from '../../services/utils/Api';
 
 import './LoginStyles.scss'
 
@@ -28,7 +28,8 @@ class Login extends React.Component {
           transitionSpeed: 1000
       },
       user : '',
-      loading: false
+      loading: true,
+      sedes : []
     };
 
     this.login_register_div = React.createRef();
@@ -49,7 +50,7 @@ class Login extends React.Component {
   }
 
 
-  componentDidMount(){
+  async componentDidMount(){
     let inputElements = document.getElementsByClassName('login_input');
     for (var i = 0; i < inputElements.length; i++) {
       inputElements[i].oninvalid = function (e) {
@@ -64,6 +65,17 @@ class Login extends React.Component {
           }
       };
     }
+    try{
+      const sedesGet = await SedeApiGet("campus/");
+      const dataSedes = await sedesGet;
+      this.setState({sedes : dataSedes.result.cont.campus})
+      //console.log(this.state.sedes);
+    }
+    catch(e){
+      console.log(e);
+    }
+    
+    this.setState({loading:false}); 
   }
 
   async handleSubmitLogin(e){
@@ -72,10 +84,9 @@ class Login extends React.Component {
     try {
       const res = await LoginApiGet("user/login",[this.input_user.current.value, this.input_pass.current.value]);
       const data = await res;
-      console.log(data);
       localStorage.setItem("UserLogged", JSON.stringify(data.result));
       Alertify.success("entraste prro");
-      window.location.href ='/HomePage'; 
+      window.location.href ='/HomePage';
     }
     catch (e) {
       Alertify.error("Datos erroneos"+e);
