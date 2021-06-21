@@ -28,7 +28,7 @@ class User extends React.Component{
                     <h1>Informacion de usuario</h1>
                     <div ref={this.input_search}  id="user_search">
                         <input type="text" id="user_search_input" placeholder="Escriba el nombre del usuario a consultar" onFocus={this.handleFocus} onBlur={this.handleBlur} />
-                        <input type="image" src={SearchIcon} id="user_search_btn"/>
+                        <input type="image" src={SearchIcon} id="user_search_btn" alt="Buscar" />
                     </div>
                     <br />
                     <Link to="/menu" className="link">Volver</Link>

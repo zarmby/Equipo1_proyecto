@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './SideFilters.css'
 
@@ -13,27 +13,27 @@ function SideFilters(){
       </spam>
         <ul>
           <li>
-            <a href="">
+            <a href="#">
               <span class="nav-text">Audifonos</span>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="#">
               <span class="nav-text">Laptops</span>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="#">
               <span class="nav-text">HDMI</span>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="#">
               <span class="nav-text">Monitores</span>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="#">
               <span class="nav-text">Teclados</span>
             </a>
           </li>

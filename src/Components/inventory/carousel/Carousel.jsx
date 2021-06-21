@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import NavBar from '../../navbar/Navbar';
+import React from 'react';
 import Glide from "@glidejs/glide";
 // Required Core Stylesheet
 import "@glidejs/glide/src/assets/sass/glide.core.scss";
 // Optional Theme Stylesheet
 import "@glidejs/glide/src/assets/sass/glide.theme.scss";
 
+import NavBar from '../../navbar/Navbar';
+import CarouselItem from './carousel_item/CarouselItem';
 import './Carousel.scss'
 
-class Carrousel extends React.Component {
+class Carousel extends React.Component {
     constructor (props){
-      super(props); 
+        super(props);
+        this.state = {
+            typeEquipment: []
+        } 
     }
     
     componentDidMount(){
@@ -20,8 +24,8 @@ class Carrousel extends React.Component {
             gap: 50,
             focusAt: 'center',
             starAt: 0,
-            autoplay: 2000,
-            hoverpause: false,
+            autoplay: 1500,
+            hoverpause: true,
             keyboard: true, 
             peek: {
                 before: -100,
@@ -44,12 +48,13 @@ class Carrousel extends React.Component {
                         </div>
                         <div className="glide__track" data-glide-el="track">
                             <ul className="glide__slides">
-                                <li className="glide__slide"><h1>0</h1></li>
-                                <li className="glide__slide"><h1>1</h1></li>
-                                <li className="glide__slide"><h1>2</h1></li>
-                                <li className="glide__slide"><h1>3</h1></li>
-                                <li className="glide__slide"><h1>4</h1></li>
-                                <li className="glide__slide"><h1>5</h1></li>
+                                <CarouselItem number="jaja"/>
+                                <CarouselItem number="ulala"/>
+                                <CarouselItem number="hfha"/>
+                                <CarouselItem number="fgdf"/>
+                                <CarouselItem number="dfgd"/>
+                                <CarouselItem number="gfdg"/>
+                                <CarouselItem number="fgdfg"/>
                             </ul>
                         </div>
                         <div className="glide__arrows" data-glide-el="controls">
@@ -63,5 +68,4 @@ class Carrousel extends React.Component {
         )
     }
 }
-
-export default Carrousel;
+export default Carousel;

@@ -2,10 +2,9 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 
 ///Components///
-import Login from './Components/login/Login'
-import MenuPage from './Components/menuPage/MenuPage'
-import User from './Components/user/User'
-import InventoryStock from './Components/inventory/inventoryStock/InventoryStock'
+import Login from './Components/login/Login';
+import MenuPage from './Components/menuPage/MenuPage';
+import User from './Components/user/User';
 import Carousel from './Components/inventory/carousel/Carousel';
 ////Images///
 
