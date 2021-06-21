@@ -39,12 +39,12 @@ export const SedeApiGet = async (path) => {
         throw new Error(response);
 }
 
-export const RegisterApiPost = async (path, params = null, file = null) => {
+export const RegisterApiPost = async (path, params = null) => {
     const url = BACK_API + path;
 
     let data = {
         IDcampus: params[6],
-        picture: file.name,
+        picture: 'default.jpg',
         name: params[0],
         lastname: params[1],
         email: params[2],

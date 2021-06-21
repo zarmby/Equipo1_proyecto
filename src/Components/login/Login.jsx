@@ -1,6 +1,5 @@
 import React from 'react';
-import Granim from 'react-granim'
-import Alertify from 'alertifyjs';
+import Granim from 'react-granim';
 import 'alertifyjs/build/css/alertify.css';
 import Loading from '../loading/Loading';
 import {SedeApiGet} from '../../services/utils/Api';

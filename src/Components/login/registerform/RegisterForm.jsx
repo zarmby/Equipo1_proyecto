@@ -1,4 +1,4 @@
-import { useState, useRef, forwardRef, useImperativeHandle } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 
@@ -14,11 +14,8 @@ const RegisterForm = forwardRef((props,ref) => {
   const [pass, setPass] = useState('');
   const [pconf, setPconf] = useState('');
   const [sede, setSede] = useState('');
-  const [photo, setPhoto] = useState([]);
 
   const param = [name, last, email, phone, pass, pconf, sede];
-
-  const inputPhoto = useRef(null);
 
   useImperativeHandle(ref, () => ({
     cleanInputsChild(){
@@ -30,11 +27,9 @@ const RegisterForm = forwardRef((props,ref) => {
       setPass('');
       setPconf('');
       setSede('');
-      setPhoto([]);
-      inputPhoto.current.value=''; 
-      let RPI = document.getElementById("register_photo_info");
-      RPI.setAttribute("title", "Seleccionar fotografia");
-      RPI.style.color = '#777';
+      let RSI = document.getElementById("register_sede_input");
+      RSI.value = "";
+      RSI.style.color = '#777';
     }
 
   }));
@@ -46,7 +41,7 @@ const RegisterForm = forwardRef((props,ref) => {
 
     props.loading();
     try {
-      await RegisterApiPost("user/", param, photo);
+      await RegisterApiPost("user/", param);
       Alertify.success("<b style='color:white;'>Registro completo</b>");
     //cleanInputs();
     }
@@ -55,7 +50,6 @@ const RegisterForm = forwardRef((props,ref) => {
       console.log(e);
     }
     props.loaded();
-    //document.getElementById("register_photo_input").onchange();
     cleanInputs();
   }
 
@@ -68,11 +62,6 @@ const RegisterForm = forwardRef((props,ref) => {
     setPass('');
     setPconf('');
     setSede('');
-    setPhoto([]);
-    inputPhoto.current.value=''; 
-    let RPI = document.getElementById("register_photo_info");
-    RPI.setAttribute("title", "Seleccionar fotografia");
-    RPI.style.color = '#777';
     let RSI = document.getElementById("register_sede_input");
     RSI.value = "";
     RSI.style.color = '#777';
@@ -190,25 +179,6 @@ const RegisterForm = forwardRef((props,ref) => {
                 <option key={index} value={item._id}>{item.name}</option>
               ))}
             </select>
-          </div>
-          <div id="register_photo_info" className="info_container" title="Seleccionar fotografia" >
-            <input
-              type="file" id="register_photo_input" className="register_input"
-              required onFocus={handleFocus} onBlur={handleBlur} accept="image/*"
-              ref={inputPhoto} onChange={(e) => {
-                let inputFile = document.getElementById("register_photo_info");
-                if (e.target.files.length > 0) {
-                  setPhoto(e.target.files[0]);
-                  inputFile.setAttribute("title", e.target.files[0].name);
-                  inputFile.style.color = 'black';
-                }
-                else {
-                  setPhoto([]);
-                  inputFile.setAttribute("title", "Seleccionar fotografia");
-                  inputFile.style.color = '#777';
-                }
-              }}
-            />
           </div>
         </div>
         <br />
