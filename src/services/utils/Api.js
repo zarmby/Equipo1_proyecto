@@ -36,10 +36,6 @@ export const SedeApiGet = async (path) => {
             status: response.status
         }
     else
-<<<<<<< HEAD
-        throw new Error(response.status);
-}
-=======
         throw new Error(response);
 }
 
@@ -79,4 +75,3 @@ export const RegisterApiPost = async (path, params = null) => {
     else
         throw new Error(response);
 }
->>>>>>> origin/sp3-ft-002

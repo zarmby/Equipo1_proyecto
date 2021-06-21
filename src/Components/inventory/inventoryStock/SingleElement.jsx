@@ -4,7 +4,7 @@ import './SingleElement.css';
 function SingleElement(){
 
   return(
-    <div class="card">
+    <div class="card" id = "element-index">
       <img src="https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-cartoon-white-laptop-free-button-image_1372158.jpg" class="card__image" alt="" />
       <div class="card__overlay">
         <div class="card__header">
