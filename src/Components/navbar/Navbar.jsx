@@ -38,11 +38,9 @@ class Navbar extends React.Component{
                     </div>
                 </div>
                 <div class="dropdown" id="navbar_user">
-                    <button class="dropbtn">Cuenta</button>
+                    <button class="dropbtn">{this.state.username}</button>
                     <div class="dropdown-content">
-                        <a href="/HomePage">{this.state.username}</a>
-                        <hr />
-                        <a onClick={this.handleLogout} >Salir</a>
+                        <a href="#navbar_principal" onClick={this.handleLogout} >Salir</a>
                     </div>
                 </div>
             </nav>

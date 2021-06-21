@@ -28,8 +28,8 @@ body {
   border-radius: calc(var(--curve) * 1px);
   overflow: hidden;
   text-decoration: none;
-  min-height: 300px;
-  min-width: 300px;
+  min-height: 250px;
+  min-width: 250px;
 }
 
 .card__image {
@@ -45,12 +45,12 @@ body {
   z-index: 1;
   border-radius: calc(var(--curve) * 1px);
   background-color: #212B35;
-  transform: translateY(100%);
+  transform: translateY(108%);
   transition: .2s ease-in-out;
 }
 
 .card:hover .card__overlay {
-  transform: translateY(0);
+  transform: translateY(-0%);
 }
 
 .card__header {
@@ -61,7 +61,7 @@ body {
   padding: 2em;
   border-radius: calc(var(--curve) * 1px) 0 0 0;
   background-color: #212B35;
-  transform: translateY(-100%);
+  transform: translateY(-110%);
   transition: .2s ease-in-out;
 }
 

@@ -17,14 +17,14 @@ function MenuPage() {
         <div class="content-option">
           <Link to="InventoryCenter" style={{ textDecoration: 'none' }}>
             <div class="option"  onMouseEnter={() => setImg1State(inventarioS)} onMouseLeave={() => setImg1State(inventarioU)}>
-              <div class="icon "><img class="material-icons md-18" src = {img1State}  onmouseout="restaurarImagen()"></img></div>
+              <div class="icon "><img class="material-icons md-18" src = {img1State} alt="Inventario"></img></div>
                 <p class="title">Inventario</p>
                 <p class="text">Administra el inventario de equipos y mira la informacion disponible sobre ellos.</p>
               </div>
           </Link>
           <Link to="/user" className="link">
             <div class="option"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
-              <div class="icon"><img class="material-icons md-18" src = {img2State}></img></div>
+              <div class="icon"><img class="material-icons md-18" src = {img2State} alt="Usuario"></img></div>
                 <p class="title">Reportes y Notificaciones</p>
                 <p class="text">Descripcion del modulo</p>
               </div>

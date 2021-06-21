@@ -38,7 +38,11 @@ const App = () => {
         <Route path="/InventoryCenter">
           <Carousel />
         </Route>
+<<<<<<< HEAD
         <Route path="/InventoryList">
+=======
+        <Route path="/InventoryStock">
+>>>>>>> dev
           <InventoryStock />
         </Route>
         <Route path="/user">
@@ -59,6 +63,21 @@ const App = () => {
       <Switch>
         <Route path="/Login">
           <Login />
+        </Route>
+        <Route path="/HomePage">
+          <MenuPage />
+        </Route>
+        <Route path="/InventoryCenter">
+          <Carousel />
+        </Route>
+        <Route path="/InventoryStock">
+          <InventoryStock />
+        </Route>
+        <Route path="/user">
+          <User />
+        </Route>
+        <Route path="/Scanner">
+          <ScannerC />
         </Route>
         <Route path="/*">
           <Login />
