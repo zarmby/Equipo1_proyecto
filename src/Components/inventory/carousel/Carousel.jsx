@@ -16,7 +16,7 @@ class Carousel extends React.Component {
             typeEquipment: []
         } 
     }
-    
+
     componentDidMount(){
         new Glide(".glide", {
             type: "carousel",
@@ -33,7 +33,7 @@ class Carousel extends React.Component {
               }
         }).mount();
     }
-      
+
 
     render(){
         return(

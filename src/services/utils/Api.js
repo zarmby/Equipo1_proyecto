@@ -4,8 +4,8 @@ export const LoginApiPost = async (path, params = null) => {
     const url = BACK_API + path;
 
     let data = {
-        email: params[0],
-        password: params[1]
+        email : params[0],
+        password : params[1]
     }
 
     let response = await fetch(
