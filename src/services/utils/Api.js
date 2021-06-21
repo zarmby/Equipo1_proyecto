@@ -4,13 +4,8 @@ export const LoginApiPost = async (path, params = null) => {
     const url = BACK_API + path;
 
     let data = {
-<<<<<<< HEAD
-        email : params[0],
-        password : params[1]
-=======
         email: params[0],
         password: params[1]
->>>>>>> origin/sp3-ft-002
     }
 
     let response = await fetch(
@@ -64,7 +59,7 @@ export const RegisterApiPost = async (path, params = null) => {
         password: params[4],
         password2: params[4]
     }
-    
+
     console.log(data);
     let response = await fetch(
         url,
@@ -81,7 +76,7 @@ export const RegisterApiPost = async (path, params = null) => {
             result: await response.json(),
             status: response.status
         }
-    else 
+    else
         throw new Error(response);
 }
 >>>>>>> origin/sp3-ft-002

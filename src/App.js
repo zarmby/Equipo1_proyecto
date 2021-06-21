@@ -2,17 +2,11 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 
 ///Components///
-<<<<<<< HEAD
 import Login from './Components/login/Login'
 import MenuPage from './Components/menuPage/MenuPage'
 import User from './Components/user/User'
 import InventoryStock from './Components/inventory/inventoryStock/InventoryStock'
 import ScannerC from './Components/inventory/Scanner/ScannerC'
-=======
-import Login from './Components/login/Login';
-import MenuPage from './Components/menuPage/MenuPage';
-import User from './Components/user/User';
->>>>>>> origin/sp3-ft-002
 import Carousel from './Components/inventory/carousel/Carousel';
 ////Images///
 
