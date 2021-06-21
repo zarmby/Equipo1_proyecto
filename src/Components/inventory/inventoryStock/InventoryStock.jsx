@@ -26,10 +26,6 @@ function InventoryStock() {
           <SingleElement />
           <SingleElement />
           <SingleElement />
-<<<<<<< HEAD
-=======
-          
->>>>>>> dev
         </div>
       </div>
     </div>

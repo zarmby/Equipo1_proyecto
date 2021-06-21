@@ -38,11 +38,7 @@ const App = () => {
         <Route path="/InventoryCenter">
           <Carousel />
         </Route>
-<<<<<<< HEAD
-        <Route path="/InventoryList">
-=======
         <Route path="/InventoryStock">
->>>>>>> dev
           <InventoryStock />
         </Route>
         <Route path="/user">
