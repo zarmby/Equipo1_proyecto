@@ -22,7 +22,11 @@ function InventoryStock() {
           <SingleElement />
           <SingleElement />
           <SingleElement />
+          <SingleElement /><SingleElement />
           <SingleElement />
+          <SingleElement />
+          <SingleElement />
+          
         </div>
       </div>
     </div>
