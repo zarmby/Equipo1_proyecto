@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react';
-import Granim from 'react-granim'
-import Alertify from 'alertifyjs';
+import React from 'react';
+import Granim from 'react-granim';
 import 'alertifyjs/build/css/alertify.css';
-import { Redirect } from "react-router-dom";
 import Loading from '../loading/Loading';
-import {LoginApiGet,SedeApiGet} from '../../services/utils/Api';
+import {SedeApiGet} from '../../services/utils/Api';
 
-import './LoginStyles.scss'
-
+import './LoginStyles.scss';
 import logo from '../../assets/img/Logo.png';
-import userIcon from '../../assets/img/user.png';
-import passWordIcon from '../../assets/img/password.png';
-import Menu from '../menuPage/MenuPage';
+import LoginForm from './loginform/LoginForm';
+import RegisterForm from './registerform/RegisterForm';
+
 
 class Login extends React.Component {
   constructor (props){
@@ -27,7 +24,6 @@ class Login extends React.Component {
           ],
           transitionSpeed: 1000
       },
-      user : '',
       loading: true,
       sedes : []
     };
@@ -35,22 +31,26 @@ class Login extends React.Component {
     this.login_register_div = React.createRef();
     this.div_login = React.createRef();
     this.div_register = React.createRef();
-    this.form_user = React.createRef();
-    this.register_user = React.createRef();
-    this.input_user = React.createRef();
-    this.input_pass = React.createRef();
-    this.container_input_user = React.createRef();
-    this.container_input_pass = React.createRef();
-    this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
+    this.child_login = React.createRef();
+    this.child_register = React.createRef();
     this.handleRegister = this.handleRegister.bind(this);
-    this.handleSubmitRegister = this.handleSubmitRegister.bind(this);
     this.handleCancelRegister = this.handleCancelRegister.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
+    this.Loading = this.Loading.bind(this);
+    this.Loaded = this.Loaded.bind(this);
+
+    //Alertify.set('notifier','position', 'top-center');
+  }
+
+  Loading(){
+    this.setState({loading:true}); 
+  }
+  Loaded(){
+    this.setState({loading:false}); 
   }
 
 
   async componentDidMount(){
+<<<<<<< HEAD
     let inputElements = document.getElementsByClassName('login_input');
     for (var i = 0; i < inputElements.length; i++) {
       inputElements[i].oninvalid = function (e) {
@@ -65,14 +65,16 @@ class Login extends React.Component {
           }
       };
     }
+=======
+>>>>>>> origin/sp3-ft-002
     try{
       const sedesGet = await SedeApiGet("campus/");
       const dataSedes = await sedesGet;
       this.setState({sedes : dataSedes.result.cont.campus})
-      //console.log(this.state.sedes);
     }
     catch(e){
       console.log(e);
+<<<<<<< HEAD
     }
 
     this.setState({loading:false});
@@ -96,19 +98,28 @@ class Login extends React.Component {
 
   handleSubmitRegister(e){
     e.preventDefault();
+=======
+    }    
+    this.Loaded();
+    if(this.child_login.current)
+      this.child_login.current.cleanInputsChild();
+>>>>>>> origin/sp3-ft-002
   }
 
   handleRegister(){
+    this.child_register.current.cleanInputsChild();
     let width_container  = this.login_register_div.current.clientWidth;
     this.div_login.current.style.transform = "translateX(-"+width_container+"px)";
     this.div_register.current.style.transform = "translateX(-"+width_container+"px)";
   }
   handleCancelRegister(){
+    this.child_login.current.cleanInputsChild();
     let width_container  = this.login_register_div.current.clientWidth;
     this.div_login.current.style.transform = "translateX(0px)";
     this.div_register.current.style.transform = "translateX("+width_container+"px)";
   }
 
+<<<<<<< HEAD
   handleFocus(e){
     switch(e.target.id){
       case 'login_user_input':
@@ -156,6 +167,8 @@ class Login extends React.Component {
     }
   }
 
+=======
+>>>>>>> origin/sp3-ft-002
   render(){
     return(
       <div className = "login_container">
@@ -168,6 +181,7 @@ class Login extends React.Component {
               <img src = {logo} alt="Logo Arkus"></img>
               <span>Inventory Arkus Center</span>
             </div>
+<<<<<<< HEAD
             <div id="login_form_div" ref={this.div_login}>
               <form id = "login_form" onSubmit={this.handleSubmitLogin} ref={this.form_user}>
                 <div id="login_form_body">
@@ -225,6 +239,23 @@ class Login extends React.Component {
 
               <button id="register_cancel" className="btn_login" onClick={this.handleCancelRegister}>Cancelar</button>
             </div>
+=======
+            <LoginForm  
+              ref = {this.child_login}
+              reference = {this.div_login}
+              register = {this.handleRegister}
+              loading = {this.Loading}
+              loaded = {this.Loaded} 
+            />
+            <RegisterForm
+              ref = {this.child_register}
+              reference = {this.div_register} 
+              cancelRegister = {this.handleCancelRegister}
+              sedes = {this.state.sedes}
+              loading = {this.Loading}
+              loaded = {this.Loaded} 
+            />
+>>>>>>> origin/sp3-ft-002
           </div>
         </div>
       </div>
