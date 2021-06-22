@@ -11,19 +11,12 @@ function InventoryStock() {
     <div class="inv-cont">
       <Navbar />
       <SideFilter />
-      <ElementInfo /  >
+      <ElementInfo />
       <div clas="Filters">
       </div>
       <div class="cont-list">
         <div class ="grid">
           <SingleElement />
-            <SingleElement />
-              <SingleElement />
-                <SingleElement />
-                  <SingleElement />
-                    <SingleElement />
-                      <SingleElement />
-                        <SingleElement />
         </div>
       </div>
     </div>

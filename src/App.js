@@ -8,6 +8,7 @@ import User from './Components/user/User'
 import InventoryStock from './Components/inventory/inventoryStock/InventoryStock'
 import ScannerC from './Components/inventory/Scanner/ScannerC'
 import Carousel from './Components/inventory/carousel/Carousel';
+import ElementInfo from './Components/inventory/inventoryStock/ElementInfo'
 ////Images///
 
 //Routes
@@ -47,6 +48,9 @@ const App = () => {
         <Route path="/Scanner">
           <ScannerC />
         </Route>
+        <Route path="/test">
+          <ElementInfo />
+        </Route>
         <Route path="/*">
           <MenuPage />
         </Route>
@@ -74,6 +78,9 @@ const App = () => {
         </Route>
         <Route path="/Scanner">
           <ScannerC />
+        </Route>
+        <Route path="/test">
+          <ElementInfo />
         </Route>
         <Route path="/*">
           <Login />
