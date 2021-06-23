@@ -30,7 +30,7 @@ const LoginForm = forwardRef((props,ref)  => {
             window.location.href = '/HomePage';
         }
         catch (e) {
-            Alertify.error("<b style='color:white;'>Datos erroneos</b>");
+            Alertify.error("<b style='color:white;'>Datos erroneos</b>"+e);
             props.loaded();
         }
     }
