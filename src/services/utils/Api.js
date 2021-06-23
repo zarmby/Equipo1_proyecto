@@ -45,7 +45,7 @@ export const RegisterApiPost = async (path, params = null) => {
     let data = {
         IDcampus: params[6],
         picture: 'default.jpg',
-        name: params[0],
+        username: params[0],
         lastname: params[1],
         email: params[2],
         phonenumber: params[3],
