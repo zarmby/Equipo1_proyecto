@@ -13,24 +13,35 @@ function ElementInfo() {
           <img src="https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-cartoon-white-laptop-free-button-image_1372158.jpg" class="Equipement-img" alt="" />
         </div>
         <div class="Modal-Body">
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
-        <h2>1</h2>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h1>.</h1>
         </div>
       </div>
     </div>
