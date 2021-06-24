@@ -16,6 +16,8 @@
         padding: 20px;
         animation-name: animatetop;
         animation-duration: 0.4s;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {width: 1px;}
 
         /* Add Animation */
         @keyframes animatetop {

@@ -60,7 +60,7 @@ const App = () => {
         <Route path="/Login">
           <Login />
         </Route>
-        <Route path="/HomePage">
+        {/*<Route path="/HomePage">
           <MenuPage />
         </Route>
         <Route path="/InventoryCenter">
@@ -71,7 +71,7 @@ const App = () => {
         </Route>
         <Route path="/Scanner">
           <ScannerC />
-        </Route>
+        </Route>*/}
         <Route path="/*">
           <Login />
         </Route>

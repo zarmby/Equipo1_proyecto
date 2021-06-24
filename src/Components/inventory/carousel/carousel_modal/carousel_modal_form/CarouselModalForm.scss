@@ -1,3 +1,18 @@
 #modal_form_container{
-    background-color: blue;
+    position: relative;
+    margin-top: 50px;
+    
+    background-color: green;
+    #modal_preview{
+        position: relative;
+        width: 150px;
+        height: 150px;
+        background-color: chartreuse;
+        img{
+            border: 5px solid #333;
+            border-radius: 15px;
+            width: 100%;
+            height: auto;
+        }
+    }
 }
