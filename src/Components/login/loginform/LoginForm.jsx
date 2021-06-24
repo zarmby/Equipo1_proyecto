@@ -26,11 +26,11 @@ const LoginForm = forwardRef((props,ref)  => {
             const res = await LoginApiPost("user/login", [email, pass]);
             const data = await res;
             localStorage.setItem("UserLogged", JSON.stringify(data.result));
-            Alertify.success("entraste prro");
+            Alertify.success("Bienvenido");
             window.location.href = '/HomePage';
         }
         catch (e) {
-            Alertify.error("<b style='color:white;'>Datos erroneos</b>");
+            Alertify.error("<b style='color:white;'>Datos erroneos</b>"+e);
             props.loaded();
         }
     }

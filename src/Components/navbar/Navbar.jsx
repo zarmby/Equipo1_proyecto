@@ -15,7 +15,7 @@ class Navbar extends React.Component{
         let loggedUser = window.localStorage.getItem('UserLogged');
         if(loggedUser){
         let UserLogged = JSON.parse(loggedUser)
-        let nameUser = UserLogged.name + " " + UserLogged.lastname; 
+        let nameUser = UserLogged.username + " " + UserLogged.lastname; 
         this.setState({username : nameUser});
         }
     }

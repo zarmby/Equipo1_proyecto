@@ -44,7 +44,7 @@ body {
   right: 0;
   z-index: 1;
   border-radius: calc(var(--curve) * 1px);
-  background-color: #212B35;
+  background-color: #DD1F26;
   transform: translateY(108%);
   transition: .2s ease-in-out;
 }
@@ -60,7 +60,7 @@ body {
   gap: 2em;
   padding: 2em;
   border-radius: calc(var(--curve) * 1px) 0 0 0;
-  background-color: #212B35;
+  background-color: #DD1F26;
   transform: translateY(-110%);
   transition: .2s ease-in-out;
 }
@@ -73,12 +73,33 @@ body {
   transform: translateY(0);
 }
 
+.card:hover .card__header, .card__description {
+  background-color: #212B35;
+}
+
+
+.card:hover .card__thumb{
+    border: 1px solid #DD1F26;
+}
+
+.card:hover .status{
+    border: 1px solid #DD1F26;
+}
+
+.card:hover  .card__description {
+  border-top: 1px solid #DD1F26;
+}
+
 .card__thumb {
   flex-shrink: 0;
   width: 50px;
   height: 50px;
   border-radius: 50%;
+<<<<<<< HEAD
   border: 1px solid #00C75E;
+=======
+  border: 1px solid #212B35;
+>>>>>>> dev
 }
 
 .card__title {
@@ -102,7 +123,7 @@ body {
 }
 
 .card__description {
-  border-top: 1px solid #DD1F26;
+  border-top: 1px solid #212B35;
   padding: 1em 2em 2em;
   margin: 0;
   font-size: 15px;
@@ -114,13 +135,15 @@ body {
   overflow: hidden;
 }
 
-.card:hover{
-  transition: 200ms
+.card:hover .card__header:hover{
+  transition: 200ms;
 }
 
 .status{
   width: 15px;
   height: 15px;
+  border-radius: 5px;
+  border: 1px solid #212B35;
 }
 
 .card__header-text{
