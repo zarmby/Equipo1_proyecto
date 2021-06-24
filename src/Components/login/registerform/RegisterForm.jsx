@@ -37,20 +37,19 @@ const RegisterForm = forwardRef((props,ref) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //Alertify.success(`<b style='color:white;'>${photo.size}</b>`);
-
     props.loading();
     try {
       await RegisterApiPost("user/", param);
       Alertify.success("<b style='color:white;'>Registro completo</b>");
-    //cleanInputs();
+      cleanInputs();
+      handleCancelRegister();
     }
     catch (e) {
       Alertify.error(`<b style='color:white;'>${e}</b>`);
       console.log(e);
     }
+    console.log(param);
     props.loaded();
-    cleanInputs();
   }
 
   const cleanInputs = () => {
@@ -160,7 +159,7 @@ const RegisterForm = forwardRef((props,ref) => {
           </div>
           <div id="register_confirm_info" className="info_container">
             <input
-              type="password" placeholder="Confirmacion de la contraseña"
+              type="password" placeholder="Confirmacion"
               id="register_confirm_input" className="register_input"
               minLength="10" maxLength="20" required
               title="Debe tener una longitud minima de 10 caracteres usando numeros y letras"
@@ -176,7 +175,7 @@ const RegisterForm = forwardRef((props,ref) => {
             >
               <option value="" hidden disabled selected>Sede</option>
               {props.sedes.map((item, index) => (
-                <option key={index} value={item._id}>{item.name}</option>
+                <option key={index} value={item._id}>{item.campusname}</option>
               ))}
             </select>
           </div>

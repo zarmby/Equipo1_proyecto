@@ -22,6 +22,11 @@ function ElementInfo() {
         <div class="Description-Text">
           <p>Dell Intel g3 15 3500 Gamer Core I5 8Gb Negro</p>
         </div>
+        <div>
+          <p>Marca: nose</p>
+
+          <p>modelo: nose</p>
+        </div>
         <h1>.</h1>
         <h1>.</h1>
         <h1>.</h1>
