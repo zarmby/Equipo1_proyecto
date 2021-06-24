@@ -42,10 +42,10 @@ class Login extends React.Component {
   }
 
   Loading(){
-    this.setState({loading:true}); 
+    this.setState({loading:true});
   }
   Loaded(){
-    this.setState({loading:false}); 
+    this.setState({loading:false});
   }
 
 
@@ -57,7 +57,7 @@ class Login extends React.Component {
     }
     catch(e){
       console.log(e);
-    }    
+    }
     this.Loaded();
     if(this.child_login.current)
       this.child_login.current.cleanInputsChild();
@@ -88,20 +88,20 @@ class Login extends React.Component {
               <img src = {logo} alt="Logo Arkus"></img>
               <span>Inventory Arkus Center</span>
             </div>
-            <LoginForm  
+            <LoginForm
               ref = {this.child_login}
               reference = {this.div_login}
               register = {this.handleRegister}
               loading = {this.Loading}
-              loaded = {this.Loaded} 
+              loaded = {this.Loaded}
             />
             <RegisterForm
               ref = {this.child_register}
-              reference = {this.div_register} 
+              reference = {this.div_register}
               cancelRegister = {this.handleCancelRegister}
               sedes = {this.state.sedes}
               loading = {this.Loading}
-              loaded = {this.Loaded} 
+              loaded = {this.Loaded}
             />
           </div>
         </div>

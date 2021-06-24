@@ -55,7 +55,7 @@ export const RegisterApiPost = async (path, params = null) => {
         password: params[4],
         confirmPass: params[4]
     }
-    
+
     console.log(data);
     let response = await fetch(
         url,
@@ -72,6 +72,6 @@ export const RegisterApiPost = async (path, params = null) => {
             result: await response.json(),
             status: response.status
         }
-    else 
+    else
         throw new Error(response);
 }

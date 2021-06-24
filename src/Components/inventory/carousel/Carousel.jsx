@@ -37,7 +37,7 @@ class Carousel extends React.Component {
                         after: -80
                     }
                 },
-                1200: { 
+                1200: {
                     perView: 3
                 }
             },
