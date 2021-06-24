@@ -17,20 +17,6 @@ function InventoryStock() {
       <div class="cont-list">
         <div class ="grid">
           <SingleElement />
-<<<<<<< HEAD
-          <SingleElement />
-          <SingleElement />
-          <SingleElement />
-          <SingleElement />
-          <SingleElement />
-          <SingleElement />
-          <SingleElement />
-          <SingleElement /><SingleElement />
-          <SingleElement />
-          <SingleElement />
-          <SingleElement />
-=======
->>>>>>> dev
         </div>
       </div>
     </div>
