@@ -4,14 +4,14 @@ import SideFilter from '../sideFilters/SideFilters';
 import Navbar from '../../navbar/Navbar';
 import SingleElement from './SingleElement';
 import ElementInfo from './ElementInfo';
-import { EquipementListGet } from '../../../services/utils/InventoryApi';
+import { EquipementListGet} from '../../../services/utils/InventoryApi';
 
 class InventoryStock extends React.Component {
 
   constructor (props){
     super(props);
     this.state = {
-      Equipments : []
+      Equipments : [],
     };
   }
 
@@ -21,7 +21,6 @@ class InventoryStock extends React.Component {
       let equipmentsGet = await EquipementListGet("equipments/");
       let dataEquipments = await equipmentsGet;
       this.setState({Equipments : dataEquipments.result.cont.equipment});
-      console.log(this.state.Equipments);
     }
     catch(e){
       console.log(e);
@@ -32,7 +31,7 @@ class InventoryStock extends React.Component {
     return(
       <div class="inv-cont">
         <Navbar />
-        <SideFilter />
+        <SideFilter/>
         <div clas="Filters">
         </div>
         <div class="cont-list">
