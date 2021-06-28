@@ -1,46 +1,46 @@
 import React from 'react';
+import './SideFilters.css';
+import SingleElement from './SingleElement';
+import { TypeEquipementListGet } from '../../../services/utils/InventoryApi';
 
-import './SideFilters.css'
+class SideFilters extends React.Component{
 
-function SideFilters(){
+  constructor (props){
+    super(props);
+    this.state = {
+      TypeEquipements : []
+    };
+  }
 
-  return(
-    <div>
-      <div class="area"></div>
-      <nav class="main-menu">
-      <spam class="face-side">
-        <i class="fas fa-angle-right fa-3x"></i>
-      </spam>
-        <ul>
-          <li>
-            <a href="#">
-              <span class="nav-text">Audifonos</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="nav-text">Laptops</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="nav-text">HDMI</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="nav-text">Monitores</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="nav-text">Teclados</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  );
+  async componentDidMount(){
+    try{
+      let typeEquipmentsGet = await TypeEquipementListGet("typeequipments/");
+      let dataTypeEquipments = await typeEquipmentsGet;
+      this.setState({TypeEquipements : dataTypeEquipments.result.cont.typeequipment});
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
+  render(){
+    return(
+      <div>
+        <nav class="main-menu">
+          <spam class="face-side">
+            <i class="fas fa-angle-right fa-3x"></i>
+          </spam>
+            <ul>
+              {this.state.TypeEquipements.map((item, index) => (
+                <SingleElement
+                tename = {item.tename}
+                index = {index}/>
+              ))}
+            </ul>
+        </nav>
+      </div>
+    );
+  }
 }
 
 export default SideFilters;
