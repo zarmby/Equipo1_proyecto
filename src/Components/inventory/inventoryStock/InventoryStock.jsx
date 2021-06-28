@@ -12,9 +12,15 @@ class InventoryStock extends React.Component {
     super(props);
     this.state = {
       Equipments : [],
+      Panel : false,
+      SerialNumber: "",
+      Mark: "",
+      Model:"",
+      Enviroment:"",
+      Description:"",
+      State:"",
     };
   }
-
 
   async componentDidMount(){
     try{
@@ -27,14 +33,35 @@ class InventoryStock extends React.Component {
     }
   }
 
+  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State) =>{
+      this.setState({SerialNumber : SerialNumber});
+      this.setState({Mark : Mark});
+      this.setState({Model : Model});
+      this.setState({Enviroment : Enviroment});
+      this.setState({Description : Description});
+      this.setState({State : State});
+      this.setState({Panel : !this.state.Panel});
+  }
+
+
   render(){
     return(
       <div class="inv-cont">
-        <Navbar />
+        <Navbar/>
         <SideFilter/>
+        {this.state.Panel ?
+          <ElementInfo handlePanelShow = {this.handlePanelShow}
+          serialnumber = {this.state.SerialNumber}
+          mark = {this.state.Mark}
+          model = {this.state.Model}
+          enviroment = {this.state.Enviroment}
+          description = {this.state.Description}
+          state = {this.state.State}
+          /> : null}
         <div clas="Filters">
         </div>
         <div class="cont-list">
+        <button onClick={() => this.handlePanelShow("wer")}>test</button>
           <div class ="grid">
             {this.state.Equipments.map((item, index) => (
               <SingleElement
@@ -42,8 +69,11 @@ class InventoryStock extends React.Component {
               serialnumber = {item.serialnumber}
               mark = {item.mark}
               model = {item.model}
+              enviroment = {item.enviroment}
               description = {item.equipmentdescription}
-              id = {index}/>
+              state = {item.state}
+              id = {index}
+              handlePanelShow = {this.handlePanelShow}/>
             ))}
           </div>
         </div>
