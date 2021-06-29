@@ -19,12 +19,14 @@ class InventoryStock extends React.Component {
       Enviroment:"",
       Description:"",
       State:"",
+      Campus:"",
+      AssignedUser:""
     };
   }
 
   async componentDidMount(){
     try{
-      let equipmentsGet = await EquipementListGet("equipments/");
+      let equipmentsGet = await EquipementListGet("equipments?typeequipment=cables");
       let dataEquipments = await equipmentsGet;
       this.setState({Equipments : dataEquipments.result.cont.equipment});
     }
@@ -33,22 +35,35 @@ class InventoryStock extends React.Component {
     }
   }
 
-  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State) =>{
+  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser) =>{
       this.setState({SerialNumber : SerialNumber});
       this.setState({Mark : Mark});
       this.setState({Model : Model});
       this.setState({Enviroment : Enviroment});
       this.setState({Description : Description});
       this.setState({State : State});
+      this.setState({Campus : Campus});
+      this.setState({AssignedUser : AssignedUser});
       this.setState({Panel : !this.state.Panel});
   }
 
+  handleCategory = async (typeEquipment) =>{
+    try{
+      let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + typeEquipment);
+      let dataEquipments = await equipmentsGet;
+      this.setState({Equipments : dataEquipments.result.cont.equipment});
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
 
   render(){
     return(
       <div class="inv-cont">
         <Navbar/>
-        <SideFilter/>
+        <SideFilter
+        handleCategory = {this.handleCategory}/>
         {this.state.Panel ?
           <ElementInfo handlePanelShow = {this.handlePanelShow}
           serialnumber = {this.state.SerialNumber}
@@ -57,11 +72,12 @@ class InventoryStock extends React.Component {
           enviroment = {this.state.Enviroment}
           description = {this.state.Description}
           state = {this.state.State}
+          campus = {this.state.Campus}
+          assignedUser = {this.state.AssignedUser}
           /> : null}
         <div clas="Filters">
         </div>
         <div class="cont-list">
-        <button onClick={() => this.handlePanelShow("wer")}>test</button>
           <div class ="grid">
             {this.state.Equipments.map((item, index) => (
               <SingleElement
@@ -72,6 +88,8 @@ class InventoryStock extends React.Component {
               enviroment = {item.enviroment}
               description = {item.equipmentdescription}
               state = {item.state}
+              campus = {item.campusname}
+              assignedUser = {item.username}
               id = {index}
               handlePanelShow = {this.handlePanelShow}/>
             ))}

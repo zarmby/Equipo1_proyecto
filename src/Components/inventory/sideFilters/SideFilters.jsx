@@ -34,7 +34,8 @@ class SideFilters extends React.Component{
               {this.state.TypeEquipements.map((item, index) => (
                 <SingleElement
                 tename = {item.tename}
-                index = {index}/>
+                index = {index}
+                handleCategory = {this.props.handleCategory}/>
               ))}
             </ul>
         </nav>

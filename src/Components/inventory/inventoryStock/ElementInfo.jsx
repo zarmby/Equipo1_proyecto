@@ -33,7 +33,7 @@ function ElementInfo(props) {
             <p><strong>N/S:</strong></p><p>{props.serialnumber}</p>
             <p><strong>Marca:</strong></p><p>{props.mark}</p>
             <p><strong>Modelo:</strong></p><p>{props.model}</p>
-            <p><strong>Sede:</strong></p><p>falta por arreglar</p>
+            <p><strong>Sede:</strong></p><p>{props.campus}</p>
             <p><strong>ambiente:</strong></p><p>{props.enviroment}</p>
           </div>
         </div>
@@ -47,7 +47,7 @@ function ElementInfo(props) {
         </div>
         <div class="Asigned-Person">
           <div class="Asigned-Person-Elements">
-            <a class="person-link">Falta por arreglar</a>
+            <a class="person-link">Falta por arregla</a>
           </div>
         </div>
         <div class="Equipment-menu">
