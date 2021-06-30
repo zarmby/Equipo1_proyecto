@@ -27,7 +27,7 @@ class InventoryStock extends React.Component {
 
   async componentDidMount(){
     try{
-      let equipmentsGet = await EquipementListGet("equipments?typeequipment=cables");
+      let equipmentsGet = await EquipementListGet("equipments?typeequipment=Smartwatch");
       let dataEquipments = await equipmentsGet;
       this.setState({Equipments : dataEquipments.result.cont.equipment});
     }
@@ -36,7 +36,7 @@ class InventoryStock extends React.Component {
     }
   }
 
-  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser,Image) =>{
+  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser) =>{
       this.setState({SerialNumber : SerialNumber});
       this.setState({Mark : Mark});
       this.setState({Model : Model});
@@ -45,15 +45,15 @@ class InventoryStock extends React.Component {
       this.setState({State : State});
       this.setState({Campus : Campus});
       this.setState({AssignedUser : AssignedUser});
-      this.setState({Image : Image})
       this.setState({Panel : !this.state.Panel});
   }
 
-  handleCategory = async (typeEquipment) =>{
+  handleCategory = async (typeEquipment,imgURL) =>{
     try{
       let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + typeEquipment);
       let dataEquipments = await equipmentsGet;
       this.setState({Equipments : dataEquipments.result.cont.equipment});
+      this.setState({Image : imgURL});
     }
     catch(e){
       console.log(e);
@@ -93,7 +93,7 @@ class InventoryStock extends React.Component {
               state = {item.state}
               campus = {item.campusname}
               assignedUser = {item.username + " " + item.lastname}
-              image = {this.image}
+              image = {this.state.Image}
               id = {index}
               handlePanelShow = {this.handlePanelShow}/>
             ))}

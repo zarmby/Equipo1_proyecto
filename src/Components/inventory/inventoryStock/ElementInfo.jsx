@@ -10,7 +10,7 @@ function ElementInfo(props) {
       </div>
       <div class="Modal-box">
         <div class="Modal-Header">
-          <img src={props.image} alt="" />
+          <img src={props.image} class="Equipement-img" />  
         </div>
         <div class="Modal-Body">
         <div class="Description-Tittle">
