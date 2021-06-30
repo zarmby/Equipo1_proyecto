@@ -20,7 +20,8 @@ class InventoryStock extends React.Component {
       Description:"",
       State:"",
       Campus:"",
-      AssignedUser:""
+      AssignedUser:"",
+      Image:""
     };
   }
 
@@ -35,7 +36,7 @@ class InventoryStock extends React.Component {
     }
   }
 
-  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser) =>{
+  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser,Image) =>{
       this.setState({SerialNumber : SerialNumber});
       this.setState({Mark : Mark});
       this.setState({Model : Model});
@@ -44,6 +45,7 @@ class InventoryStock extends React.Component {
       this.setState({State : State});
       this.setState({Campus : Campus});
       this.setState({AssignedUser : AssignedUser});
+      this.setState({Image : Image})
       this.setState({Panel : !this.state.Panel});
   }
 
@@ -74,6 +76,7 @@ class InventoryStock extends React.Component {
           state = {this.state.State}
           campus = {this.state.Campus}
           assignedUser = {this.state.AssignedUser}
+          image = {this.state.Image}
           /> : null}
         <div clas="Filters">
         </div>
@@ -89,7 +92,8 @@ class InventoryStock extends React.Component {
               description = {item.equipmentdescription}
               state = {item.state}
               campus = {item.campusname}
-              assignedUser = {item.username}
+              assignedUser = {item.username + " " + item.lastname}
+              image = {this.image}
               id = {index}
               handlePanelShow = {this.handlePanelShow}/>
             ))}

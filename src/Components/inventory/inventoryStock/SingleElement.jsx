@@ -15,8 +15,8 @@ render(){
 
   return(
     <div class="card" id = {"equipement_" + this.props.id}
-    onClick={() => handlePanelShow(this.props.serialnumber,this.props.mark,this.props.model,this.props.enviroment,this.props.description,this.props.state,this.props.campus)}>
-      <img src="https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-cartoon-white-laptop-free-button-image_1372158.jpg" class="card__image" alt="" />
+    onClick={() => handlePanelShow(this.props.serialnumber,this.props.mark,this.props.model,this.props.enviroment,this.props.description,this.props.state,this.props.campus,this.props.assignedUser,this.props.image)}>
+        <img src="https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-cartoon-white-laptop-free-button-image_1372158.jpg" class="card__image" alt="" />
       <div class="card__overlay">
         <div class="card__header">
           <svg class="card__arc"></svg>
@@ -28,8 +28,7 @@ render(){
           </div>
         </div>
         <div class="card__description">
-          <div class="show-more">
-          <p><strong></strong>Mirar Equipo</p>
+          <div>
           </div>
         </div>
       </div>

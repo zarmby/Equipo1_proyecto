@@ -10,7 +10,7 @@ function ElementInfo(props) {
       </div>
       <div class="Modal-box">
         <div class="Modal-Header">
-          <img src="https://thumbs.dreamstime.com/b/vector-del-dibujo-lineal-de-la-caja-embalaje-cartulina-el-una-grab%C3%B3-todo-para-arriba-en-estilo-isom%C3%A9trico-143158250.jpg" class="Equipement-img" alt="" />
+          <img src={props.image} alt="" />
         </div>
         <div class="Modal-Body">
         <div class="Description-Tittle">
@@ -47,7 +47,7 @@ function ElementInfo(props) {
         </div>
         <div class="Asigned-Person">
           <div class="Asigned-Person-Elements">
-            <a class="person-link">Falta por arregla</a>
+            <a class="person-link">{props.assignedUser}</a>
           </div>
         </div>
         <div class="Equipment-menu">

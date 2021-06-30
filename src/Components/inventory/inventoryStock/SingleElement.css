@@ -61,7 +61,7 @@ body {
   padding: 2em;
   border-radius: calc(var(--curve) * 1px) 0 0 0;
   background-color: #DD1F26;
-  transform: translateY(-110%);
+  transform: translateY(-100%);
   transition: .2s ease-in-out;
 }
 
@@ -70,7 +70,7 @@ body {
 }
 
 .card:hover .card__header {
-  transform: translateY(0);
+  transform: translateY(0)
 }
 
 .card:hover .card__header, .card__description {
@@ -87,7 +87,7 @@ body {
 }
 
 .card:hover  .card__description {
-  background-color: #DD1F26;
+  background-color: #212B35;
 }
 
 .card__thumb {
