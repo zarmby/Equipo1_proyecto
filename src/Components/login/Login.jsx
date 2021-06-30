@@ -2,7 +2,7 @@ import React from 'react';
 import Granim from 'react-granim';
 import 'alertifyjs/build/css/alertify.css';
 import Loading from '../loading/Loading';
-import {SedeApiGet} from '../../services/utils/Api';
+import {ApiGet} from '../../services/utils/Api';
 
 import './LoginStyles.scss';
 import logo from '../../assets/img/Logo.png';
@@ -51,7 +51,7 @@ class Login extends React.Component {
 
   async componentDidMount(){
     try{
-      const sedesGet = await SedeApiGet("campus/");
+      const sedesGet = await ApiGet("campus/");
       const dataSedes = await sedesGet;
       this.setState({sedes : dataSedes.result.cont.campus})
     }

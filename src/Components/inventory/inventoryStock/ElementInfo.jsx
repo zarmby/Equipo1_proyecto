@@ -1,6 +1,5 @@
 import React from 'react';
 import './ElementInfo.scss'
-import ExitIcon from '../../../assets/img/exit-Icon.png'
 
 function ElementInfo(props) {
   return(

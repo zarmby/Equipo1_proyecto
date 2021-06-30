@@ -55,10 +55,17 @@
                     border-radius: 10px;
                     text-align: center;
                     overflow: hidden;
+                    transform: scale(.75);
+                    pointer-events: none;
+                    background-color: #ccc;
                 }
                 .glide__slide--active{
                     background-color: #212b359a;
-                    box-shadow: 1px 1px 20px 0px #333;
+                    box-shadow: 1px 1px 10px 0px #333;
+                    transform: scale(1.15);
+                    transition: .5s;
+                    z-index: 10;
+                    pointer-events: auto;
                     a:hover{
                         opacity: 1;
                     }
@@ -76,6 +83,9 @@
         .glide{
             .glide__arrows{
                 display: none;
+            }
+            .glide__slide--active{
+                transform: scale(1) !important;
             }
         }
     }
