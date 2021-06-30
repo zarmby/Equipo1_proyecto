@@ -27,7 +27,7 @@ export const LoginApiPost = async (path, params = null) => {
         throw new Error(response.status);
 }
 
-export const SedeApiGet = async (path) => {
+export const ApiGet = async (path) => {
     const url = BACK_API + path;
     let response = await fetch(url);
     if (response.ok || response.status === 400)
@@ -39,7 +39,7 @@ export const SedeApiGet = async (path) => {
         throw new Error(response);
 }
 
-export const RegisterApiPost = async (path, params = null) => {
+export const RegisterUserApiPost = async (path, params = null) => {
     const url = BACK_API + path;
 
     let data = {
@@ -75,3 +75,37 @@ export const RegisterApiPost = async (path, params = null) => {
     else
         throw new Error(response);
 }
+
+export const RegisterTypeEquipmentApiPost = async (path, params = null) => {
+    const url = BACK_API + path;
+
+    let data = {
+        tename: params[0],
+        picture: (params[1]) ? params[1] : "",
+        filterbrand: params[2],
+        filtermodel: params[3],
+        filterdescription: params[4],
+        filterenviroment: params[5],
+        filtersede: params[6]
+    }
+
+    console.log(data);
+    let response = await fetch(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status !== 400)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else
+        throw new Error(response);
+}
+

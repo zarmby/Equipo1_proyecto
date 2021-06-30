@@ -29,17 +29,17 @@ class Navbar extends React.Component{
         return(
             <nav id="navbar_principal">
                 <img src={logo} alt="" />
-                <div class="dropdown" id="navbar_menu">
-                    <a href="/HomePage"><button class="dropbtn">Menu</button></a>
-                    <div class="dropdown-content">
+                <div className="dropdown" id="navbar_menu">
+                    <a href="/HomePage"><button className="dropbtn">Menu</button></a>
+                    <div className="dropdown-content">
                         <a href="/InventoryCenter">Inventario</a>
                         <a href="/user">Usuario</a>
                         <a href="/scanner">Scanner</a>
                     </div>
                 </div>
-                <div class="dropdown" id="navbar_user">
-                    <button class="dropbtn">{this.state.username}</button>
-                    <div class="dropdown-content">
+                <div className="dropdown" id="navbar_user">
+                    <button className="dropbtn">{this.state.username}</button>
+                    <div className="dropdown-content">
                         <a href="#navbar_principal" onClick={this.handleLogout} >Salir</a>
                     </div>
                 </div>

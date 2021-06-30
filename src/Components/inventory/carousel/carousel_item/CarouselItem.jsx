@@ -1,5 +1,7 @@
 import './CarouselItem.scss';
 import {Link} from 'react-router-dom';
+import default_cat from '../../../../assets/img_cat/default_cat.png';
+import InventoryStock from '../../inventoryStock/InventoryStock';
 
 const CarouselItem = (props) => {
 
@@ -10,7 +12,7 @@ const CarouselItem = (props) => {
     return(
         <li className="glide__slide carousel_element">
             <div className="item_content">
-                <img src={props.img} alt="Imagen" />
+                <img src={props.img!=="" ? props.img : default_cat} alt="Imagen" />
                 {
                     props.add 
                     ?
@@ -18,7 +20,8 @@ const CarouselItem = (props) => {
                             <h1>{props.name}</h1>
                         </a>
                     :
-                        <Link to={`/InventoryStock?cat=${props.number}`}>
+                        /*<InventoryStock name={props.name}/>*/
+                        <Link to={`/InventoryStock?cat=${props.name}`}>
                             <h1>{props.name}</h1>
                         </Link>
                 }

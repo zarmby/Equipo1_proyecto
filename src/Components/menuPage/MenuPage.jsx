@@ -14,19 +14,19 @@ function MenuPage() {
     return(
       <div>
         <Navbar />
-        <div class="content-option">
+        <div className="content-option">
           <Link to="InventoryCenter" style={{ textDecoration: 'none' }}>
-            <div class="option"  onMouseEnter={() => setImg1State(inventarioS)} onMouseLeave={() => setImg1State(inventarioU)}>
-              <div class="icon "><img class="material-icons md-18" src = {img1State} alt="Inventario"></img></div>
-                <p class="title">Inventario</p>
-                <p class="text">Administra el inventario de equipos y mira la informacion disponible sobre ellos.</p>
+            <div className="option"  onMouseEnter={() => setImg1State(inventarioS)} onMouseLeave={() => setImg1State(inventarioU)}>
+              <div className="icon "><img className="material-icons md-18" src = {img1State} alt="Inventario"></img></div>
+                <p className="title">Inventario</p>
+                <p className="text">Administra el inventario de equipos y mira la informacion disponible sobre ellos.</p>
               </div>
           </Link>
           <Link to="/user" className="link">
-            <div class="option"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
-              <div class="icon"><img class="material-icons md-18" src = {img2State} alt="Usuario"></img></div>
-                <p class="title">Reportes y Notificaciones</p>
-                <p class="text">Descripcion del modulo</p>
+            <div className="option"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
+              <div className="icon"><img className="material-icons md-18" src = {img2State} alt="Usuario"></img></div>
+                <p className="title">Reportes y Notificaciones</p>
+                <p className="text">Descripcion del modulo</p>
               </div>
           </Link>
         </div>

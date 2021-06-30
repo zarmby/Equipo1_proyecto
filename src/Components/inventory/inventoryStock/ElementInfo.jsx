@@ -4,22 +4,22 @@ import ExitIcon from '../../../assets/img/exit-Icon.png'
 
 function ElementInfo() {
   return(
-    <div class="Modal-template">
-      <div class="exit-row">
-        <spam class="Exit-icon">X</spam>
+    <div className="Modal-template">
+      <div className="exit-row">
+        <spam className="Exit-icon">X</spam>
       </div>
-      <div class="Modal-box">
-        <div class="Modal-Header">
-          <img src="https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-cartoon-white-laptop-free-button-image_1372158.jpg" class="Equipement-img" alt="" />
+      <div className="Modal-box">
+        <div className="Modal-Header">
+          <img src="https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-cartoon-white-laptop-free-button-image_1372158.jpg" className="Equipement-img" alt="" />
         </div>
-        <div class="Modal-Body">
-        <div class="Description-Tittle">
+        <div className="Modal-Body">
+        <div className="Description-Tittle">
           <p>Descripcion:</p>
         </div>
-        <div class="Description-Tittle">
+        <div className="Description-Tittle">
           <p>Caracteristicas:</p>
         </div>
-        <div class="Description-Text">
+        <div className="Description-Text">
           <p>Dell Intel g3 15 3500 Gamer Core I5 8Gb Negro</p>
         </div>
         <div>

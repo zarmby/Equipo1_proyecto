@@ -4,18 +4,20 @@ import SideFilter from '../sideFilters/SideFilters';
 import Navbar from '../../navbar/Navbar';
 import SingleElement from './SingleElement';
 import ElementInfo from './ElementInfo';
+import { useEffect } from 'react';
 
 function InventoryStock() {
 
   return(
-    <div class="inv-cont">
+    <div className="inv-cont">
       <Navbar />
       <SideFilter />
-      <ElementInfo />
+      {//<ElementInfo />
+      }
       <div clas="Filters">
       </div>
-      <div class="cont-list">
-        <div class ="grid">
+      <div className="cont-list">
+        <div className ="grid">
           <SingleElement />
         </div>
       </div>
