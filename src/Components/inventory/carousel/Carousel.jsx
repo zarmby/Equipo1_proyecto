@@ -17,8 +17,8 @@ import './Carousel.scss';
 const Carousel = (props) => {
 
     const [loading ,setLoading] = useState(true);
-    const [modal ,setModal] = useState(false);   
-    const [typeEquipment ,setTypeEquipment] = useState([]);   
+    const [modal ,setModal] = useState(false);
+    const [typeEquipment ,setTypeEquipment] = useState([]);
 
     var Glider = new Glide(".glide", {
         type: "carousel",
@@ -56,7 +56,7 @@ const Carousel = (props) => {
         setLoading(false);
     },[])
 
-    const getTypeEquipment = async() => {        
+    const getTypeEquipment = async() => {
         try {
             const TEGet = await ApiGet("typeequipments/");
             const dataTE = await TEGet.result.cont.typeequipment;
@@ -104,7 +104,7 @@ const Carousel = (props) => {
                                 <CarouselItem
                                     key={index}
                                     name= {item.tename}
-                                    img=""
+                                    img={item.imagen}
                                 />
                             ))}
                         </ul>

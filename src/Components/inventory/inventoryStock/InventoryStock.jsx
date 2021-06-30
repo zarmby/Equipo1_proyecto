@@ -25,9 +25,18 @@ class InventoryStock extends React.Component {
     };
   }
 
+  getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(window.location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
   async componentDidMount(){
+    let value = this.getParameterByName("cat");
+    let value2 = this.getParameterByName("image");
     try{
-      let equipmentsGet = await EquipementListGet("equipments?typeequipment=Smartwatch");
+      let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + value);
+      this.setState({Image : value2});
       let dataEquipments = await equipmentsGet;
       this.setState({Equipments : dataEquipments.result.cont.equipment});
     }

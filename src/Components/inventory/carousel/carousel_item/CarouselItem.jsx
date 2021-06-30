@@ -14,14 +14,14 @@ const CarouselItem = (props) => {
             <div className="item_content">
                 <img src={props.img!=="" ? props.img : default_cat} alt="Imagen" />
                 {
-                    props.add 
+                    props.add
                     ?
                         <a href="#" onClick={()=>handleOpenModal()}>
                             <h1>{props.name}</h1>
                         </a>
                     :
                         /*<InventoryStock name={props.name}/>*/
-                        <Link to={`/InventoryStock?cat=${props.name}`}>
+                        <Link to={`/InventoryStock?cat=${props.name}&image=${props.img}`}>
                             <h1>{props.name}</h1>
                         </Link>
                 }
@@ -31,4 +31,4 @@ const CarouselItem = (props) => {
 }
 
 
-export default CarouselItem; 
+export default CarouselItem;
