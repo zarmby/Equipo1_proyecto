@@ -1,7 +1,7 @@
 #register_form_div{
     position: absolute;
-    top: 120px;    
-    left: 100%;  
+    top: 120px;
+    left: 100%;
     width: 100%;
     height: calc(100% - 120px);
     transition: all 1s;
@@ -40,7 +40,7 @@
             outline: none;
             border: 0;
           }
-          
+
         }
         #register_sede_info{
           select{
@@ -48,7 +48,7 @@
             background-color: #fff;
             color: #777;
             border: 1px solid #fff !important;
-            -webkit-appearance: none; 
+            -webkit-appearance: none;
             &:focus{ outline: none;}
             option{
               color: #000;
@@ -78,7 +78,7 @@
           background-color: #DD1F26;
         }
       }
-    }        
+    }
     #register_cancel{
       width: calc(50% - 20px) !important;
       color:#212B35 !important;
@@ -88,5 +88,5 @@
         background-color: #DD1F26;
         color: white !important;
       }
-    } 
+    }
 }

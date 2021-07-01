@@ -74,7 +74,6 @@ class InventoryStock extends React.Component {
     return (
       <div className="inv-cont">
         <Navbar />
-        <RegisterEquipment/>
         <SideFilter
           handleCategory={this.handleCategory} />
         {this.state.Panel ?

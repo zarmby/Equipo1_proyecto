@@ -38,15 +38,21 @@ const RegisterForm = forwardRef((props,ref) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     props.loading();
-    try {
-      await RegisterUserApiPost("user/", param);
-      Alertify.success("<b style='color:white;'>Registro completo</b>");
-      cleanInputs();
-      handleCancelRegister();
+    if(pass === pconf){
+      try {
+        await RegisterUserApiPost("user/", param);
+        Alertify.success("<b style='color:white;'>Registro completo</b>");
+        cleanInputs();
+        handleCancelRegister();
+      }
+      catch (e) {
+        Alertify.error(`<b style='color:white;'>${e}</b>`);
+        console.log(e.status);
+      }
     }
-    catch (e) {
-      Alertify.error(`<b style='color:white;'>${e}</b>`);
-      console.log(e.status);
+    else{
+      Alertify.error(`<b style='color:white;>Las contraseñas no coinciden</b>`);
+      document.getElementById('register_confirm_input').focus();
     }
     props.loaded();
   }
@@ -64,7 +70,7 @@ const RegisterForm = forwardRef((props,ref) => {
     RSI.value = "";
     RSI.style.color = '#777';
   }
-  
+
 
   const handleCancelRegister = () => {
     props.cancelRegister();
@@ -113,7 +119,7 @@ const RegisterForm = forwardRef((props,ref) => {
           <div id="register_name_info" className="info_container">
             <label htmlFor="register_name_input">Nombre*</label>
             <input
-              type="text"id="register_name_input" 
+              type="text"id="register_name_input"
               className="register_input" maxLength="50" required
               onFocus={handleFocus} onBlur={handleBlur}
               value={name} onChange={(e) => { setName(e.target.value) }}

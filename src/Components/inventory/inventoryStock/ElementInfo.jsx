@@ -1,5 +1,6 @@
 import React from 'react';
 import './ElementInfo.scss'
+import RegisterEquipment from './RegisterEquipment';
 
 function ElementInfo(props) {
 
