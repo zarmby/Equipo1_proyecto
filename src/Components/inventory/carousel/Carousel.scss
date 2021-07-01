@@ -55,17 +55,16 @@
                     border-radius: 10px;
                     text-align: center;
                     overflow: hidden;
-                    transform: scale(.75);
                     pointer-events: none;
-                    background-color: #ccc;
+                    box-shadow: 1px 1px 10px 0px #333;
+                    transform: scale(.8);
                 }
                 .glide__slide--active{
-                    background-color: #212b359a;
-                    box-shadow: 1px 1px 10px 0px #333;
-                    transform: scale(1.15);
+                    transform: scale(1.1);
                     transition: .5s;
                     z-index: 10;
                     pointer-events: auto;
+                    box-shadow: 1px 1px 20px 0px #333;
                     a:hover{
                         opacity: 1;
                     }

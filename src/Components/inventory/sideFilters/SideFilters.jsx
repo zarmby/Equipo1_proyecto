@@ -26,9 +26,9 @@ class SideFilters extends React.Component{
   render(){
     return(
       <div>
-        <nav class="main-menu">
-          <spam class="face-side">
-            <i class="fas fa-angle-right fa-3x"></i>
+        <nav className="main-menu">
+          <spam className="face-side">
+            <i className="fas fa-angle-right fa-3x"></i>
           </spam>
             <ul>
               {this.state.TypeEquipements.map((item, index) => (

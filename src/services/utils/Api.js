@@ -24,7 +24,7 @@ export const LoginApiPost = async (path, params = null) => {
             status: response.status
         }
     else
-        throw new Error(response.status);
+        throw new Error(response);
 }
 
 export const ApiGet = async (path) => {
@@ -81,7 +81,7 @@ export const RegisterTypeEquipmentApiPost = async (path, params = null) => {
 
     let data = {
         tename: params[0],
-        picture: (params[1]) ? params[1] : "",
+        imagen: (params[1]) ? params[1] : "",
         filterbrand: params[2],
         filtermodel: params[3],
         filterdescription: params[4],

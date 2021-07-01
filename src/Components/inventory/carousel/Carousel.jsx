@@ -1,4 +1,4 @@
-import React, { useEffect,  useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Glide from "@glidejs/glide";
 import { Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
 
@@ -16,13 +16,12 @@ import './Carousel.scss';
 
 const Carousel = (props) => {
 
-    const [loading ,setLoading] = useState(true);
-    const [modal ,setModal] = useState(false);   
-    const [typeEquipment ,setTypeEquipment] = useState([]);   
+    const [loading, setLoading] = useState(true);
+    const [modal, setModal] = useState(false);
+    const [typeEquipment, setTypeEquipment] = useState([]);
 
     var Glider = new Glide(".glide", {
         type: "carousel",
-        gap: 50,
         perView: 3,
         breakpoints: {
             550: {
@@ -49,14 +48,14 @@ const Carousel = (props) => {
     });
 
     useEffect(() => {
-        getTypeEquipment().then(()=>{
-            Glider.mount({Breakpoints});
+        getTypeEquipment().then(() => {
+            Glider.mount({ Breakpoints });
         });
 
         setLoading(false);
-    },[])
+    }, [])
 
-    const getTypeEquipment = async() => {        
+    const getTypeEquipment = async () => {
         try {
             const TEGet = await ApiGet("typeequipments/");
             const dataTE = await TEGet.result.cont.typeequipment;
@@ -73,7 +72,7 @@ const Carousel = (props) => {
     }
 
     const handleCloseModal = (add) => {
-        if(add){
+        if (add) {
             getTypeEquipment();
             document.location.reload(true);
         }
@@ -84,7 +83,7 @@ const Carousel = (props) => {
         <div className="carousel_container">
             <NavBar />
             {(loading) ? <Loading /> : null}
-            {(modal) ? <CarouselModal close={handleCloseModal} /> : null}
+            {(modal) ? <CarouselModal close={handleCloseModal} loading={setLoading} /> : null}
             <div id="carousel_items_contain">
                 <div className="glide">
                     <div className="glide__arrows" data-glide-el="controls">
@@ -103,8 +102,8 @@ const Carousel = (props) => {
                             {typeEquipment.map((item, index) => (
                                 <CarouselItem
                                     key={index}
-                                    name= {item.tename}
-                                    img=""
+                                    name={item.tename}
+                                    img={item.imagen}
                                 />
                             ))}
                         </ul>

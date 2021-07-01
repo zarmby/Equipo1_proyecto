@@ -46,7 +46,7 @@ const RegisterForm = forwardRef((props,ref) => {
     }
     catch (e) {
       Alertify.error(`<b style='color:white;'>${e}</b>`);
-      console.log(e);
+      console.log(e.status);
     }
     props.loaded();
   }
@@ -173,11 +173,11 @@ const RegisterForm = forwardRef((props,ref) => {
           <div id="register_sede_info" className="info_container">
             <label htmlFor="register_sede_input">Sede*</label>
             <select
-              id="register_sede_input" className="register_input"
+              id="register_sede_input" className="register_input" value={sede}
               required onFocus={handleFocus} onBlur={handleBlur}
               onChange={(e) => { setSede(e.target.value); e.target.style.color = 'black'; }}
             >
-              <option value="" hidden disabled selected>Seleccione la sede donde se encuentra</option>
+              <option value="" hidden disabled>Seleccione la sede donde se encuentra</option>
               {props.sedes.map((item, index) => (
                 <option key={index} value={item._id}>{item.campusname}</option>
               ))}
