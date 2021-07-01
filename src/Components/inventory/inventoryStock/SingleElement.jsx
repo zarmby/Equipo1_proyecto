@@ -1,15 +1,14 @@
 import React from 'react';
 import './SingleElement.css';
-import ElementInfo from './ElementInfo';
 
-class SingleElement extends React.Component{
-  constructor (props){
+class SingleElement extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
     };
   }
 
-render(){
+  render() {
 
   const { handlePanelShow } = this.props;
   var status_icon = "";
@@ -33,9 +32,8 @@ render(){
           </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 

@@ -86,6 +86,9 @@ overflow-x:hidden;
 .main-menu:hover .arrow{
   display: none;
 }
+/*
+-------------------------
+*/
 
 .main-menu>ul {
 margin:7px 0;

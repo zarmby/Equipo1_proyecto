@@ -4,15 +4,15 @@ import SideFilter from '../sideFilters/SideFilters';
 import Navbar from '../../navbar/Navbar';
 import SingleElement from './SingleElement';
 import ElementInfo from './ElementInfo';
-import { EquipementListGet} from '../../../services/utils/InventoryApi';
+import { EquipementListGet } from '../../../services/utils/InventoryApi';
 
 class InventoryStock extends React.Component {
 
-  constructor (props){
+  constructor(props) {
     super(props);
     this.state = {
-      Equipments : [],
-      Panel : false,
+      Equipments: [],
+      Panel: false,
       SerialNumber: "",
       Mark: "",
       Model:"",
@@ -38,23 +38,23 @@ class InventoryStock extends React.Component {
       let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + value);
       this.setState({Image : value2});
       let dataEquipments = await equipmentsGet;
-      this.setState({Equipments : dataEquipments.result.cont.equipment});
+      this.setState({ Equipments: dataEquipments.result.cont.equipment });
     }
-    catch(e){
+    catch (e) {
       console.log(e);
     }
   }
 
-  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser) =>{
-      this.setState({SerialNumber : SerialNumber});
-      this.setState({Mark : Mark});
-      this.setState({Model : Model});
-      this.setState({Enviroment : Enviroment});
-      this.setState({Description : Description});
-      this.setState({State : State});
-      this.setState({Campus : Campus});
-      this.setState({AssignedUser : AssignedUser});
-      this.setState({Panel : !this.state.Panel});
+  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser) => {
+    this.setState({ SerialNumber: SerialNumber });
+    this.setState({ Mark: Mark });
+    this.setState({ Model: Model });
+    this.setState({ Enviroment: Enviroment });
+    this.setState({ Description: Description });
+    this.setState({ State: State });
+    this.setState({ Campus: Campus });
+    this.setState({ AssignedUser: AssignedUser });
+    this.setState({ Panel: !this.state.Panel });
   }
 
   handleCategory = async (typeEquipment,imgURL) =>{
@@ -64,17 +64,17 @@ class InventoryStock extends React.Component {
       this.setState({Equipments : dataEquipments.result.cont.equipment});
       this.setState({Image : imgURL});
     }
-    catch(e){
+    catch (e) {
       console.log(e);
     }
   }
 
-  render(){
-    return(
-      <div class="inv-cont">
-        <Navbar/>
+  render() {
+    return (
+      <div className="inv-cont">
+        <Navbar />
         <SideFilter
-        handleCategory = {this.handleCategory}/>
+          handleCategory={this.handleCategory} />
         {this.state.Panel ?
           <ElementInfo handlePanelShow = {this.handlePanelShow}
           serialnumber = {this.state.SerialNumber}
@@ -87,10 +87,10 @@ class InventoryStock extends React.Component {
           assignedUser = {this.state.AssignedUser}
           image = {this.state.Image}
           /> : null}
-        <div clas="Filters">
+        <div className="Filters">
         </div>
-        <div class="cont-list">
-          <div class ="grid">
+        <div className="cont-list">
+          <div className="grid">
             {this.state.Equipments.map((item, index) => (
               <SingleElement
               status = {item.state}

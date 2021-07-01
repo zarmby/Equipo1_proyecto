@@ -170,7 +170,7 @@
             width: 80%;
             height: auto;
             left: 10%;
-            padding: 15px;
+            padding: 15px 15px 0 15px;
             box-sizing: border-box;
             #modal_form_cat_img{
                 position: absolute;
@@ -182,6 +182,16 @@
                 width: 100%;
                 height: auto;
             }
+        }        
+        #modal_form_cat_img_text{
+            position: relative;
+            border: 0;
+            outline: none;
+            width: calc(100% + 30px);
+            margin-left: -15px;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 15px;
         }
     }    
     #modal_submit{

@@ -24,13 +24,12 @@ const LoginForm = forwardRef((props,ref)  => {
         props.loading();
         try {
             const res = await LoginApiPost("user/login", [email, pass]);
-            const data = await res;
-            localStorage.setItem("UserLogged", JSON.stringify(data.result));
+            localStorage.setItem("UserLogged", JSON.stringify(res.result));
             Alertify.success("Bienvenido");
             window.location.href = '/HomePage';
         }
         catch (e) {
-            Alertify.error("<b style='color:white;'>Datos erroneos</b>"+e);
+            Alertify.error("<b style='color:white;'>Error: </b>"+e);
             props.loaded();
         }
     }
@@ -58,7 +57,7 @@ const LoginForm = forwardRef((props,ref)  => {
 
     return (
         <div id="login_form_div" ref={props.reference} >
-            <form id="login_form" onSubmit={handleSubmit} autocomplete="off" >
+            <form id="login_form" onSubmit={handleSubmit} autoComplete="off" >
                 <div id="login_form_body">
                     <div id="login_user_info" className="info_container">
                         <label htmlFor="login_user_input">
