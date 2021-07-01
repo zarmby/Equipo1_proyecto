@@ -12,6 +12,8 @@ class SingleElement extends React.Component{
 render(){
 
   const { handlePanelShow } = this.props;
+  var status_icon = "";
+  this.props.status == "asignado" ? status_icon = "assigned" : status_icon = "avalible";
 
   return(
     <div class="card" id = {"equipement_" + this.props.id}
@@ -20,11 +22,10 @@ render(){
       <div class="card__overlay">
         <div class="card__header">
           <svg class="card__arc"></svg>
-          <img class="card__thumb" src="https://img2.freepng.es/20181127/rcc/kisspng-computer-icons-user-scalable-vector-graphics-login-set-menu-personal-settings-px-svg-png-icon-free-do-5bfdc61ed1a448.2136901815433579828587.jpg" alt="" />
+          <div class={status_icon} ></div>
           <div class="card__header-text">
             <h3 class="card__title">{this.props.status}</h3>
-            <img class="status" src="https://images.emojiterra.com/google/android-10/512px/1f534.png" alt="" />
-            <span class="card__status">{this.props.assignedUser}</span>
+            <span class="card__status">{this.props.status != "Disponible" ? this.props.assignedUser : "N/A"}</span>
           </div>
         </div>
         <div class="card__description">

@@ -82,14 +82,6 @@ body {
     border: 1px solid #DD1F26;
 }
 
-.card:hover .status{
-    border: 1px solid #DD1F26;
-}
-
-.card:hover  .card__description {
-  background-color: #212B35;
-}
-
 .card__thumb {
   flex-shrink: 0;
   width: 50px;
@@ -139,11 +131,20 @@ body {
   transition: 200ms;
 }
 
-.status{
-  width: 15px;
-  height: 15px;
-  border-radius: 5px;
-  border: 1px solid #212B35;
+.assigned{
+  background-color: #31A24C;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  border: 2px solid #212B35;
+}
+
+.avalible{
+  background-color: #ED0019;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  border: 2px solid #212B35;
 }
 
 .card__header-text{

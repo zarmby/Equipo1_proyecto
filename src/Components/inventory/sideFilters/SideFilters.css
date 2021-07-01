@@ -9,7 +9,8 @@ position:fixed;
 bottom:0;
 height:calc(100% - 70px);
 left:0;
-overflow:auto;
+overflow-y:scroll;
+overflow-x: hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
 -webkit-transform:translateZ(0) scale(1,1);
@@ -26,13 +27,64 @@ bottom:0;
 height:calc(100% - 70px);
 left:0;
 width:22px;
-overflow:auto;
 -webkit-transition:width .05s linear;
-transition:width .05s linear;
 -webkit-transform:translateZ(0) scale(1,1);
 z-index:1000;
 text-decoration: none;
 display: flex;
+overflow-x:hidden;
+}
+
+.main-menu .arrow{
+  z-index:10001;
+  color: #212B35;
+}
+
+#add-Equipment{
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.plus_container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.main-menu .plus{
+  color: rgb(255, 255, 255);
+}
+
+.main-menu:hover::-webkit-scrollbar{
+  width: 5px;
+}
+
+.main-menu:hover::-webkit-scrollbar-thumb {
+    background: #DD1F26;
+    border-radius: 10px;
+}
+
+.main-menu:hover::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
+}
+
+.main-menu::-webkit-scrollbar{
+  width: 0px;
+}
+
+.main-menu::-webkit-scrollbar-thumb {
+    background: #DD1F26;
+    border-radius: 10px;
+}
+
+.main-menu::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
+}
+
+.main-menu:hover .arrow{
+  display: none;
 }
 
 .main-menu>ul {
