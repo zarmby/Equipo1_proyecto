@@ -4,6 +4,7 @@ import SideFilter from '../sideFilters/SideFilters';
 import Navbar from '../../navbar/Navbar';
 import SingleElement from './SingleElement';
 import ElementInfo from './ElementInfo';
+import RegisterEquipment from './RegisterEquipment';
 import { EquipementListGet } from '../../../services/utils/InventoryApi';
 
 class InventoryStock extends React.Component {
@@ -73,6 +74,7 @@ class InventoryStock extends React.Component {
     return (
       <div className="inv-cont">
         <Navbar />
+        <RegisterEquipment/>
         <SideFilter
           handleCategory={this.handleCategory} />
         {this.state.Panel ?
@@ -88,6 +90,7 @@ class InventoryStock extends React.Component {
           image = {this.state.Image}
           /> : null}
         <div className="Filters">
+
         </div>
         <div className="cont-list">
           <div className="grid">
