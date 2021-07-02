@@ -29,7 +29,7 @@ const Carousel = (props) => {
                 perView: 1,
                 peek: {
                     before: 0,
-                    after: -80
+                    after: 0
                 }
             },
             1200: {
@@ -38,8 +38,6 @@ const Carousel = (props) => {
         },
         focusAt: 'center',
         starAt: 0,
-        autoplay: false,
-        hoverpause: true,
         keyboard: true,
         peek: {
             before: -100,

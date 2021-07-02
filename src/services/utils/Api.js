@@ -23,8 +23,10 @@ export const LoginApiPost = async (path, params = null) => {
             result: await response.json(),
             status: response.status
         }
-    else
-        throw new Error(response);
+    else{
+        let err = await response.json();
+        throw new Error(err.infoError)
+    }
 }
 
 export const ApiGet = async (path) => {

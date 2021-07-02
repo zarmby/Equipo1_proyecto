@@ -28,8 +28,8 @@ const LoginForm = forwardRef((props,ref)  => {
             Alertify.success("Bienvenido");
             window.location.href = '/HomePage';
         }
-        catch (e) {
-            Alertify.error("<b style='color:white;'>Error: </b>"+e);
+        catch (err) {
+            Alertify.error(`<b style='color:white;'>${err}</b>`);
             props.loaded();
         }
     }

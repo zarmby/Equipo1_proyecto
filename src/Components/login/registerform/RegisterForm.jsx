@@ -38,15 +38,21 @@ const RegisterForm = forwardRef((props,ref) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     props.loading();
-    try {
-      await RegisterUserApiPost("user/", param);
-      Alertify.success("<b style='color:white;'>Registro completo</b>");
-      cleanInputs();
-      handleCancelRegister();
+    if(pass === pconf){
+      try {
+        await RegisterUserApiPost("user/", param);
+        Alertify.success("<b style='color:white;'>Registro completo</b>");
+        cleanInputs();
+        handleCancelRegister();
+      }
+      catch (e) {
+        Alertify.error(`<b style='color:white;'>${e}</b>`);
+        console.log(e.status);
+      }
     }
-    catch (e) {
-      Alertify.error(`<b style='color:white;'>${e}</b>`);
-      console.log(e.status);
+    else{
+      Alertify.error(`<b style='color:white;>Las contraseñas no coinciden</b>`);
+      document.getElementById('register_confirm_input').focus();
     }
     props.loaded();
   }
