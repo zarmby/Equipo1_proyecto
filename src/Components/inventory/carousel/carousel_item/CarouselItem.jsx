@@ -27,7 +27,7 @@ const CarouselItem = (props) => {
                                 <h1>{props.data.tename}</h1>
                             </a>
                         :
-                            <Link to={`/InventoryStock?cat=${props.data.tename}&image=${props.data.imagen}`}>
+                            <Link to={`/InventoryStock?cat=${props.data.tename}&image=${props.data.imagen}&code=${props.data._id}`}>
                                 <h1>{props.data.tename}</h1>
                             </Link>
                 }
