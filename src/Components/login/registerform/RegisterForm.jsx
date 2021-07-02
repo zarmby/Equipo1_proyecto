@@ -70,7 +70,7 @@ const RegisterForm = forwardRef((props,ref) => {
     RSI.value = "";
     RSI.style.color = '#777';
   }
-  
+
 
   const handleCancelRegister = () => {
     props.cancelRegister();
@@ -119,7 +119,7 @@ const RegisterForm = forwardRef((props,ref) => {
           <div id="register_name_info" className="info_container">
             <label htmlFor="register_name_input">Nombre*</label>
             <input
-              type="text"id="register_name_input" 
+              type="text"id="register_name_input"
               className="register_input" maxLength="50" required
               onFocus={handleFocus} onBlur={handleBlur}
               value={name} onChange={(e) => { setName(e.target.value) }}

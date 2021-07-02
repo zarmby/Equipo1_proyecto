@@ -61,7 +61,7 @@ body {
   padding: 2em;
   border-radius: calc(var(--curve) * 1px) 0 0 0;
   background-color: #DD1F26;
-  transform: translateY(-110%);
+  transform: translateY(-100%);
   transition: .2s ease-in-out;
 }
 
@@ -70,7 +70,7 @@ body {
 }
 
 .card:hover .card__header {
-  transform: translateY(0);
+  transform: translateY(0)
 }
 
 .card:hover .card__header, .card__description {
@@ -80,14 +80,6 @@ body {
 
 .card:hover .card__thumb{
     border: 1px solid #DD1F26;
-}
-
-.card:hover .status{
-    border: 1px solid #DD1F26;
-}
-
-.card:hover  .card__description {
-  background-color: #DD1F26;
 }
 
 .card__thumb {
@@ -139,11 +131,20 @@ body {
   transition: 200ms;
 }
 
-.status{
-  width: 15px;
-  height: 15px;
-  border-radius: 5px;
-  border: 1px solid #212B35;
+.assigned{
+  background-color: #31A24C;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  border: 2px solid #212B35;
+}
+
+.avalible{
+  background-color: #ED0019;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  border: 2px solid #212B35;
 }
 
 .card__header-text{

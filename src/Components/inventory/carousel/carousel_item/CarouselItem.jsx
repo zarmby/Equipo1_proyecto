@@ -20,7 +20,7 @@ const CarouselItem = (props) => {
                         </a>
                         :
                         /*<InventoryStock name={props.name}/>*/
-                        <Link to={`/InventoryStock?cat=${props.name}&cat=${props.img}`}>
+                        <Link to={`/InventoryStock?cat=${props.name}&image=${props.img}`}>
                             <h1>{props.name}</h1>
                         </Link>
                 }

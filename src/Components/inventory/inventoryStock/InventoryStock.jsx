@@ -4,6 +4,7 @@ import SideFilter from '../sideFilters/SideFilters';
 import Navbar from '../../navbar/Navbar';
 import SingleElement from './SingleElement';
 import ElementInfo from './ElementInfo';
+import RegisterEquipment from './RegisterEquipment';
 import { EquipementListGet } from '../../../services/utils/InventoryApi';
 
 class InventoryStock extends React.Component {
@@ -15,26 +16,28 @@ class InventoryStock extends React.Component {
       Panel: false,
       SerialNumber: "",
       Mark: "",
-      Model: "",
-      Enviroment: "",
-      Description: "",
-      State: "",
-      Campus: "",
-      AssignedUser: ""
+      Model:"",
+      Enviroment:"",
+      Description:"",
+      State:"",
+      Campus:"",
+      AssignedUser:"",
+      Image:""
     };
   }
 
   getParameterByName(name) {
-    name = name.replace(/\]/, "\\[").replace(/[\]]/, "\\]");
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(window.location.search);
+    results = regex.exec(window.location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
-
-  async componentDidMount() {
+  async componentDidMount(){
     let value = this.getParameterByName("cat");
-    try {
+    let value2 = this.getParameterByName("image");
+    try{
       let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + value);
+      this.setState({Image : value2});
       let dataEquipments = await equipmentsGet;
       this.setState({ Equipments: dataEquipments.result.cont.equipment });
     }
@@ -55,11 +58,12 @@ class InventoryStock extends React.Component {
     this.setState({ Panel: !this.state.Panel });
   }
 
-  handleCategory = async (typeEquipment) => {
-    try {
+  handleCategory = async (typeEquipment,imgURL) =>{
+    try{
       let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + typeEquipment);
       let dataEquipments = await equipmentsGet;
-      this.setState({ Equipments: dataEquipments.result.cont.equipment });
+      this.setState({Equipments : dataEquipments.result.cont.equipment});
+      this.setState({Image : imgURL});
     }
     catch (e) {
       console.log(e);
@@ -73,33 +77,36 @@ class InventoryStock extends React.Component {
         <SideFilter
           handleCategory={this.handleCategory} />
         {this.state.Panel ?
-          <ElementInfo handlePanelShow={this.handlePanelShow}
-            serialnumber={this.state.SerialNumber}
-            mark={this.state.Mark}
-            model={this.state.Model}
-            enviroment={this.state.Enviroment}
-            description={this.state.Description}
-            state={this.state.State}
-            campus={this.state.Campus}
-            assignedUser={this.state.AssignedUser}
+          <ElementInfo handlePanelShow = {this.handlePanelShow}
+          serialnumber = {this.state.SerialNumber}
+          mark = {this.state.Mark}
+          model = {this.state.Model}
+          enviroment = {this.state.Enviroment}
+          description = {this.state.Description}
+          state = {this.state.State}
+          campus = {this.state.Campus}
+          assignedUser = {this.state.AssignedUser}
+          image = {this.state.Image}
           /> : null}
         <div className="Filters">
+
         </div>
         <div className="cont-list">
           <div className="grid">
             {this.state.Equipments.map((item, index) => (
               <SingleElement
-                status={item.state}
-                serialnumber={item.serialnumber}
-                mark={item.mark}
-                model={item.model}
-                enviroment={item.enviroment}
-                description={item.equipmentdescription}
-                state={item.state}
-                campus={item.campusname}
-                assignedUser={item.username}
-                id={index}
-                handlePanelShow={this.handlePanelShow} />
+              status = {item.state}
+              serialnumber = {item.serialnumber}
+              mark = {item.mark}
+              model = {item.model}
+              enviroment = {item.enviroment}
+              description = {item.equipmentdescription}
+              state = {item.state}
+              campus = {item.campusname}
+              assignedUser = {item.username + " " + item.lastname}
+              image = {this.state.Image}
+              id = {index}
+              handlePanelShow = {this.handlePanelShow}/>
             ))}
           </div>
         </div>

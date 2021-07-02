@@ -26,14 +26,23 @@ class SideFilters extends React.Component{
   render(){
     return(
       <div>
-        <nav className="main-menu">
-          <spam className="face-side">
-            <i className="fas fa-angle-right fa-3x"></i>
+        <nav class="main-menu">
+          <spam class="face-side">
+            <i class="fas fa-angle-right fa-3x arrow"></i>
           </spam>
             <ul>
+            <li>
+              <a id = "add-Equipment">
+                <span class="nav-text">Agregar Equipo</span>
+                <div class="plus_container">
+                  <i class="fas fa-plus-square fa-2x plus"></i>
+                </div>
+              </a>
+            </li>
               {this.state.TypeEquipements.map((item, index) => (
                 <SingleElement
                 tename = {item.tename}
+                imagen = {item.imagen}
                 index = {index}
                 handleCategory = {this.props.handleCategory}/>
               ))}
