@@ -39,13 +39,13 @@ class InventoryStock extends React.Component {
     let value = this.getParameterByName("cat");
     let value2 = this.getParameterByName("image");
     let value3 = this.getParameterByName("code");
+    this.setState({Image : value2});
+    this.setState({typeCategory : value});
+    this.setState({codeCategory : value3});
     try{
       let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + value);
-      this.setState({Image : value2});
       let dataEquipments = await equipmentsGet;
       this.setState({ Equipments: dataEquipments.result.cont.equipment });
-      this.setState({typeCategory : value});
-      this.setState({codeCategory : value3});
     }
     catch (e) {
       console.log(e);

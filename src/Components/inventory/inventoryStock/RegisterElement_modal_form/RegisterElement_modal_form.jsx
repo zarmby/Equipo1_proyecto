@@ -41,10 +41,10 @@ const RegisterElement_modal_form = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-
             await RegisterEquipmentApiPost("equipments/", params);
             Alertify.success("<b style='color:white;'>Registro completo</b>");
             props.close(null, true);
+            document.location.reload(true);
         }
         catch (e) {
             Alertify.error(`<b style='color:white;'>${e}</b>`);
