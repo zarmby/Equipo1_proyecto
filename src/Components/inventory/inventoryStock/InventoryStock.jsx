@@ -14,6 +14,7 @@ class InventoryStock extends React.Component {
     this.state = {
       Equipments: [],
       Panel: false,
+      Modal: false,
       SerialNumber: "",
       Mark: "",
       Model:"",
@@ -22,7 +23,9 @@ class InventoryStock extends React.Component {
       State:"",
       Campus:"",
       AssignedUser:"",
-      Image:""
+      Image:"",
+      typeCategory:"",
+      codeCategory:""
     };
   }
 
@@ -35,11 +38,14 @@ class InventoryStock extends React.Component {
   async componentDidMount(){
     let value = this.getParameterByName("cat");
     let value2 = this.getParameterByName("image");
+    let value3 = this.getParameterByName("code");
     try{
       let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + value);
       this.setState({Image : value2});
       let dataEquipments = await equipmentsGet;
       this.setState({ Equipments: dataEquipments.result.cont.equipment });
+      this.setState({typeCategory : value});
+      this.setState({codeCategory : value3});
     }
     catch (e) {
       console.log(e);
@@ -58,12 +64,18 @@ class InventoryStock extends React.Component {
     this.setState({ Panel: !this.state.Panel });
   }
 
-  handleCategory = async (typeEquipment,imgURL) =>{
+  handleCloseModal = () => {
+      this.setState({ Modal: !this.state.Modal });
+  }
+
+  handleCategory = async (typeEquipment,imgURL,code) =>{
     try{
       let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + typeEquipment);
       let dataEquipments = await equipmentsGet;
       this.setState({Equipments : dataEquipments.result.cont.equipment});
       this.setState({Image : imgURL});
+      this.setState({typeCategory : typeEquipment});
+      this.setState({codeCategory : code});
     }
     catch (e) {
       console.log(e);
@@ -75,7 +87,8 @@ class InventoryStock extends React.Component {
       <div className="inv-cont">
         <Navbar />
         <SideFilter
-          handleCategory={this.handleCategory} />
+          handleCategory={this.handleCategory}
+          close={this.handleCloseModal}/>
         {this.state.Panel ?
           <ElementInfo handlePanelShow = {this.handlePanelShow}
           serialnumber = {this.state.SerialNumber}
@@ -88,8 +101,12 @@ class InventoryStock extends React.Component {
           assignedUser = {this.state.AssignedUser}
           image = {this.state.Image}
           /> : null}
+          {this.state.Modal == true ? <RegisterEquipment
+            close={this.handleCloseModal}
+            image = {this.state.Image}
+            category = {this.state.typeCategory}
+            code = {this.state.codeCategory}/> : null}
         <div className="Filters">
-
         </div>
         <div className="cont-list">
           <div className="grid">

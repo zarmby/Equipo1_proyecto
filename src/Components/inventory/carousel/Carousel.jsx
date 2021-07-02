@@ -104,6 +104,7 @@ const Carousel = (props) => {
                                     key={index}
                                     name={item.tename}
                                     img={item.imagen}
+                                    code={item._id}
                                 />
                             ))}
                         </ul>

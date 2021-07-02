@@ -23,6 +23,16 @@ class SideFilters extends React.Component{
     }
   }
 
+  handleCloseModal = (object = null, add = false) => {
+      if(object === null){
+          this.props.close(add);
+      }
+      else{
+          if(object.target.id === 'RegisterEquipment_modal_contain' || object.target.id === 'RegisterEquipment_modal_close')
+              this.props.close(add);
+      }
+  }
+
   render(){
     return(
       <div>
@@ -31,7 +41,7 @@ class SideFilters extends React.Component{
             <i class="fas fa-angle-right fa-3x arrow"></i>
           </spam>
             <ul>
-            <li>
+            <li onClick={() => this.handleCloseModal()}>
               <a id = "add-Equipment">
                 <span class="nav-text">Agregar Equipo</span>
                 <div class="plus_container">
@@ -43,6 +53,7 @@ class SideFilters extends React.Component{
                 <SingleElement
                 tename = {item.tename}
                 imagen = {item.imagen}
+                code = {item._id}
                 index = {index}
                 handleCategory = {this.props.handleCategory}/>
               ))}

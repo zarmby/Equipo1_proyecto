@@ -109,3 +109,37 @@ export const RegisterTypeEquipmentApiPost = async (path, params = null) => {
         throw new Error(response);
 }
 
+export const RegisterEquipmentApiPost = async (path, params = null) => {
+    const url = BACK_API + path;
+
+    let data = {
+        IDtypeequipment: params[0],
+        serialnumber: params[1],
+        state: params[2],
+        equipmentdescription: params[3],
+        model: params[4],
+        mark: params[5],
+        IDcampus: params[6],
+        status: params[7],
+        enviroment: params[8],
+    }
+
+    console.log(data);
+    let response = await fetch(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status !== 400)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else
+        throw new Error(response);
+}
