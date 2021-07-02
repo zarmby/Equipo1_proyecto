@@ -36,7 +36,7 @@
         box-shadow: 0 0 2pt 2pt#dd1f259d;
     }
     h2{
-        margin-left: 30px;
+        margin: 0 0 30px 30px;
     }
     #first_part{
         position: absolute;
@@ -59,6 +59,7 @@
             img{
                 width: 100%;
                 height: auto;
+                max-height: 500px;
             }
         }        
         #modal_form_cat_img_text{

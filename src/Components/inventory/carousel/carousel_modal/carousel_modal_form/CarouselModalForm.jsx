@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 
@@ -8,6 +8,7 @@ import default_cat from '../../../../../assets/img_cat/default_cat.png';
 
 const ModalForm = (props) => {
 
+    const [id, setId] = useState('');
     const [photo, setPhoto] = useState();
     const [name, setName] = useState('');
     const [photoURL, setPhotoURL] = useState('');
@@ -17,6 +18,24 @@ const ModalForm = (props) => {
     const [filterDescription, setFilterDescription] = useState(false);
     const [filterEnviroment, setFilterEnviroment] = useState(false);
     const [filterSede, setFilterSede] = useState(false);
+    
+    /*{
+        "status":true,
+        "imagen":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPomBk3EL_GfG72Aj2SLCWrjfhsWElkd8GGA&usqp=CAU",
+        "_id":"60ddb7f63d0d2733e81b9119",
+        "tename":"a ver",
+        "__v":0
+    }*/
+    useEffect(()=>{
+        let {item} = props;
+        if(item){
+            setId(item._id);
+            setName(item.tename);
+            setPhotoURL(item.imagen);
+        }
+        else
+            alert("nada alv");
+    },[]);
 
     const params = [
         name,

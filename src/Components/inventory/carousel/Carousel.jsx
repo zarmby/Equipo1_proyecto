@@ -12,6 +12,8 @@ import CarouselItem from './carousel_item/CarouselItem';
 import CarouselModal from './carousel_modal/CarouselModal';
 import Loading from '../../loading/Loading';
 import { ApiGet } from '../../../services/utils/Api';
+import AddCat from '../../../assets/img_cat/add_cat.png';
+import edit from '../../../assets/img/edit.png';
 import './Carousel.scss';
 
 const Carousel = (props) => {
@@ -19,6 +21,8 @@ const Carousel = (props) => {
     const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(false);
     const [typeEquipment, setTypeEquipment] = useState([]);
+
+    const [itemSelect, setItemSelect] = useState([]);
 
     var Glider = new Glide(".glide", {
         type: "carousel",
@@ -45,6 +49,11 @@ const Carousel = (props) => {
         }
     });
 
+    const ElementAddCat = {
+        tename: "Agregar nueva categoria",
+        imagen: AddCat
+    }
+
     useEffect(() => {
         getTypeEquipment().then(() => {
             Glider.mount({ Breakpoints });
@@ -65,8 +74,9 @@ const Carousel = (props) => {
         }
     }
 
-    const handleOpenModal = () => {
+    const handleOpenModal = (item) => {
         setModal(true);
+        setItemSelect(item);
     }
 
     const handleCloseModal = (add) => {
@@ -81,7 +91,7 @@ const Carousel = (props) => {
         <div className="carousel_container">
             <NavBar />
             {(loading) ? <Loading /> : null}
-            {(modal) ? <CarouselModal close={handleCloseModal} loading={setLoading} /> : null}
+            {(modal) ? <CarouselModal close={handleCloseModal} loading={setLoading} item = {itemSelect} /> : null}
             <div id="carousel_items_contain">
                 <div className="glide">
                     <div className="glide__arrows" data-glide-el="controls">
@@ -92,16 +102,16 @@ const Carousel = (props) => {
                     <div className="glide__track" data-glide-el="track">
                         <ul className="glide__slides">
                             <CarouselItem
-                                name="Agregar nueva categoria"
-                                img="https://static.thenounproject.com/png/953211-200.png"
+                                data={ElementAddCat}
                                 add={true}
                                 modal={handleOpenModal}
                             />
                             {typeEquipment.map((item, index) => (
                                 <CarouselItem
                                     key={index}
-                                    name={item.tename}
-                                    img={item.imagen}
+                                    data={item}
+                                    edit={edit}
+                                    modal={handleOpenModal}
                                 />
                             ))}
                         </ul>
