@@ -23,18 +23,20 @@ body {
 .card {
   box-shadow: 0px 1px 20px rgba(2, 7, 7, 0.24);
   position: relative;
-  display: block;
+  display: flex;
   height: 100%;
   border-radius: calc(var(--curve) * 1px);
   overflow: hidden;
   text-decoration: none;
-  min-height: 250px;
-  min-width: 250px;
+  min-height: 325px;
+  min-width: 325px;
+  justify-content: center;
 }
 
 .card__image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  padding: 0px 10px 0px 10px;
 }
 
 .card__overlay {
