@@ -11,6 +11,8 @@
   display: flex;
   justify-content: center;
   box-sizing: border-box;
+  height: auto;
+  background-color: #fff;
 }
 
 .inv-cont{
