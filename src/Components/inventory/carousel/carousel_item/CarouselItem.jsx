@@ -2,7 +2,10 @@ import './CarouselItem.scss';
 import { Link } from 'react-router-dom';
 import default_cat from '../../../../assets/img_cat/default_cat.png';
 
+
 const CarouselItem = (props) => {
+
+
 
     const handleOpenModal = () => {
         props.modal();
@@ -20,9 +23,9 @@ const CarouselItem = (props) => {
                         </a>
                         :
                         /*<InventoryStock name={props.name}/>*/
-                        <Link to={`/InventoryStock?cat=${props.name}&image=${props.img}&code=${props.code}`}>
+                      <a onClick={props.handleShowInventory} >
                             <h1>{props.name}</h1>
-                        </Link>
+                        </a>
                 }
             </div>
         </li>

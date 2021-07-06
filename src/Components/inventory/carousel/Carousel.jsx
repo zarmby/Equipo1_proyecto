@@ -19,6 +19,11 @@ const Carousel = (props) => {
     const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(false);
     const [typeEquipment, setTypeEquipment] = useState([]);
+    const [ISDisplay, setISDisplay] = useState(false);
+
+    const handleShowInventory = () => {
+        this.setState({ ISDisplay: !ISDisplay });
+    }
 
     var Glider = new Glide(".glide", {
         type: "carousel",
@@ -105,6 +110,7 @@ const Carousel = (props) => {
                                     name={item.tename}
                                     img={item.imagen}
                                     code={item._id}
+                                    handleShowInventory = {handleShowInventory}
                                 />
                             ))}
                         </ul>
