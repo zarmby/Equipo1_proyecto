@@ -44,3 +44,34 @@
         }
     }
 }
+
+/*@media only screen and (max-width: 550px) {
+    #carousel_modal_contain{
+        #carousel_modal{
+            overflow-y: scroll;
+            &::-webkit-scrollbar{
+                width: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: #DD1F26;
+                border-radius: 10px;
+            }
+            &::-webkit-scrollbar-thumb:hover {
+                background: #B3B3B3;
+                box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
+            }
+        }
+    }
+}*/
+  
+@media only screen and  (max-width: 800px) {
+    #carousel_modal_contain{
+        #carousel_modal{
+            width: 80%;
+            height: 80%;            
+            left: 10%;
+            top: 10%;
+            overflow: hidden;
+        }
+    }
+}

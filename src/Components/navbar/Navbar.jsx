@@ -1,6 +1,7 @@
 import React from 'react';
 import './Navbar.scss';
 import logo from '../../assets/img/Logo.png';
+import logoPequeño from '../../assets/img/logo192.png';
 
 class Navbar extends React.Component{
     constructor(props){
@@ -28,19 +29,22 @@ class Navbar extends React.Component{
     render(){
         return(
             <nav id="navbar_principal">
-                <img src={logo} alt="" />
-                <div className="dropdown" id="navbar_menu">
-                    <a href="/HomePage"><button className="dropbtn">Menu</button></a>
-                    <div className="dropdown-content">
-                        <a href="/InventoryCenter">Inventario</a>
-                        <a href="/user">Usuario</a>
-                        <a href="/scanner">Scanner</a>
+                <img id="navbar_logo" src={logo} alt="Logo Arkus" />
+                <input type="image" id="navbar_icono_menu" src={logoPequeño} alt="Menu" />
+                <div id="navbar_menu_container">
+                    <div className="dropdown" id="navbar_menu">
+                        <a href="/HomePage"><button className="dropbtn">Menu</button></a>
+                        <div className="dropdown-content">
+                            <a href="/InventoryCenter">Inventario</a>
+                            <a href="/user">Usuario</a>
+                            <a href="/scanner">Scanner</a>
+                        </div>
                     </div>
-                </div>
-                <div className="dropdown" id="navbar_user">
-                    <button className="dropbtn">{this.state.username}</button>
-                    <div className="dropdown-content">
-                        <a href="#navbar_principal" onClick={this.handleLogout} >Salir</a>
+                    <div className="dropdown" id="navbar_user">
+                        <button className="dropbtn">{this.state.username}</button>
+                        <div className="dropdown-content">
+                            <a href="#navbar_principal" onClick={this.handleLogout} >Salir</a>
+                        </div>
                     </div>
                 </div>
             </nav>

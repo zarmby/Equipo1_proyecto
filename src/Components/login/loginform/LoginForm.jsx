@@ -25,11 +25,11 @@ const LoginForm = forwardRef((props,ref)  => {
         try {
             const res = await LoginApiPost("user/login", [email, pass]);
             localStorage.setItem("UserLogged", JSON.stringify(res.result));
-            Alertify.success("Bienvenido");
+            Alertify.success("<b style='color:white;'>Bienvenido</b>");
             window.location.href = '/HomePage';
         }
-        catch (e) {
-            Alertify.error("<b style='color:white;'>Error: </b>"+e);
+        catch (err) {
+            Alertify.error(`<b style='color:white;'>${err}</b>`);
             props.loaded();
         }
     }

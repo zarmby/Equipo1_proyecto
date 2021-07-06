@@ -17,7 +17,7 @@ const CarouselModal = (props) =>{
         <div id="carousel_modal_contain" onClick={(e) => handleCloseModal(e)} >
             <div id="carousel_modal">
                 <span id="carousel_modal_close" onClick={(e) => handleCloseModal(e)} >X</span>
-                <ModalForm close={handleCloseModal} loading={props.loading} />
+                <ModalForm close={handleCloseModal} loading={props.loading} item = {props.item} />
             </div>
         </div>
     );
