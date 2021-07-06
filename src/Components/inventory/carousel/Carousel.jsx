@@ -66,7 +66,6 @@ const Carousel = (props) => {
         try {
             const TEGet = await ApiGet("typeequipments/");
             const dataTE = await TEGet.result.cont.typeequipment;
-            console.log(dataTE);
             setTypeEquipment(dataTE);
         }
         catch (e) {
@@ -106,14 +105,14 @@ const Carousel = (props) => {
                                 add={true}
                                 modal={handleOpenModal}
                             />
-                            {typeEquipment.map((item, index) => (
+                            {(typeEquipment.length > 0) ?typeEquipment.map((item, index) => (
                                 <CarouselItem
                                     key={index}
                                     data={item}
                                     edit={edit}
                                     modal={handleOpenModal}
                                 />
-                            ))}
+                            )) : null}
                         </ul>
                     </div>
                     <div className="glide__arrows" data-glide-el="controls">

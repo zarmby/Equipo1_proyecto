@@ -37,8 +37,10 @@ export const ApiGet = async (path) => {
             result: await response.json(),
             status: response.status
         }
-    else
-        throw new Error(response);
+    else{
+        let err = await response.json();
+        throw new Error(err.msg)
+    }
 }
 
 export const RegisterUserApiPost = async (path, params = null) => {
@@ -55,7 +57,7 @@ export const RegisterUserApiPost = async (path, params = null) => {
         IDrole: "60d359daaf6db9078415f90d",
         account: params[2].split('@')[0],
         password: params[4],
-        confirmPass: params[4]
+        confirmPass: params[5]
     }
 
     console.log(data);
@@ -74,8 +76,10 @@ export const RegisterUserApiPost = async (path, params = null) => {
             result: await response.json(),
             status: response.status
         }
-    else
-        throw new Error(response);
+    else{
+        let err = await response.json();
+        throw new Error(err.infoError);
+    }
 }
 
 export const RegisterTypeEquipmentApiPost = async (path, params = null) => {
@@ -142,6 +146,8 @@ export const RegisterEquipmentApiPost = async (path, params = null) => {
             result: await response.json(),
             status: response.status
         }
-    else
-        throw new Error(response);
+    else{
+        let err = await response.json();
+        throw new Error(err.msg)
+    }
 }

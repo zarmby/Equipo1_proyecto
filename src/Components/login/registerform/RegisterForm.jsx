@@ -38,22 +38,21 @@ const RegisterForm = forwardRef((props,ref) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     props.loading();
-    if(pass === pconf){
-      try {
-        await RegisterUserApiPost("user/", param);
-        Alertify.success("<b style='color:white;'>Registro completo</b>");
-        cleanInputs();
-        handleCancelRegister();
-      }
-      catch (e) {
-        Alertify.error(`<b style='color:white;'>${e}</b>`);
-        console.log(e.status);
-      }
+    try {
+      await RegisterUserApiPost("user/", param);
+      Alertify.success("<b style='color:white;'>Registro completo</b>");
+      cleanInputs();
+      handleCancelRegister();
     }
-    else{
-      Alertify.error(`<b style='color:white;>Las contraseñas no coinciden</b>`);
+    catch (e) {
+      Alertify.error(`<b style='color:white;'>${e}</b>`);
+      console.log(e.status);
+    }
+     /*}
+   else{
+      Alertify.error("<b style='color:white;>Las contraseñas no coinciden</b>");
       document.getElementById('register_confirm_input').focus();
-    }
+    }*/
     props.loaded();
   }
 
@@ -159,7 +158,7 @@ const RegisterForm = forwardRef((props,ref) => {
             <input
               type="password" placeholder="Caracteres y numeros"
               id="register_password_input" className="register_input"
-              minLength="10" maxLength="20" required
+              minLength="6" maxLength="20" required
               title="Debe tener una longitud minima de 10 caracteres usando numeros y letras"
               onFocus={handleFocus} onBlur={handleBlur}
               value={pass} onChange={(e) => { setPass(e.target.value) }}
@@ -170,7 +169,7 @@ const RegisterForm = forwardRef((props,ref) => {
             <input
               type="password" placeholder="Vuelva a escribir la contraseña"
               id="register_confirm_input" className="register_input"
-              minLength="10" maxLength="20" required
+              minLength="6" maxLength="20" required
               title="Debe tener una longitud minima de 10 caracteres usando numeros y letras"
               onFocus={handleFocus} onBlur={handleBlur}
               value={pconf} onChange={(e) => { setPconf(e.target.value) }}

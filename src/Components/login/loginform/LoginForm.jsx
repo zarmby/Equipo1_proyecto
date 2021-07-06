@@ -25,7 +25,7 @@ const LoginForm = forwardRef((props,ref)  => {
         try {
             const res = await LoginApiPost("user/login", [email, pass]);
             localStorage.setItem("UserLogged", JSON.stringify(res.result));
-            Alertify.success("Bienvenido");
+            Alertify.success("<b style='color:white;'>Bienvenido</b>");
             window.location.href = '/HomePage';
         }
         catch (err) {
