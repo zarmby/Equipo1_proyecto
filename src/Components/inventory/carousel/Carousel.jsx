@@ -138,7 +138,6 @@ const Carousel = (props) => {
               </div>}
             {(loading) ? <Loading /> : null}
             {(modal) ? <CarouselModal close={handleCloseModal} loading={setLoading} item = {itemSelect} /> : null}
-
         </div>
     );
 }
