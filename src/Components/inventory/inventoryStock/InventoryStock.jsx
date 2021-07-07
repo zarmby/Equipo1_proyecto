@@ -29,21 +29,12 @@ class InventoryStock extends React.Component {
     };
   }
 
-  getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(window.location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
   async componentDidMount(){
-    let value = this.getParameterByName("cat");
-    let value2 = this.getParameterByName("image");
-    let value3 = this.getParameterByName("code");
-    this.setState({Image : value2});
-    this.setState({typeCategory : value});
-    this.setState({codeCategory : value3});
+    this.setState({Image : this.props.image});
+    this.setState({typeCategory : this.props.typeCategory});
+    this.setState({codeCategory : this.props.code});
     try{
-      let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + value);
+      let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + this.props.typeCategory);
       let dataEquipments = await equipmentsGet;
       this.setState({ Equipments: dataEquipments.result.cont.equipment });
     }
@@ -106,7 +97,8 @@ class InventoryStock extends React.Component {
             close={this.handleCloseModal}
             image = {this.state.Image}
             category = {this.state.typeCategory}
-            code = {this.state.codeCategory}/> : null}
+            code = {this.state.codeCategory}
+            handleCategory = {this.handleCategory}/> : null}
         <div className="Filters">
         </div>
         <div className="cont-list">

@@ -21,7 +21,8 @@ const RegisterEquipment = ((props,ref) => {
             image = {props.image}
             category = {props.category}
             code = {props.code}
-            close = {handleCloseModal}/>
+            close = {handleCloseModal}
+            handleCategory = {props.handleCategory}/>
         </div>
     </div>
   )

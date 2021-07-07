@@ -10,6 +10,7 @@ import "@glidejs/glide/src/assets/sass/glide.theme.scss";
 import NavBar from '../../navbar/Navbar';
 import CarouselItem from './carousel_item/CarouselItem';
 import CarouselModal from './carousel_modal/CarouselModal';
+import InventoryStock from '../inventoryStock/InventoryStock'
 import Loading from '../../loading/Loading';
 import { ApiGet } from '../../../services/utils/Api';
 import AddCat from '../../../assets/img_cat/add_cat.png';
@@ -22,9 +23,15 @@ const Carousel = (props) => {
     const [modal, setModal] = useState(false);
     const [typeEquipment, setTypeEquipment] = useState([]);
     const [ISDisplay, setISDisplay] = useState(false);
+    const [image, setImage] = useState("");
+    const [typeCategory, setTypeCategory] = useState("");
+    const [code, setCode] = useState("");
 
-    const handleShowInventory = () => {
-        this.setState({ ISDisplay: !ISDisplay });
+    const handleShowInventory = (image,typeCategory,code) => {
+        setISDisplay(true);
+        setImage(image);
+        setTypeCategory(typeCategory);
+        setCode(code);
     }
 
     const [itemSelect, setItemSelect] = useState([]);
@@ -94,6 +101,10 @@ const Carousel = (props) => {
     return (
         <div className="carousel_container">
             <NavBar />
+            {ISDisplay == true ? <InventoryStock
+              image = {image}
+              typeCategory ={typeCategory}
+              code = {code}/> : null}
             {(loading) ? <Loading /> : null}
             {(modal) ? <CarouselModal close={handleCloseModal} loading={setLoading} item = {itemSelect} /> : null}
             <div id="carousel_items_contain">
@@ -116,7 +127,7 @@ const Carousel = (props) => {
                                     data={item}
                                     edit={edit}
                                     modal={handleOpenModal}
-                                    handleShowInventory = {handleShowInventory}
+                                    openInventory = {handleShowInventory}
                                 />
                             )) : null}
                         </ul>

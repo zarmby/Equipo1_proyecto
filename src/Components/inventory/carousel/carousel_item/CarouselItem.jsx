@@ -29,9 +29,9 @@ const CarouselItem = (props) => {
                             </a>
                         :
                         /*<InventoryStock name={props.name}/>*/
-                      <a onClick={props.handleShowInventory} >
-                            <h1>{props.name}</h1>
-                        </a>
+                      <Link onClick={() => props.openInventory(props.data.imagen,props.data.tename,props.data._id)}>
+                            <h1>{props.data.tename}</h1>
+                      </Link>
                 }
             </div>
         </li>
