@@ -28,9 +28,12 @@ body {
   border-radius: calc(var(--curve) * 1px);
   overflow: hidden;
   text-decoration: none;
+  max-height: 325px;
+  max-width: 325px;
   min-height: 325px;
-  min-width: 325px;
-  justify-content: center;
+  min-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card__image {
@@ -152,4 +155,8 @@ body {
 .card__header-text{
   display: grid;
   grid-template-columns: 90% 10%;
+}
+
+.singleElementContainer{
+  display: flex;
 }
