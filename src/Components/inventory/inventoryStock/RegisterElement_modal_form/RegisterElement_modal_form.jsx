@@ -44,7 +44,7 @@ const RegisterElement_modal_form = (props) => {
             await RegisterEquipmentApiPost("equipments/", params);
             Alertify.success("<b style='color:white;'>Registro completo</b>");
             props.close(null, true);
-            document.location.reload(true);
+            props.handleCategory(props.category,props.image,props.code)
         }
         catch (e) {
             Alertify.error(`<b style='color:white;'>${e}</b>`);

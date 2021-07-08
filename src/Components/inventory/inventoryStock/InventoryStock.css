@@ -1,10 +1,11 @@
 .grid{
-  margin-left: 70px;
+  margin-left: 25px;
   margin-right: 50px;
   margin-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
+  width: 90%;
 }
 
 .cont-list{
@@ -13,6 +14,8 @@
   box-sizing: border-box;
   height: auto;
   background-color: #fff;
+  width: 100%;
+  justify-content: center;
 }
 
 .inv-cont{

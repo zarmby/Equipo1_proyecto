@@ -156,7 +156,7 @@
 
 .Status-Info{
   display: flex;
-  grid-row: 3 / 4;
+  grid-row: 5 / 6;
   align-items: center;
   padding-left: 10px;
 }
@@ -181,7 +181,7 @@
 }
 .Asigned-Person{
   border-radius: 5%;
-  grid-row: 4 / 5;
+  grid-row: 6 / 7;
 }
 
 .Asigned-Person-Elements{
@@ -224,7 +224,7 @@
   display: flex;
   justify-content: center;
   grid-column: 2 / 3;
-  grid-row: 5 / 6;
+  grid-row: 7 / 8;
 }
 
 .Equipment-menu-Asign{
@@ -265,4 +265,94 @@
   border-radius: 50px;
   border: 2px solid #212B35;
   margin-left: 5px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .Modal-template{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+  @media only screen and (max-width: 919px) {
+    .Modal-template{
+      display: grid;
+      width: 100%;
+    }
+
+    .Modal-box{
+      background-color: white;
+      border-radius: 2%;
+      overflow: hidden;
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.24);
+      overflow-y: scroll;
+      width: 100%;
+      height: 100%;
+      padding-right: 30px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    .Description-Text{
+      grid-column: 1 / 3;
+    }
+
+    .Description-Tittle{
+      grid-column: 1 / 3;
+    }
+
+    .Info-Tittle{
+      grid-column: 1 / 3;
+    }
+
+    .Info-Text{
+      grid-column: 1 / 3;
+      grid-row: 4 / 5;
+    }
+
+    .exit-row{
+      grid-column: 3 / 4 ;
+      grid-row: 1 / 2;
+      display: flex;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+  .Modal-template{
+    display: grid;
+    width: 100%;
+  }
+
+  .Modal-box{
+    background-color: white;
+    border-radius: 2%;
+    overflow: hidden;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.24);
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    padding-right: 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .Description-Text{
+    grid-column: 1 / 3;
+  }
+
+  .Description-Tittle{
+    grid-column: 1 / 3;
+  }
+
+  .Info-Tittle{
+    grid-column: 1 / 3;
+  }
+
+  .Info-Text{
+    grid-column: 1 / 3;
+    grid-row: 4 / 5;
+  }
+
+  .exit-row{
+    grid-column: 3 / 4 ;
+    grid-row: 1 / 2;
+    display: flex;
+  }
 }

@@ -215,3 +215,18 @@
         }
     }
 }
+
+#modal_form_container::-webkit-scrollbar{
+  width: 0px;
+  padding-bottom: 60px;
+}
+
+#modal_form_container::-webkit-scrollbar-thumb {
+    background: #DD1F26;
+    border-radius: 10px;
+}
+
+#modal_form_container::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
+}

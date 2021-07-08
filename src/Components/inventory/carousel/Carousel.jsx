@@ -10,6 +10,7 @@ import "@glidejs/glide/src/assets/sass/glide.theme.scss";
 import NavBar from '../../navbar/Navbar';
 import CarouselItem from './carousel_item/CarouselItem';
 import CarouselModal from './carousel_modal/CarouselModal';
+import InventoryStock from '../inventoryStock/InventoryStock'
 import Loading from '../../loading/Loading';
 import { ApiGet } from '../../../services/utils/Api';
 import AddCat from '../../../assets/img_cat/add_cat.png';
@@ -21,6 +22,17 @@ const Carousel = (props) => {
     const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(false);
     const [typeEquipment, setTypeEquipment] = useState([]);
+    const [ISDisplay, setISDisplay] = useState(false);
+    const [image, setImage] = useState("");
+    const [typeCategory, setTypeCategory] = useState("");
+    const [code, setCode] = useState("");
+
+    const handleShowInventory = (image,typeCategory,code) => {
+        setISDisplay(true);
+        setImage(image);
+        setTypeCategory(typeCategory);
+        setCode(code);
+    }
 
     const [itemSelect, setItemSelect] = useState([]);
 
@@ -89,39 +101,43 @@ const Carousel = (props) => {
     return (
         <div className="carousel_container">
             <NavBar />
+            {ISDisplay == true ? <InventoryStock
+              image = {image}
+              typeCategory ={typeCategory}
+              code = {code}/> : <div id="carousel_items_contain">
+                  <div className="glide">
+                      <div className="glide__arrows" data-glide-el="controls">
+                          <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
+                              Prev
+                          </button>
+                      </div>
+                      <div className="glide__track" data-glide-el="track">
+                          <ul className="glide__slides">
+                              <CarouselItem
+                                  data={ElementAddCat}
+                                  add={true}
+                                  modal={handleOpenModal}
+                              />
+                              {(typeEquipment.length > 0) ?typeEquipment.map((item, index) => (
+                                  <CarouselItem
+                                      key={index}
+                                      data={item}
+                                      edit={edit}
+                                      modal={handleOpenModal}
+                                      openInventory = {handleShowInventory}
+                                  />
+                              )) : null}
+                          </ul>
+                      </div>
+                      <div className="glide__arrows" data-glide-el="controls">
+                          <button className="glide__arrow glide__arrow--right" data-glide-dir=">">
+                              Next
+                          </button>
+                      </div>
+                  </div>
+              </div>}
             {(loading) ? <Loading /> : null}
             {(modal) ? <CarouselModal close={handleCloseModal} loading={setLoading} item = {itemSelect} /> : null}
-            <div id="carousel_items_contain">
-                <div className="glide">
-                    <div className="glide__arrows" data-glide-el="controls">
-                        <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
-                            Prev
-                        </button>
-                    </div>
-                    <div className="glide__track" data-glide-el="track">
-                        <ul className="glide__slides">
-                            <CarouselItem
-                                data={ElementAddCat}
-                                add={true}
-                                modal={handleOpenModal}
-                            />
-                            {(typeEquipment.length > 0) ?typeEquipment.map((item, index) => (
-                                <CarouselItem
-                                    key={index}
-                                    data={item}
-                                    edit={edit}
-                                    modal={handleOpenModal}
-                                />
-                            )) : null}
-                        </ul>
-                    </div>
-                    <div className="glide__arrows" data-glide-el="controls">
-                        <button className="glide__arrow glide__arrow--right" data-glide-dir=">">
-                            Next
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 }
