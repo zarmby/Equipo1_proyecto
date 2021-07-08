@@ -7,10 +7,11 @@
         box-sizing: border-box;
         text-align: center;
         margin: auto;
-        img{
+        .item_img{
             position: relative;
             height: 100%;
             width: auto;
+            max-width: 100%;
         }
         .cat_editar_icon{
             position: absolute;
@@ -21,7 +22,7 @@
             border-radius: 0 5px 0 5px;
             z-index: 2;
             padding: 5px;
-            background-color: #DD1F26;
+            background-color: rgba(33, 43, 53, 0.5);
             &:hover{
                 background-color: #212B35;
                 cursor: pointer;
@@ -60,10 +61,11 @@
 
 @media only screen and  (min-width: 551px)  and (max-width: 800px) {
     .item_content{
-        img{
+        .item_img{
             top: 0;
             width: 100% !important;
             height: auto !important;
+            max-height: 100%;
         }
     }
 }

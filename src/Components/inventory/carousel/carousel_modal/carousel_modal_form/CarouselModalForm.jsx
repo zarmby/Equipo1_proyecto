@@ -3,7 +3,7 @@ import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 
 import './CarouselModalForm.scss';
-import { RegisterTypeEquipmentApiPost } from '../../../../../services/utils/Api';
+import { RegisterTypeEquipmentApiPost, RegisterTypeEquipmentFiltersApiPost } from '../../../../../services/utils/Api';
 import default_cat from '../../../../../assets/img_cat/default_cat.png';
 
 const ModalForm = (props) => {
@@ -18,7 +18,7 @@ const ModalForm = (props) => {
     const [filterDescription, setFilterDescription] = useState(false);
     const [filterEnviroment, setFilterEnviroment] = useState(false);
     const [filterSede, setFilterSede] = useState(false);
-    
+
     /*{
         "status":true,
         "imagen":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPomBk3EL_GfG72Aj2SLCWrjfhsWElkd8GGA&usqp=CAU",
@@ -26,20 +26,21 @@ const ModalForm = (props) => {
         "tename":"a ver",
         "__v":0
     }*/
-    useEffect(()=>{
-        let {item} = props;
-        if(item){
+    useEffect(() => {
+        let { item } = props;
+        if (item) {
             setId(item._id);
             setName(item.tename);
             setPhotoURL(item.imagen);
         }
-        else
-            alert("nada alv");
-    },[]);
+    }, []);
 
-    const params = [
+    const paramsType = [
         name,
-        photoURL,
+        photoURL
+    ];
+
+    const paramsFilters = [
         filterBrand,
         filterModel,
         filterDescription,
@@ -51,9 +52,11 @@ const ModalForm = (props) => {
         e.preventDefault();
 
         try {
-            await RegisterTypeEquipmentApiPost("typeequipments/", params);
+            let res = await RegisterTypeEquipmentApiPost("typeequipments/", paramsType);
+            let id_new_equipment = res.result.cont.newtypeequipment._id;
+            await RegisterTypeEquipmentFiltersApiPost("filters/", paramsFilters,id_new_equipment);
             Alertify.success("<b style='color:white;'>Registro completo</b>");
-            props.close(null, true);
+            //props.close(null, true);
             props.loading(true)
         }
         catch (e) {

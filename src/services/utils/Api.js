@@ -88,13 +88,40 @@ export const RegisterTypeEquipmentApiPost = async (path, params = null) => {
     let data = {
         tename: params[0],
         imagen: (params[1]) ? params[1] : "",
-        filterbrand: params[2],
-        filtermodel: params[3],
-        filterdescription: params[4],
-        filterenviroment: params[5],
-        filtersede: params[6]
     }
+    let response = await fetch(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status !== 400)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
 
+export const RegisterTypeEquipmentFiltersApiPost = async (path, params = null, id=null) => {
+    const url = BACK_API + path;
+
+    let data = {
+        mark: params[0],
+        model:params[1],
+        equipmentdescription: params[2],
+        enviroment: params[3],
+        state: false,
+        status:false,
+        typeequipment: id
+    }
     console.log(data);
     let response = await fetch(
         url,
@@ -111,8 +138,10 @@ export const RegisterTypeEquipmentApiPost = async (path, params = null) => {
             result: await response.json(),
             status: response.status
         }
-    else
-        throw new Error(response);
+    else{
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
 }
 
 export const RegisterEquipmentApiPost = async (path, params = null) => {
