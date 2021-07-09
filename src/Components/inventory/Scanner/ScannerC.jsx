@@ -4,22 +4,19 @@ import Scanner from "./Scanner";
 
 import "./styles.css";
 
-function ScannerC() {
-  const [camera, setCamera] = useState(false);
+function ScannerC(props) {
+  const [camera, setCamera] = useState(true);
   const [result, setResult] = useState(null);
 
   const onDetected = result => {
-    setResult(result);
+    props.handleScanner(result);
+    props.handleCamera();
   };
 
   return (
     <div className="App">
-      <p>{result ? result : "Scanning..."}</p>
-      <button onClick={() => setCamera(!camera)}>
-        {camera ? "Stop" : "Start"}
-      </button>
       <div className="container">
-        {camera && <Scanner onDetected={onDetected} />}
+        <Scanner onDetected={onDetected} />
       </div>
     </div>
   );

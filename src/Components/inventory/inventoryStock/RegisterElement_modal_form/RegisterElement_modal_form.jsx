@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-
 import './RegisterElement_modal_form.scss';
 import { RegisterEquipmentApiPost } from '../../../../services/utils/Api';
+import ScannerC from '../../Scanner/ScannerC'
 import default_cat from '../../../../assets/img_cat/default_cat.png';
 
 const RegisterElement_modal_form = (props) => {
+
+    const [camera, setCamera] = useState(false);
 
     const [photo, setPhoto] = useState();
     const [serialNumber, setserialNumber] = useState('');
@@ -104,7 +106,6 @@ const RegisterElement_modal_form = (props) => {
             case 'modal_form_cat_enviroment':
                 document.getElementById('modal_enviroment_info').className = "info_container input_focus";
                 break;
-
             /*case 'modal_form_cat_img':
                 document.getElementById('modal_img_info').className = "info_container input_focus";
                 break;*/
@@ -117,6 +118,14 @@ const RegisterElement_modal_form = (props) => {
         }
     }
 
+    const handleScanner = (sn) =>{
+      setserialNumber(sn)
+    }
+
+    const handleCamera = () => {
+      setCamera(!camera)
+    }
+
     const handleBlur = (e) => {
         let inputsArray = document.getElementsByClassName('info_container');
         for (let index = 0; index < inputsArray.length; index++) {
@@ -126,6 +135,9 @@ const RegisterElement_modal_form = (props) => {
 
     return (
         <div id="modal_form_container">
+            <div>
+              {camera ? <ScannerC handleScanner = {handleScanner} handleCamera = {handleCamera}/> : null}
+            </div>
             <h2>Crear nuevo equipo</h2>
             <form id="modal_form" onSubmit={handleSubmit}>
                 <div id="first_part">
@@ -148,6 +160,9 @@ const RegisterElement_modal_form = (props) => {
                             className="modal_input" onChange={(e) => { setserialNumber(e.target.value) }}
                             onFocus={handleFocus} onBlur={handleBlur} value={serialNumber}
                         />
+                        <spam class="scaner-icon">
+                          <i class="fas fa-camera fa-2x scaner-icon-img" onClick={() => handleCamera()}></i>
+                        </spam>
                     </div>
                     <div id="modal_equipmentdescription_info" className="info_container">
                         <label htmlFor="modal_form_cat_equipmentdescription">Descripcion*</label>
