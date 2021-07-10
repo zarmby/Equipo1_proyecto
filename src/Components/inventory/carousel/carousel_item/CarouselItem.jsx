@@ -47,10 +47,14 @@ const CarouselItem = (props) => {
                     alt="Imagen" id={`cat_img_${props.data.tename}`} />
                 {
                     props.edit ?
-                        <img src={props.edit} alt="editar" title="Editar categoria"
-                            className="cat_editar_icon" id={`cat_editar_${props.data.tename}`}
-                            onClick={() => handleOpenModal(props.data)}
-                        />
+                        <span  title="Editar categoria" 
+                            className="cat_edit_container" 
+                            onClick={() => handleOpenModal(props.data)}>
+                            <img src={props.edit} alt="editar"
+                                className="cat_edit_icon" 
+                                id={`cat_editar_${props.data.tename}`}
+                            />
+                        </span>
                         : null
                 }
                 {

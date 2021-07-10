@@ -71,7 +71,6 @@ const Carousel = (props) => {
             Glider.mount({ Breakpoints });
             setLoading(false);
         });
-
     }, [])
 
     const getTypeEquipment = async () => {
@@ -101,12 +100,15 @@ const Carousel = (props) => {
     return (
         <div className="carousel_container">
             <NavBar />
-            {ISDisplay == true ? <InventoryStock
-              image = {image}
-              typeCategory ={typeCategory}
-              code = {code}/> : 
-              <div id="carousel_items_contain">
-                  {(typeEquipment.length > 0) ? 
+            {ISDisplay == true 
+            ?   <InventoryStock
+                image = {image}
+                typeCategory ={typeCategory}
+                code = {code}/> 
+            : 
+                (typeEquipment.length > 0)
+                ? 
+                <div id="carousel_items_contain">
                     <div className="glide">
                       <div className="glide__arrows" data-glide-el="controls">
                           <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
@@ -136,8 +138,9 @@ const Carousel = (props) => {
                               Next
                           </button>
                       </div>
-                    </div> : null}
-              </div>}
+                    </div> 
+                </div>
+                : null}
             {(loading) ? <Loading /> : null}
             {(modal) ? <CarouselModal close={handleCloseModal} loading={setLoading} item = {itemSelect} /> : null}
         </div>

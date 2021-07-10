@@ -9,7 +9,7 @@ export const EquipementListGet = async (path) => {
             status: response.status
         }
     else
-        throw new Error(response);
+        throw new Error(response.msg);
 }
 
 export const TypeEquipementListGet = async (path) => {
@@ -21,5 +21,5 @@ export const TypeEquipementListGet = async (path) => {
             status: response.status
         }
     else
-        throw new Error(response);
+        throw new Error(response.msg);
 }
