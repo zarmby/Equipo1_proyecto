@@ -1,8 +1,7 @@
 import React from 'react';
 import './User.scss';
 import Navbar from '../navbar/Navbar';
-import {Link} from 'react-router-dom';
-import SearchIcon from '../../assets/img/search.png';
+import SearchUser from './searchUser/SearchUser';
 
 class User extends React.Component{
     constructor(props){
@@ -24,7 +23,7 @@ class User extends React.Component{
         return(
             <div id="user-container">
                 <Navbar/>
-                <div id="user_page">
+                {/*<div id="user_page">
                     <h1>Informacion de usuario</h1>
                     <div ref={this.input_search}  id="user_search">
                         <input type="text" id="user_search_input" placeholder="Escriba el nombre del usuario a consultar" onFocus={this.handleFocus} onBlur={this.handleBlur} />
@@ -32,7 +31,8 @@ class User extends React.Component{
                     </div>
                     <br />
                     <Link to="/menu" className="link">Volver</Link>
-                </div>
+                </div>*/}
+                <SearchUser/>
             </div>
         );
     }

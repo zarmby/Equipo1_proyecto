@@ -119,7 +119,6 @@ export const RegisterTypeEquipmentFiltersApiPost = async (path, params = null, i
         equipmentdescription: params[2],
         enviroment: params[3],
         state: false,
-        status:false,
         typeequipment: id
     }
     console.log(data);
@@ -178,5 +177,79 @@ export const RegisterEquipmentApiPost = async (path, params = null) => {
     else{
         let err = await response.json();
         throw new Error(err.msg)
+    }
+}
+
+export const FiltersApiGet = async (params) => {
+    const url = BACK_API + "filters/?idFilter=" + params;
+    let response = await fetch(url);
+    if (response.ok || response.status === 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg)
+    }
+}
+
+export const UpdateTypeEquipmentApiPut = async (path, params = null, id=null) => {
+    const url = BACK_API + path + "?idTypeEquipment=" + id;
+
+    let data = {
+        tename: params[0],
+        imagen: (params[1]) ? params[1] : "",
+        idTypeEquipment: id
+    }
+    console.log(url);
+    let response = await fetch(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status === 200)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
+
+export const UpdateTypeEquipmentFiltersApiPut = async (path, params = null, id=null) => {
+    const url = BACK_API + path + "?idFilter=" + id;
+
+    let data = {
+        mark: params[0],
+        model:params[1],
+        equipmentdescription: params[2],
+        enviroment: params[3],
+    }
+    let response = await fetch(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status !== 400)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg);
     }
 }

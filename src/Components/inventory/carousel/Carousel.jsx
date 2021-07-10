@@ -69,9 +69,9 @@ const Carousel = (props) => {
     useEffect(() => {
         getTypeEquipment().then(() => {
             Glider.mount({ Breakpoints });
+            setLoading(false);
         });
 
-        setLoading(false);
     }, [])
 
     const getTypeEquipment = async () => {
@@ -104,8 +104,10 @@ const Carousel = (props) => {
             {ISDisplay == true ? <InventoryStock
               image = {image}
               typeCategory ={typeCategory}
-              code = {code}/> : <div id="carousel_items_contain">
-                  <div className="glide">
+              code = {code}/> : 
+              <div id="carousel_items_contain">
+                  {(typeEquipment.length > 0) ? 
+                    <div className="glide">
                       <div className="glide__arrows" data-glide-el="controls">
                           <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
                               Prev
@@ -134,7 +136,7 @@ const Carousel = (props) => {
                               Next
                           </button>
                       </div>
-                  </div>
+                    </div> : null}
               </div>}
             {(loading) ? <Loading /> : null}
             {(modal) ? <CarouselModal close={handleCloseModal} loading={setLoading} item = {itemSelect} /> : null}

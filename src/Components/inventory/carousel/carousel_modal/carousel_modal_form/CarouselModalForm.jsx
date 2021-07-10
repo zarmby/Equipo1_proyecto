@@ -3,37 +3,61 @@ import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 
 import './CarouselModalForm.scss';
-import { RegisterTypeEquipmentApiPost, RegisterTypeEquipmentFiltersApiPost } from '../../../../../services/utils/Api';
+import {
+    RegisterTypeEquipmentApiPost,
+    RegisterTypeEquipmentFiltersApiPost,
+    FiltersApiGet,
+    UpdateTypeEquipmentApiPut,
+    UpdateTypeEquipmentFiltersApiPut
+} from '../../../../../services/utils/Api';
 import default_cat from '../../../../../assets/img_cat/default_cat.png';
 
 const ModalForm = (props) => {
 
-    const [id, setId] = useState('');
+    const [idType, setIdType] = useState('');
     const [photo, setPhoto] = useState();
     const [name, setName] = useState('');
     const [photoURL, setPhotoURL] = useState('');
 
+    const [modificar, setModificar] = useState(false);
+
+    const [idFilters, setIdFilters] = useState('');
     const [filterBrand, setFilterBrand] = useState(false);
     const [filterModel, setFilterModel] = useState(false);
     const [filterDescription, setFilterDescription] = useState(false);
     const [filterEnviroment, setFilterEnviroment] = useState(false);
-    const [filterSede, setFilterSede] = useState(false);
 
-    /*{
-        "status":true,
-        "imagen":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPomBk3EL_GfG72Aj2SLCWrjfhsWElkd8GGA&usqp=CAU",
-        "_id":"60ddb7f63d0d2733e81b9119",
-        "tename":"a ver",
-        "__v":0
-    }*/
     useEffect(() => {
         let { item } = props;
         if (item) {
-            setId(item._id);
-            setName(item.tename);
-            setPhotoURL(item.imagen);
+            getItem(item);
+        }
+        else{
+            setIdType("");
         }
     }, []);
+
+    const getItem = async (item) =>{
+        setIdType(item._id);
+        setName(item.tename);
+        setPhotoURL(item.imagen);
+
+
+        try {
+            let res = await FiltersApiGet(item._id);
+            let filters = res.result.cont.name[0];
+            setIdFilters(filters._id);
+            setFilterBrand(filters.mark);
+            setFilterModel(filters.model);
+            setFilterEnviroment(filters.enviroment);
+            setFilterDescription(filters.equipmentdescription);
+        }
+        catch (e) {
+            Alertify.error(`<b style='color:white;'>${e}</b>`);
+        }
+
+        setModificar(true);
+    }
 
     const paramsType = [
         name,
@@ -44,25 +68,48 @@ const ModalForm = (props) => {
         filterBrand,
         filterModel,
         filterDescription,
-        filterEnviroment,
-        filterSede
+        filterEnviroment
     ];
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const NewType = async (e) => {
         try {
             let res = await RegisterTypeEquipmentApiPost("typeequipments/", paramsType);
             let id_new_equipment = res.result.cont.newtypeequipment._id;
-            await RegisterTypeEquipmentFiltersApiPost("filters/", paramsFilters,id_new_equipment);
+            await RegisterTypeEquipmentFiltersApiPost("filters/", paramsFilters, id_new_equipment);
             Alertify.success("<b style='color:white;'>Registro completo</b>");
-            //props.close(null, true);
-            props.loading(true)
+            props.loading(true);
+            setTimeout(function(){props.close(null, true)}, 200);
         }
         catch (e) {
             Alertify.error(`<b style='color:white;'>${e}</b>`);
             console.log(e);
         }
+    }
+
+    const ChangeType = async (e) => {
+        try {
+            let res = await UpdateTypeEquipmentApiPut("typeequipments/", paramsType, idType);
+            let r = await UpdateTypeEquipmentFiltersApiPut("filters/", paramsFilters, idFilters);
+            Alertify.success("<b style='color:white;'>Cambio completo</b>");
+            props.loading(true);
+            setTimeout(function(){props.close(null, true)}, 200);
+
+        }
+        catch (e) {
+            Alertify.error(`<b style='color:white;'>${e}</b>`);
+            console.log(e);
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if(idType===""){
+            NewType();
+        }
+        else{
+            ChangeType();
+        }
+        
     }
 
     const imageExists = (image_url) => {
@@ -175,14 +222,9 @@ const ModalForm = (props) => {
                             <span className="checkmark"></span>
                             <p>Entorno</p>
                         </label>
-                        <label className="check_contain" htmlFor="cb_filter_sede">
-                            <input type="checkbox" id="cb_filter_sede" checked={filterSede} value={filterSede} onChange={(e) => { setFilterSede(!filterSede) }} />
-                            <span className="checkmark"></span>
-                            <p>Sede</p>
-                        </label>
                     </div>
                 </div>
-                <input id="modal_submit" type="submit" value="Guardar" />
+                <input id="modal_submit" type="submit" value={(modificar) ? "Guardar cambios" : "Guardar"} />
             </form>
         </div>
     )
