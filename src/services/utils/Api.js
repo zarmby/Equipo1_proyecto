@@ -267,3 +267,33 @@ export const UsersApiGet = async (path) => {
         throw new Error(err.msg)
     }
 }
+
+export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
+    const url = BACK_API + path + "?idTypeEquipment=" + id;
+
+    let data = {
+        tename: params[0],
+        imagen: (params[1]) ? params[1] : "",
+        idTypeEquipment: id
+    }
+    console.log(url);
+    let response = await fetch(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status === 200)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
