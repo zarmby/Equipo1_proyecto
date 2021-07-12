@@ -15,8 +15,38 @@
         }
         .cat_edit_container{
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
+            top: 0;
+            left: 0;
+            border-radius: 0 0 100% 0;
+            z-index: 2;
+            background-color: rgba(33, 43, 53, 0.5);
+            overflow: hidden;
+            transition: .5s;
+            &:hover{
+                width: 70px;
+                height: 70px;
+                background-color: #212B35;
+                cursor: pointer;
+                box-shadow: 0 0 6pt 3pt#dd1f25;
+            }
+            &:hover img{opacity: 1;}
+            img{
+                position: absolute;
+                width: 50%;
+                height: auto;
+                opacity: 0;
+                top: 40%;
+                left: 45%;
+                transform: translate(-50%, -50%);
+                transition: .5s;
+            }
+        } 
+        .cat_delete_container{
+            position: absolute;
+            width: 30px;
+            height: 30px;
             top: 0;
             right: 0;
             border-radius: 0 0 0 100%;
@@ -34,7 +64,7 @@
             &:hover img{opacity: 1;}
             img{
                 position: absolute;
-                width: 50%;
+                width: 40%;
                 height: auto;
                 opacity: 0;
                 top: 40%;

@@ -19,7 +19,7 @@ const SearchUser = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        this.props.searchUser(userSearched);
+        props.searchUser(userSearched);
     }
     
     const onChangeUserSearch = (e) => {
@@ -43,7 +43,7 @@ const SearchUser = (props) => {
                     <input 
                         type="text" id="user_search_input" 
                         className="search_input" onChange={onChangeUserSearch}
-                        onFocus={handleFocus} onBlur={handleBlur} 
+                        onFocus={handleFocus} onBlur={handleBlur} value={userSearched}
                     />
                     <input type="submit" id="user_search_submit" className="search_input" value="" />
                     {
@@ -53,7 +53,7 @@ const SearchUser = (props) => {
                                 {
                                         props.users.map((item, index) => (
                                             (item.includes(userSearched))
-                                                ? <li key={index}>{item}</li>
+                                                ? <li key={index} onClick={()=>{setUserSearched(item)}}>{item}</li>
                                                 : null
                                         ))
                                     
