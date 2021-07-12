@@ -157,8 +157,6 @@ export const RegisterEquipmentApiPost = async (path, params = null) => {
         status: params[7],
         enviroment: params[8],
     }
-
-    console.log(data);
     let response = await fetch(
         url,
         {
@@ -237,6 +235,33 @@ export const UpdateTypeEquipmentFiltersApiPut = async (path, params = null, id=n
         url,
         {
             method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status !== 400)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
+
+export const DeleteTypeEquipmentApiDelete = async (path, params = null, id=null) => {
+    const url = BACK_API + path + "?idTypeEquipment=" + id;
+
+    let data = {
+        status: params
+    }
+    let response = await fetch(
+        url,
+        {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },

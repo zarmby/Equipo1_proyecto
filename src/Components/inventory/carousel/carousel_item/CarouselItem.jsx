@@ -1,12 +1,32 @@
 import './CarouselItem.scss';
 import { Link } from 'react-router-dom';
 import default_cat from '../../../../assets/img_cat/default_cat.png';
+import Alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
+import { DeleteTypeEquipmentApiDelete } from '../../../../services/utils/Api';
 
 
 const CarouselItem = (props) => {
 
     const handleOpenModal = (item = null) => {
         props.modal(item);
+    }
+
+    const handleDelete = () => {
+        Alertify.confirm('Eliminar tipo de equipo', '¿Esta seguro de elimar este tipo de equipo?', 
+            async function() {
+                try {
+                    await DeleteTypeEquipmentApiDelete("typeequipments/", false,props.data._id);
+                    Alertify.success("<b style='color:white;'>Eliminado correctamente</b>");
+                    props.loading(true)
+                    setTimeout(function(){document.location.reload(true);}, 200);
+                }
+                catch (e) {
+                    Alertify.error(`<b style='color:white;'>${e}</b>`);
+                }
+            },
+            function(){}
+        );
     }
 
     const imageExists = (image_url) => {
@@ -53,6 +73,18 @@ const CarouselItem = (props) => {
                             <img src={props.edit} alt="editar"
                                 className="cat_edit_icon" 
                                 id={`cat_editar_${props.data.tename}`}
+                            />
+                        </span>
+                        : null
+                }                
+                {
+                    props.edit ?
+                        <span  title="Eliminar categoria" 
+                            className="cat_delete_container" 
+                            onClick={handleDelete}>
+                            <img src={props.delete} alt="eliminar"
+                                className="cat_delete_icon" 
+                                id={`cat_eliminar_${props.data.tename}`}
                             />
                         </span>
                         : null
