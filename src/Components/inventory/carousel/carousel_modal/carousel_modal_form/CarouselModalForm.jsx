@@ -46,6 +46,7 @@ const ModalForm = (props) => {
         try {
             let res = await FiltersApiGet(item._id);
             let filters = res.result.cont.name[0];
+            console.log(filters);
             setIdFilters(filters._id);
             setFilterBrand(filters.mark);
             setFilterModel(filters.model);
