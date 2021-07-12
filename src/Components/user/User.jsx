@@ -13,7 +13,8 @@ class User extends React.Component{
         super(props);
         this.state = {
             loading : true,
-            users : []
+            users : [],
+            
         }       
         this.handleFocus = this.handleFocus.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
@@ -23,7 +24,6 @@ class User extends React.Component{
     componentDidMount(){
         this.getUsers().then(()=>{
             this.setState({loading:false});
-            console.log(this.state.users);
         });
     }
 
@@ -31,12 +31,7 @@ class User extends React.Component{
         try {
             let res = await UsersApiGet("user/userName");
             let usrRecived = res.result.cont.user;
-            let usrState = [];
-            usrRecived.forEach(element => {
-                let nameUsr = `${element.username} ${element.lastname} ■ ${element.account}`;
-                usrState.push(nameUsr);
-            });
-            this.setState({users : usrState});
+            this.setState({users : usrRecived});
         }
         catch (e) {
             Alertify.error(`<b style='color:white;'>${e}</b>`);
@@ -58,7 +53,6 @@ class User extends React.Component{
     render(){
         return(
             <div id="user_container">                
-                {(this.state.loading) ? <Loading /> : null}
                 <Navbar/>
                 <h1>Informacion de usuario</h1>
                 {/*<div id="user_page">
@@ -70,7 +64,7 @@ class User extends React.Component{
                     <br />
                     <Link to="/menu" className="link">Volver</Link>
                 </div>*/}
-                <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} />
+                {(this.state.loading) ? <Loading /> : <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} /> }
 
             </div>
         );
