@@ -69,7 +69,9 @@ const Carousel = (props) => {
 
     useEffect(() => {
         getTypeEquipment().then(() => {
-            Glider.mount({ Breakpoints });
+            if(typeEquipment.length > 0){
+                Glider.mount({ Breakpoints });
+            }
             setLoading(false);
         });
     }, [])
