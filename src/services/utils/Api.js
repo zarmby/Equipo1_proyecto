@@ -253,3 +253,17 @@ export const UpdateTypeEquipmentFiltersApiPut = async (path, params = null, id=n
         throw new Error(err.msg);
     }
 }
+
+export const UsersApiGet = async (path) => {
+    const url = BACK_API + path;
+    let response = await fetch(url);
+    if (response.ok || response.status === 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg)
+    }
+}

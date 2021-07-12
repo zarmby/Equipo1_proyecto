@@ -1,36 +1,71 @@
 import React from 'react';
+import { useRef , useState } from 'react';
 import './SearchUser.scss';
-import SearchIcon from '../../../assets/img/search.png';
 
-class SearchUser extends React.Component {
-    constructor(props) {
-        super(props);
-        this.input_search = React.createRef();
-        this.handleFocus = this.handleFocus.bind(this);
-        this.handleBlur = this.handleBlur.bind(this);
+const SearchUser = (props) => {
+
+    const input_search = useRef();
+    const [userSearched, setUserSearched] = useState("");
+    const [usrFounded, setUsrFounded] = useState(false);
+    let userMatch = [];
+
+    const handleFocus = (e) => {
+        input_search.current.className = "info_container input_focus";
     }
 
-    handleFocus(e) {
-        this.input_search.current.className = "login_input_focus";
+    const handleBlur = (e) => {
+        input_search.current.className = "info_container";
     }
 
-    handleBlur(e) {
-        this.input_search.current.className = "";
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.searchUser(userSearched);
+    }
+    
+    const onChangeUserSearch = (e) => {
+        setUserSearched(e.target.value);
+        setUsrFounded(false);
+        /*props.users.map((item)=>(
+            (item.includes(userSearched))
+            ?( setUsrFounded(true),
+                console.log(item)
+            )
+            : null
+        ));
+        console.log(usrFounded);*/
     }
 
-    render() {
-        return (
-            <div id="search-user-container">
-                <div id="user_page">
-                    <h1>Informacion de usuario</h1>
-                    <div ref={this.input_search} id="user_search">
-                        <input type="text" id="user_search_input" placeholder="Escriba el nombre del usuario a consultar" onFocus={this.handleFocus} onBlur={this.handleBlur} />
-                        <input type="image" src={SearchIcon} id="user_search_btn" alt="Buscar" />
-                    </div>
+    return (
+        <div id="search_user_container">
+            <form id="user_form" onSubmit={handleSubmit} autoComplete="off">
+                <div ref={input_search} id="user_search" className="info_container">
+                    <label htmlFor="user_search_input">Escriba el nombre del usuario a consultar</label>
+                    <input 
+                        type="text" id="user_search_input" 
+                        className="search_input" onChange={onChangeUserSearch}
+                        onFocus={handleFocus} onBlur={handleBlur} 
+                    />
+                    <input type="submit" id="user_search_submit" className="search_input" value="" />
+                    {
+                        (userSearched !== "" & !props.users.includes(userSearched))
+                        ?
+                            <ul>   
+                                {
+                                        props.users.map((item, index) => (
+                                            (item.includes(userSearched))
+                                                ? <li key={index}>{item}</li>
+                                                : null
+                                        ))
+                                    
+                                        
+                                }
+                            </ul>
+                        : null
+                    }
                 </div>
-            </div>
-        );
-    }
+            </form>
+        </div>
+    );
 }
 
 export default SearchUser;
