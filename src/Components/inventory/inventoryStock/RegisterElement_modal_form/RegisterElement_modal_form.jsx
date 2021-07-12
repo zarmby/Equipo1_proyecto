@@ -136,7 +136,7 @@ const RegisterElement_modal_form = (props) => {
     return (
         <div id="modal_form_container">
             {camera ? <ScannerC handleScanner = {handleScanner} handleCamera = {handleCamera}/> : null}
-            <h2>Crear nuevo equipo</h2>
+            <h2></h2>
             <form id="modal_form" onSubmit={handleSubmit}>
                 <div id="first_part">
                     <div id="modal_img_info" className="info_container">
