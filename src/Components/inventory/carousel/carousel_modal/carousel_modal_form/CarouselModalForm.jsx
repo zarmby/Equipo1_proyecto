@@ -75,10 +75,11 @@ const ModalForm = (props) => {
         try {
             let res = await RegisterTypeEquipmentApiPost("typeequipments/", paramsType);
             let id_new_equipment = res.result.cont.newtypeequipment._id;
-            await RegisterTypeEquipmentFiltersApiPost("filters/", paramsFilters, id_new_equipment);
+            let r = await RegisterTypeEquipmentFiltersApiPost("filters/", paramsFilters, id_new_equipment);
+            console.log(r);
             Alertify.success("<b style='color:white;'>Registro completo</b>");
             props.loading(true);
-            setTimeout(function(){props.close(null, true)}, 200);
+            //setTimeout(function(){props.close(null, true)}, 200);
         }
         catch (e) {
             Alertify.error(`<b style='color:white;'>${e}</b>`);
@@ -109,7 +110,7 @@ const ModalForm = (props) => {
         else{
             ChangeType();
         }
-        
+
     }
 
     const imageExists = (image_url) => {
@@ -178,9 +179,9 @@ const ModalForm = (props) => {
                 <div id="first_part">
                     <div id="modal_img_info" className="info_container">
                         <label htmlFor="modal_form_cat_img_text">Imagen: </label>
-                        {/*<input 
+                        {/*<input
                             id="modal_form_cat_img" type="file"
-                            accept="image/png" onChange={handleOnChangePhoto} 
+                            accept="image/png" onChange={handleOnChangePhoto}
                             onFocus={//handleFocus} onBlur={handleBlur}
                         />*/}
                         <img id="modal_preview_img" src={imageExists(photoURL) ? photoURL : default_cat} alt="img categoria" />
