@@ -24,6 +24,7 @@
   overflow-y: scroll;
   min-width: 415px;
   font-family: 'Noto Sans JP', sans-serif;
+  padding-right: 20px;
 }
 
 .Modal-box::-webkit-scrollbar{
@@ -138,6 +139,11 @@
   align-items: center;
   border-radius: 5%;
   grid-row: 2 / span 3;
+  width: 100%;
+  overflow:visible;
+  margin: 10px;
+  overflow: auto;
+  padding-right: 50px;
 }
 
 .Info-Text-Elements{
@@ -152,6 +158,7 @@
 .Info-Text-Elements p{
   margin-top: 5px;
   margin-bottom: 5px;
+  width: 100%;
 }
 
 .Status-Info{
@@ -266,6 +273,7 @@
   border: 2px solid #212B35;
   margin-left: 5px;
 }
+
 
 @media only screen and (max-width: 1200px) {
   .Modal-template{

@@ -80,7 +80,7 @@ const ModalForm = (props) => {
             console.log(r);
             Alertify.success("<b style='color:white;'>Registro completo</b>");
             props.loading(true);
-            //setTimeout(function(){props.close(null, true)}, 200);
+            setTimeout(function(){props.close(null, true)}, 200);
         }
         catch (e) {
             Alertify.error(`<b style='color:white;'>${e}</b>`);
