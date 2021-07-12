@@ -137,8 +137,10 @@ const RegisterElement_modal_form = (props) => {
         <div id="modal_form_container">
             {camera ? <ScannerC handleScanner = {handleScanner} handleCamera = {handleCamera}/> : null}
             {camera ? <span id="RegisterEquipment_Scanner_close" onClick={() => handleCamera()}>X</span> : null}
-            <h2>Crear nuevo equipo</h2>
-            {!camera ? <form id="modal_form" onSubmit={handleSubmit}>
+            {!camera ?
+              <div>
+              <h2>Crear nuevo equipo</h2>
+              <form id="modal_form" onSubmit={handleSubmit}>
                 <div id="first_part">
                     <div id="modal_img_info" className="info_container">
                         <label htmlFor="modal_form_cat_img_text">{props.category}</label>
@@ -193,7 +195,8 @@ const RegisterElement_modal_form = (props) => {
                     </div>
                 </div>
                 <input id="modal_submit" type="submit" value="Guardar" />
-            </form> : null}
+            </form>
+            </div> : null}
         </div>
     )
 }

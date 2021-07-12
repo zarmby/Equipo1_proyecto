@@ -322,3 +322,30 @@ export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
         throw new Error(err.msg);
     }
 }
+
+export const DeleteEquipmentApiDelete = async (path, params = null, id=null) => {
+    const url = BACK_API + path + "?idTypeEquipment=" + id;
+
+    let data = {
+        status: params
+    }
+    let response = await fetch(
+        url,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status !== 400)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
