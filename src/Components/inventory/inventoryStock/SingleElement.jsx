@@ -1,5 +1,5 @@
 import React from 'react';
-import './SingleElement.css';
+import './SingleElement.scss';
 
 class SingleElement extends React.Component {
   constructor(props) {

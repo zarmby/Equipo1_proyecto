@@ -8,7 +8,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 30% 1fr 30%;
-  grid-template-rows: 10% 1fr 10%;
+  grid-template-rows: 5% 1fr 5%;
   z-index: 100000;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
   overflow: hidden;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.24);
   overflow-y: scroll;
-  min-width: 415px;
+  min-width: 300px;
   font-family: 'Noto Sans JP', sans-serif;
   padding-right: 20px;
 }
@@ -277,56 +277,97 @@
 
 @media only screen and (max-width: 1200px) {
   .Modal-template{
-    grid-template-columns: 1fr 1fr 1fr;
+
   }
 }
 
-  @media only screen and (max-width: 919px) {
+  @media only screen and (max-width: 1024px) {
     .Modal-template{
-      display: grid;
-      width: 100%;
+      grid-template-columns: 10% 1fr 10%;
+      grid-template-rows: 16% 1fr 16%;
     }
 
-    .Modal-box{
-      background-color: white;
-      border-radius: 2%;
-      overflow: hidden;
-      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.24);
-      overflow-y: scroll;
-      width: 100%;
-      height: 100%;
-      padding-right: 30px;
-      font-family: 'Noto Sans JP', sans-serif;
-    }
 
-    .Description-Text{
-      grid-column: 1 / 3;
-    }
+      .Description-Text{
+        grid-column: 1 / 3;
+      }
 
-    .Description-Tittle{
-      grid-column: 1 / 3;
-    }
+      .Description-Tittle{
+        grid-column: 1 / 3;
+      }
 
-    .Info-Tittle{
-      grid-column: 1 / 3;
-    }
+      .Info-Tittle{
+        grid-column: 1 / 3;
+      }
 
-    .Info-Text{
-      grid-column: 1 / 3;
-      grid-row: 4 / 5;
-    }
+      .Info-Text{
+        grid-column: 1 / 3;
+        grid-row: 4 / 5;
+      }
 
-    .exit-row{
-      grid-column: 3 / 4 ;
-      grid-row: 1 / 2;
-      display: flex;
-    }
+      .Status-Info{
+        grid-column: 1 / 3;
+        display: flex;
+        justify-content: center;
+        padding: 0px;
+      }
+
+      .Status-Info-Elements{
+        display: flex;
+      }
+
+      .Asigned-Person{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        grid-column: 1 / 3;
+      }
+
+      .Asigned-Person-Elements{
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .Equipment-menu{
+        grid-column: 1 / 3;
+        grid-row: 8 / 9;
+      }
+
+      .Info-Text{
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .Description-Text-Container{
+        grid-column: 1 / span 2;
+      }
+
+      .Description-Text{
+        display: flex;
+        justify-content: center;
+      }
+
+      .Modal-box::-webkit-scrollbar{
+        width: 0px;
+      }
+
+      .Modal-box::-webkit-scrollbar-thumb {
+          background: #DD1F26;
+          border-radius: 0px;
+      }
+
+      .Modal-box::-webkit-scrollbar-thumb:hover {
+          background: #b3b3b3;
+          box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
+      }
 }
 
 @media only screen and (max-width: 640px) {
   .Modal-template{
     display: grid;
     width: 100%;
+    grid-template-columns:  0% 1fr;
+    grid-template-rows: 1fr;
   }
 
   .Modal-box{
@@ -336,9 +377,9 @@
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.24);
     overflow-y: scroll;
     width: 100%;
-    height: 100%;
-    padding-right: 30px;
+    height: 100vh;
     font-family: 'Noto Sans JP', sans-serif;
+    grid-row: 1 / 3
   }
 
   .Description-Text{
@@ -359,8 +400,83 @@
   }
 
   .exit-row{
-    grid-column: 3 / 4 ;
+    position: static;
+    margin-top: 10px;
+    margin-right: 10px;
+    grid-column: 2 / 3 ;
     grid-row: 1 / 2;
     display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .Exit-icon{
+    z-index: 1000000;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 4px solid #DD1F26;
+    text-align: center;
+    padding: 8px 0px;
+    color: white;
+    font-weight: bold;
+    align-self: flex-start;
+    background-color: #DD1F26
+  }
+
+  .Status-Info{
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+  }
+
+  .Status-Info-Elements{
+    display: flex;
+  }
+
+  .Asigned-Person{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    grid-column: 1 / 3;
+  }
+
+  .Asigned-Person-Elements{
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .Equipment-menu{
+    grid-column: 1 / 3;
+    grid-row: 8 / 9;
+  }
+
+  .Info-Text{
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .Description-Text-Container{
+    grid-column: 1 / span 2;
+  }
+
+  .Description-Text{
+    display: flex;
+    justify-content: center;
+  }
+
+  .Modal-box::-webkit-scrollbar{
+    width: 0px;
+  }
+
+  .Modal-box::-webkit-scrollbar-thumb {
+      background: #DD1F26;
+      border-radius: 0px;
+  }
+
+  .Modal-box::-webkit-scrollbar-thumb:hover {
+      background: #b3b3b3;
+      box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
   }
 }

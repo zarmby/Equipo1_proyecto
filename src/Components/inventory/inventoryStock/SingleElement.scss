@@ -1,0 +1,166 @@
+:root {
+  --surface-color: #fff;
+  --curve: 40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 5vw;
+  padding: 0;
+  list-style-type: none;
+}
+
+.card {
+  box-shadow: 0px 1px 20px rgba(2, 7, 7, 0.24);
+  position: relative;
+  display: flex;
+  height: 100%;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  text-decoration: none;
+  max-height: 300px;
+  max-width: 300px;
+  min-height: 300px;
+  min-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 40px;
+}
+
+.card__image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  border-radius: calc(var(--curve) * 1px);
+  background-color: #DD1F26;
+  transform: translateY(108%);
+  transition: .2s ease-in-out;
+}
+
+.card:hover .card__overlay {
+  transform: translateY(-0%);
+}
+
+.card__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+  border-radius: calc(var(--curve) * 1px) 0 0 0;
+  background-color: #DD1F26;
+  transform: translateY(-100%);
+  transition: .2s ease-in-out;
+}
+
+.card__arc {
+  position: absolute;
+}
+
+.card:hover .card__header {
+  transform: translateY(0)
+}
+
+.card:hover .card__header, .card__description {
+  background-color: #212B35;
+}
+
+
+.card:hover .card__thumb{
+    border: 1px solid #DD1F26;
+}
+
+.card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #212B35;
+}
+
+.card__title {
+  font-size: 1em;
+  margin: 0 0 .3em;
+  color: white;
+}
+
+.card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "MockFlowFont";
+  font-size: .8em;
+  color: white;
+}
+
+.card__status {
+  font-size: .8em;
+  color: white;
+  grid-column: 1 / 3
+}
+
+.card__description {
+  background-color: #212B35;
+  font-size: 13px;
+  color: white;
+  font-family: sans-serif;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.show-more{
+  display: flex;
+  justify-content: center;
+}
+
+.card:hover .card__header:hover{
+  transition: 200ms;
+}
+
+.assigned{
+  background-color: #31A24C;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  border: 2px solid #212B35;
+}
+
+.avalible{
+  background-color: #ED0019;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  border: 2px solid #212B35;
+}
+
+.card__header-text{
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+
+.singleElementContainer{
+  display: flex;
+}
