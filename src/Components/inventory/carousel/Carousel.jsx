@@ -54,7 +54,7 @@ const Carousel = (props) => {
             }
         },
         focusAt: 'center',
-        starAt: 0,
+        starAt: 1,
         keyboard: true,
         peek: {
             before: -100,
@@ -107,10 +107,10 @@ const Carousel = (props) => {
                     typeCategory={typeCategory}
                     code={code} />
                 :
-                (loading) 
-                ? 
-                    <Loading /> 
-                :
+                (loading)
+                    ?
+                    <Loading />
+                    :
                     <div id="carousel_items_contain">
                         <div className="glide">
                             <div className="glide__arrows" data-glide-el="controls">
@@ -120,11 +120,6 @@ const Carousel = (props) => {
                             </div>
                             <div className="glide__track" data-glide-el="track">
                                 <ul className="glide__slides">
-                                    <CarouselItem
-                                        data={ElementAddCat}
-                                        add={true}
-                                        modal={handleOpenModal}
-                                    />
                                     {(typeEquipment.length > 0) ? typeEquipment.map((item, index) => (
                                         <CarouselItem
                                             key={index}
@@ -136,6 +131,11 @@ const Carousel = (props) => {
                                             loading={setLoading}
                                         />
                                     )) : null}
+                                    <CarouselItem
+                                        data={ElementAddCat}
+                                        add={true}
+                                        modal={handleOpenModal}
+                                    />
                                 </ul>
                             </div>
                             <div className="glide__arrows" data-glide-el="controls">
