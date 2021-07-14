@@ -135,21 +135,16 @@ const RegisterElement_modal_form = (props) => {
 
     return (
         <div id="modal_form_container">
-            <div>
-              {camera ? <ScannerC handleScanner = {handleScanner} handleCamera = {handleCamera}/> : null}
-            </div>
-            <h2>Crear nuevo equipo</h2>
-            <form id="modal_form" onSubmit={handleSubmit}>
+            {camera ? <ScannerC handleScanner = {handleScanner} handleCamera = {handleCamera}/> : null}
+            {camera ? <span id="RegisterEquipment_Scanner_close" onClick={() => handleCamera()}>X</span> : null}
+            {!camera ?
+              <div>
+              <h2>Crear nuevo equipo</h2>
+              <form id="modal_form" onSubmit={handleSubmit}>
                 <div id="first_part">
                     <div id="modal_img_info" className="info_container">
                         <label htmlFor="modal_form_cat_img_text">{props.category}</label>
                         <img id="modal_preview_img" src={props.image} alt="img categoria" />
-                        <input
-                            id="modal_form_cat_img_text" type="text"
-                            className="modal_input" placeholder="URL de una imagen de internet"
-                            onChange={(e) => { setPhotoURL(e.target.value) }} value=" "
-                            onFocus={handleFocus} onBlur={handleBlur}
-                        />
                     </div>
                 </div>
                 <div id="second_part">
@@ -158,7 +153,7 @@ const RegisterElement_modal_form = (props) => {
                         <input
                             type="text" id="modal_form_cat_serialNumber" required
                             className="modal_input" onChange={(e) => { setserialNumber(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={serialNumber}
+                            onFocus={handleFocus} onBlur={handleBlur} value={serialNumber} maxLength="50"
                         />
                         <spam class="scaner-icon">
                           <i class="fas fa-camera fa-2x scaner-icon-img" onClick={() => handleCamera()}></i>
@@ -169,7 +164,7 @@ const RegisterElement_modal_form = (props) => {
                         <input
                             type="text" id="modal_form_cat_equipmentdescription" required
                             className="modal_input" onChange={(e) => { setequipmentdescription(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={equipmentdescription}
+                            onFocus={handleFocus} onBlur={handleBlur} value={equipmentdescription} maxLength="150"
                         />
                     </div>
                     <div id="modal_mark_info" className="info_container">
@@ -177,7 +172,7 @@ const RegisterElement_modal_form = (props) => {
                         <input
                             type="text" id="modal_form_cat_mark" required
                             className="modal_input" onChange={(e) => { setMark(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={mark}
+                            onFocus={handleFocus} onBlur={handleBlur} value={mark} maxLength="50"
                         />
                     </div>
                     <div id="modal_model_info" className="info_container">
@@ -185,7 +180,7 @@ const RegisterElement_modal_form = (props) => {
                         <input
                             type="text" id="modal_form_cat_model" required
                             className="modal_input" onChange={(e) => { setModel(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={model}
+                            onFocus={handleFocus} onBlur={handleBlur} value={model} maxLength="50"
                         />
                     </div>
                     <div id="modal_enviroment_info" className="info_container">
@@ -193,7 +188,7 @@ const RegisterElement_modal_form = (props) => {
                         <input
                             type="text" id="modal_form_cat_enviroment" required
                             className="modal_input" onChange={(e) => { setEnviroment(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={enviroment}
+                            onFocus={handleFocus} onBlur={handleBlur} value={enviroment} maxLength="20"
                         />
                     </div>
                     <div id="filter_container">
@@ -201,6 +196,7 @@ const RegisterElement_modal_form = (props) => {
                 </div>
                 <input id="modal_submit" type="submit" value="Guardar" />
             </form>
+            </div> : null}
         </div>
     )
 }

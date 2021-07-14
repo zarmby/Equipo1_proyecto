@@ -48,6 +48,9 @@ const App = () => {
         <Route path="/user">
           <User />
         </Route>
+        <Route path="/InventoryStock">
+          <InventoryStock />
+        </Route>
         <Route path="/Scanner">
           <ScannerC />
         </Route>

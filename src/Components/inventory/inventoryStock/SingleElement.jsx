@@ -1,5 +1,5 @@
 import React from 'react';
-import './SingleElement.css';
+import './SingleElement.scss';
 
 class SingleElement extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class SingleElement extends React.Component {
 
   return(
     <div class="card" id = {"equipement_" + this.props.id}
-    onClick={() => handlePanelShow(this.props.serialnumber,this.props.mark,this.props.model,this.props.enviroment,this.props.description,this.props.state,this.props.campus,this.props.assignedUser)}>
+    onClick={() => handlePanelShow(this.props.serialnumber,this.props.mark,this.props.model,this.props.enviroment,this.props.description,this.props.state,this.props.campus,this.props.assignedUser,this.props.codeEquipment)}>
         <img src={this.props.image} class="card__image" alt="" />
       <div class="card__overlay">
         <div class="card__header">
@@ -24,7 +24,7 @@ class SingleElement extends React.Component {
           <div class={status_icon} ></div>
           <div class="card__header-text">
             <h3 class="card__title">{this.props.status}</h3>
-            <span class="card__status">{this.props.status !== "Disponible" ? this.props.assignedUser : "N/A"}</span>
+            <span class="card__status">{this.props.status !== "Disponible" ? this.props.assignedUser : "Sin Asignar"}</span>
           </div>
         </div>
         <div class="card__description">

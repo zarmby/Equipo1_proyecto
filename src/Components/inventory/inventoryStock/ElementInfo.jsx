@@ -1,8 +1,32 @@
 import React from 'react';
 import './ElementInfo.scss'
+import Alertify from 'alertifyjs';
 import RegisterEquipment from './RegisterEquipment';
+import { DeleteEquipmentApiDelete } from '../../../services/utils/Api';
 
 function ElementInfo(props) {
+
+  const handleDelete = () => {
+      Alertify.confirm('Eliminar tipo de equipo', '¿Esta seguro de elimar este tipo de equipo?',
+          async function() {
+              try {
+                  await DeleteEquipmentApiDelete("Equipments/", false,props.codeEquipment);
+                  Alertify.success("<b style='color:white;'>Eliminado correctamente</b>");
+                  props.handleCategory(props.category,props.image,props.code);
+                  props.handlePanelShow();
+                  setTimeout(true, 200);
+              }
+              catch (e) {
+                  Alertify.error(`<b style='color:white;'>${e}</b>`);
+              }
+          },
+          function(){}
+      );
+  }
+
+  const handleEdit = () => {
+    props.handlePanelShow();
+  }
 
   var status_icon = "";
   props.state == "asignado" ? status_icon = "asiggned_info" : status_icon = "avalible_info";
@@ -55,8 +79,8 @@ function ElementInfo(props) {
           </div>
         </div>
         <div class="Equipment-menu">
-          <button class="Equipment-menu-Asign">Editar</button>
-          <button class="Equipment-menu-Delete">Eliminar</button>
+          <button class="Equipment-menu-Asign" onClick={handleEdit}>Editar</button>
+          <button class="Equipment-menu-Delete" onClick={handleDelete}>Eliminar</button>
         </div>
         </div>
       </div>

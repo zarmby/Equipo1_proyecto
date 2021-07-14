@@ -1,4 +1,4 @@
-const BACK_API = "http://localhost:5000/api/";
+const BACK_API = "https://arkusnexusback.herokuapp.com/api/";
 
 export const EquipementListGet = async (path) => {
     const url = BACK_API + path;
