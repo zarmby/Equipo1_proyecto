@@ -10,10 +10,11 @@ function ElementInfo(props) {
       Alertify.confirm('Eliminar tipo de equipo', '¿Esta seguro de elimar este tipo de equipo?',
           async function() {
               try {
-                  await DeleteEquipmentApiDelete("Equipments/", false,props.data._id);
+                  await DeleteEquipmentApiDelete("Equipments/", false,props.codeEquipment);
                   Alertify.success("<b style='color:white;'>Eliminado correctamente</b>");
-                  props.loading(true)
-                  setTimeout(function(){document.location.reload(true);}, 200);
+                  props.handleCategory(props.category,props.image,props.code);
+                  props.handlePanelShow();
+                  setTimeout(true, 200);
               }
               catch (e) {
                   Alertify.error(`<b style='color:white;'>${e}</b>`);
@@ -75,7 +76,7 @@ function ElementInfo(props) {
         </div>
         <div class="Equipment-menu">
           <button class="Equipment-menu-Asign">Editar</button>
-          <button class="Equipment-menu-Delete">Eliminar</button>
+          <button class="Equipment-menu-Delete" onClick={handleDelete}>Eliminar</button>
         </div>
         </div>
       </div>

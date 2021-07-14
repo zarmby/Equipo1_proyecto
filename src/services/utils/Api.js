@@ -324,7 +324,7 @@ export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
 }
 
 export const DeleteEquipmentApiDelete = async (path, params = null, id=null) => {
-    const url = BACK_API + path + "?idTypeEquipment=" + id;
+    const url = BACK_API + path + "?idEquipment=" + id;
 
     let data = {
         status: params

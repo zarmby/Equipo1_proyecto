@@ -25,7 +25,8 @@ class InventoryStock extends React.Component {
       AssignedUser:"",
       Image:"",
       typeCategory:"",
-      codeCategory:""
+      codeCategory:"",
+      CodeEquipment:""
     };
   }
 
@@ -43,7 +44,7 @@ class InventoryStock extends React.Component {
     }
   }
 
-  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser) => {
+  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser,CodeEquipment) => {
     this.setState({ SerialNumber: SerialNumber });
     this.setState({ Mark: Mark });
     this.setState({ Model: Model });
@@ -52,6 +53,7 @@ class InventoryStock extends React.Component {
     this.setState({ State: State });
     this.setState({ Campus: Campus });
     this.setState({ AssignedUser: AssignedUser });
+    this.setState({ CodeEquipment: CodeEquipment });
     this.setState({ Panel: !this.state.Panel });
   }
 
@@ -91,7 +93,11 @@ class InventoryStock extends React.Component {
           state = {this.state.State}
           campus = {this.state.Campus}
           assignedUser = {this.state.AssignedUser}
+          codeEquipment = {this.state.CodeEquipment}
+          handleCategory = {this.handleCategory}
           image = {this.state.Image}
+          category = {this.state.typeCategory}
+          code = {this.state.codeCategory}
           /> : null}
           {this.state.Modal == true ? <RegisterEquipment
             close={this.handleCloseModal}
@@ -114,6 +120,7 @@ class InventoryStock extends React.Component {
               state = {item.state}
               campus = {item.campusname}
               assignedUser = {item.username + " " + item.lastname}
+              codeEquipment = {item._id}
               image = {this.state.Image}
               id = {index}
               handlePanelShow = {this.handlePanelShow}/>
