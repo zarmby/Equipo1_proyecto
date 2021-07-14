@@ -29,17 +29,8 @@ const CarouselItem = (props) => {
         );
     }
 
-    const imageExists = (image_url) => {
-        var http = new XMLHttpRequest();
-
-        try {
-            http.open('HEAD', image_url, false);
-            http.send();
-            return http.status !== 404;
-        }
-        catch (e) {
-            return http.status === 404;
-        }
+    const handleErrorImg = (e)=>{
+        e.target.src = default_cat;
     }
 
     const getImage = () => {
@@ -50,10 +41,7 @@ const CarouselItem = (props) => {
             if (props.data.imagen === "")
                 return default_cat;
             else {
-                if (imageExists(props.data.imagen))
-                    return props.data.imagen;
-                else
-                    return default_cat;
+                return props.data.imagen;
             }
 
         }
@@ -63,7 +51,7 @@ const CarouselItem = (props) => {
         <li className="glide__slide carousel_element" id={`carousel_item_${props.data.tename}`}>
             <div className="item_content" id={`cat_content_${props.data.tename}`} >
                 <img className='item_img'
-                    src={getImage()}
+                    src={getImage()}  onError={(e)=>handleErrorImg(e)}
                     alt="Imagen" id={`cat_img_${props.data.tename}`} />
                 {
                     props.edit ?
@@ -78,7 +66,7 @@ const CarouselItem = (props) => {
                         : null
                 }                
                 {
-                    props.edit ?
+                    props.delete ?
                         <span  title="Eliminar categoria" 
                             className="cat_delete_container" 
                             onClick={handleDelete}>

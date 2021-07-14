@@ -55,7 +55,7 @@ const Carousel = (props) => {
         },
         focusAt: 'center',
         starAt: 1,
-        keyboard: true,
+        keyboard: false,
         peek: {
             before: -100,
             after: -100
