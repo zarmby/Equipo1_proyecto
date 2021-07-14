@@ -22,6 +22,11 @@ const RegisterEquipment = ((props,ref) => {
             category = {props.category}
             code = {props.code}
             close = {handleCloseModal}
+            serialnumber = {props.serialnumber}
+            description = {props.description}
+            mark = {props.mark}
+            model = {props.model}
+            enviroment = {props.enviroment}
             handleCategory = {props.handleCategory}/>
         </div>
     </div>

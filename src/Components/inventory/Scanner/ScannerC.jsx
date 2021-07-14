@@ -9,8 +9,8 @@ function ScannerC(props) {
   const [result, setResult] = useState(null);
 
   const onDetected = result => {
-    props.handleScanner(result);
     props.handleCamera();
+    props.handleScanner(result);
   };
 
   return (

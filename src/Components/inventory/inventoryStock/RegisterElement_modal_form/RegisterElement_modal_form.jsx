@@ -11,15 +11,14 @@ const RegisterElement_modal_form = (props) => {
     const [camera, setCamera] = useState(false);
 
     const [photo, setPhoto] = useState();
-    const [serialNumber, setserialNumber] = useState('');
-    const [photoURL, setPhotoURL] = useState('');
-    const [mark, setMark] = useState('');
-    const [equipmentdescription, setequipmentdescription] = useState('');
+    const [serialNumber, setserialNumber] = useState(props.serialnumber);
+    const [mark, setMark] = useState(props.mark);
+    const [equipmentdescription, setequipmentdescription] = useState(props.description);
     const [state, setState] = useState('Disponible');
-    const [model, setModel] = useState('');
+    const [model, setModel] = useState(props.model);
     const [campus, setCampus] = useState('60c57e535507ec3760b2e3ca');
     const [status, setStatus] = useState(true);
-    const [enviroment, setEnviroment] = useState("");
+    const [enviroment, setEnviroment] = useState(props.enviroment);
 
     const [idTypeEquipment, setIdtypeequipment] = useState(props.code);
     const [filterBrand, setFilterBrand] = useState(false);
@@ -67,27 +66,6 @@ const RegisterElement_modal_form = (props) => {
             return http.status === 404;
         }
     }
-
-    const handleOnChangePhoto = (e) => {
-        let preview = document.getElementById('modal_preview_img');
-        if (e.target.files.length > 0) {
-            setPhoto(e.target.files[0]);
-            // Creamos el objeto de la clase FileReader
-            let reader = new FileReader();
-
-            // Leemos el archivo subido y se lo pasamos a nuestro fileReader
-            reader.readAsDataURL(e.target.files[0]);
-
-            // Le decimos que cuando este listo ejecute el código interno
-            reader.onload = function () {
-                preview.src = reader.result;
-            };
-        }
-        else {
-            preview.src = default_cat;
-        }
-    }
-
 
     const handleFocus = (e) => {
         switch (e.target.id) {

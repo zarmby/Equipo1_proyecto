@@ -1,4 +1,4 @@
-const BACK_API = "https://arkusnexusback.herokuapp.com/api/";
+const BACK_API = "https://arkus-inventory.herokuapp.com/api/";
 
 export const LoginApiPost = async (path, params = null) => {
     const url = BACK_API + path;
@@ -307,28 +307,6 @@ export const UserApiGet = async (params=null) =>{
     }
 }
 
-export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
-    const url = BACK_API + path + "?idTypeEquipment=" + id;
-
-    let data = {
-        tename: params[0],
-        imagen: (params[1]) ? params[1] : "",
-        idTypeEquipment: id
-    }
-    console.log(url);
-    let response = await fetch(
-        url,
-        {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }
-    )
-    if(response.status === 200)
-        return{
-
 export const DeleteEquipmentApiDelete = async (path, params = null, id=null) => {
     const url = BACK_API + path + "?idEquipment=" + id;
 
@@ -339,6 +317,36 @@ export const DeleteEquipmentApiDelete = async (path, params = null, id=null) => 
         url,
         {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if(response.status !== 400)
+        return{
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
+
+export const UpdateEquipmentFiltersApiPut = async (path, params = null, id=null) => {
+    const url = BACK_API + path + "?idFilter=" + id;
+
+    let data = {
+        mark: params[0],
+        model:params[1],
+        equipmentdescription: params[2],
+        enviroment: params[3],
+    }
+    let response = await fetch(
+        url,
+        {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },

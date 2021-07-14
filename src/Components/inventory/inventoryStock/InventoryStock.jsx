@@ -58,7 +58,7 @@ class InventoryStock extends React.Component {
   }
 
   handleCloseModal = () => {
-      this.setState({ Modal: !this.state.Modal });
+    this.setState({ Modal: !this.state.Modal });
   }
 
   handleCategory = async (typeEquipment,imgURL,code) =>{
@@ -98,12 +98,15 @@ class InventoryStock extends React.Component {
           image = {this.state.Image}
           category = {this.state.typeCategory}
           code = {this.state.codeCategory}
+          handleCloseModal = {this.handleCloseModal}
           /> : null}
           {this.state.Modal == true ? <RegisterEquipment
+            serialnumber = {this.state.SerialNumber}
             close={this.handleCloseModal}
             image = {this.state.Image}
             category = {this.state.typeCategory}
             code = {this.state.codeCategory}
+            codeEquipment = {this.state.CodeEquipment}
             handleCategory = {this.handleCategory}/> : null}
         <div className="Filters">
         </div>

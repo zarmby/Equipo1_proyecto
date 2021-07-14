@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './ElementInfo.scss'
 import Alertify from 'alertifyjs';
 import RegisterEquipment from './RegisterEquipment';
 import { DeleteEquipmentApiDelete } from '../../../services/utils/Api';
 
 function ElementInfo(props) {
+
+  const [Modal, setModal] = useState(false);
 
   const handleDelete = () => {
       Alertify.confirm('Eliminar tipo de equipo', '¿Esta seguro de elimar este tipo de equipo?',
@@ -24,8 +26,8 @@ function ElementInfo(props) {
       );
   }
 
-  const handleEdit = () => {
-    props.handlePanelShow();
+  const handleCloseModal = () => {
+    setModal(!Modal);
   }
 
   var status_icon = "";
@@ -33,6 +35,15 @@ function ElementInfo(props) {
 
   return(
     <div class="Modal-template">
+    {Modal == true ? <RegisterEquipment
+      serialnumber = {props.serialnumber}
+      description = {props.description}
+      image = {props.image}
+      mark = {props.mark}
+      model = {props.model}
+      enviroment = {props.enviroment}
+      close = {handleCloseModal}
+      /> : null}
       <div class="exit-row" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>
       </div>
@@ -79,7 +90,7 @@ function ElementInfo(props) {
           </div>
         </div>
         <div class="Equipment-menu">
-          <button class="Equipment-menu-Asign" onClick={handleEdit}>Editar</button>
+          <button class="Equipment-menu-Asign" onClick={() => handleCloseModal()}>Editar</button>
           <button class="Equipment-menu-Delete" onClick={handleDelete}>Eliminar</button>
         </div>
         </div>
