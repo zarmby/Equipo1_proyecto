@@ -79,7 +79,10 @@
                 }
             }
             .default_option{
-                color: #ccc;
+                color: #555;
+                &:hover{
+                    background-color: #212B35;
+                }
             }
         }
     }            
