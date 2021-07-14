@@ -293,6 +293,20 @@ export const UsersApiGet = async (path) => {
     }
 }
 
+export const UserApiGet = async (params=null) =>{
+    const url = BACK_API + "user/?idUser=" + params;
+    let response = await fetch(url);
+    if (response.ok || response.status === 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else{
+        let err = await response.json();
+        throw new Error(err.msg)
+    }
+}
+
 export const UpdateEquipmentApiPut = async (path, params = null, id = null) => {
     const url = BACK_API + path + "?idTypeEquipment=" + id;
 
