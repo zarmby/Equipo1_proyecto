@@ -8,7 +8,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 30% 1fr 30%;
-  grid-template-rows: 5% 1fr 5%;
+  grid-template-rows: 7.5% 1fr 7.5%;
   z-index: 100;
   top: 0;
   left: 0;
@@ -24,7 +24,6 @@
   overflow-y: scroll;
   min-width: 300px;
   font-family: 'Noto Sans JP', sans-serif;
-  padding-right: 20px;
 }
 
 .Modal-box::-webkit-scrollbar{
@@ -351,20 +350,6 @@
       .Description-Text{
         display: flex;
         justify-content: center;
-      }
-
-      .Modal-box::-webkit-scrollbar{
-        width: 0px;
-      }
-
-      .Modal-box::-webkit-scrollbar-thumb {
-          background: #DD1F26;
-          border-radius: 0px;
-      }
-
-      .Modal-box::-webkit-scrollbar-thumb:hover {
-          background: #b3b3b3;
-          box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
       }
 }
 
