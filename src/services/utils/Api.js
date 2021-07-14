@@ -1,4 +1,4 @@
-const BACK_API = "http://localhost:5000/api/";
+const BACK_API = "https://arkusnexusback.herokuapp.com/api/";
 
 export const LoginApiPost = async (path, params = null) => {
     const url = BACK_API + path;

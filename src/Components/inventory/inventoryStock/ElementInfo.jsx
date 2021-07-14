@@ -24,6 +24,10 @@ function ElementInfo(props) {
       );
   }
 
+  const handleEdit = () => {
+    props.handlePanelShow();
+  }
+
   var status_icon = "";
   props.state == "asignado" ? status_icon = "asiggned_info" : status_icon = "avalible_info";
 
@@ -75,7 +79,7 @@ function ElementInfo(props) {
           </div>
         </div>
         <div class="Equipment-menu">
-          <button class="Equipment-menu-Asign">Editar</button>
+          <button class="Equipment-menu-Asign" onClick={handleEdit}>Editar</button>
           <button class="Equipment-menu-Delete" onClick={handleDelete}>Eliminar</button>
         </div>
         </div>
