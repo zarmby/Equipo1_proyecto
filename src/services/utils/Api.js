@@ -4,8 +4,8 @@ export const LoginApiPost = async (path, params = null) => {
     const url = BACK_API + path;
 
     let data = {
-        email : params[0],
-        password : params[1]
+        email: params[0],
+        password: params[1]
     }
 
     let response = await fetch(
@@ -23,7 +23,7 @@ export const LoginApiPost = async (path, params = null) => {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.infoError)
     }
@@ -37,7 +37,7 @@ export const ApiGet = async (path) => {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg)
     }
@@ -71,12 +71,12 @@ export const RegisterUserApiPost = async (path, params = null) => {
             body: JSON.stringify(data)
         }
     )
-    if(response.status !== 400)
-        return{
+    if (response.status !== 400)
+        return {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.infoError);
     }
@@ -99,23 +99,23 @@ export const RegisterTypeEquipmentApiPost = async (path, params = null) => {
             body: JSON.stringify(data)
         }
     )
-    if(response.status !== 400)
-        return{
+    if (response.status !== 400)
+        return {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg);
     }
 }
 
-export const RegisterTypeEquipmentFiltersApiPost = async (path, params = null, id=null) => {
+export const RegisterTypeEquipmentFiltersApiPost = async (path, params = null, id = null) => {
     const url = BACK_API + path;
 
     let data = {
         mark: params[0],
-        model:params[1],
+        model: params[1],
         equipmentdescription: params[2],
         enviroment: params[3],
         state: false,
@@ -132,12 +132,12 @@ export const RegisterTypeEquipmentFiltersApiPost = async (path, params = null, i
             body: JSON.stringify(data)
         }
     )
-    if(response.status !== 400)
-        return{
+    if (response.status !== 400)
+        return {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg);
     }
@@ -167,12 +167,12 @@ export const RegisterEquipmentApiPost = async (path, params = null) => {
             body: JSON.stringify(data)
         }
     )
-    if(response.status !== 400)
-        return{
+    if (response.status !== 400)
+        return {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg)
     }
@@ -186,13 +186,13 @@ export const FiltersApiGet = async (params) => {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg)
     }
 }
 
-export const UpdateTypeEquipmentApiPut = async (path, params = null, id=null) => {
+export const UpdateTypeEquipmentApiPut = async (path, params = null, id = null) => {
     const url = BACK_API + path + "?idTypeEquipment=" + id;
 
     let data = {
@@ -211,23 +211,23 @@ export const UpdateTypeEquipmentApiPut = async (path, params = null, id=null) =>
             body: JSON.stringify(data)
         }
     )
-    if(response.status === 200)
-        return{
+    if (response.status === 200)
+        return {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg);
     }
 }
 
-export const UpdateTypeEquipmentFiltersApiPut = async (path, params = null, id=null) => {
+export const UpdateTypeEquipmentFiltersApiPut = async (path, params = null, id = null) => {
     const url = BACK_API + path + "?idFilter=" + id;
 
     let data = {
         mark: params[0],
-        model:params[1],
+        model: params[1],
         equipmentdescription: params[2],
         enviroment: params[3],
     }
@@ -241,18 +241,18 @@ export const UpdateTypeEquipmentFiltersApiPut = async (path, params = null, id=n
             body: JSON.stringify(data)
         }
     )
-    if(response.status !== 400)
-        return{
+    if (response.status !== 400)
+        return {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg);
     }
 }
 
-export const DeleteTypeEquipmentApiDelete = async (path, params = null, id=null) => {
+export const DeleteTypeEquipmentApiDelete = async (path, params = null, id = null) => {
     const url = BACK_API + path + "?idTypeEquipment=" + id;
 
     let data = {
@@ -268,12 +268,12 @@ export const DeleteTypeEquipmentApiDelete = async (path, params = null, id=null)
             body: JSON.stringify(data)
         }
     )
-    if(response.status !== 400)
-        return{
+    if (response.status !== 400)
+        return {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg);
     }
@@ -287,7 +287,7 @@ export const UsersApiGet = async (path) => {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg)
     }
@@ -328,7 +328,7 @@ export const DeleteEquipmentApiDelete = async (path, params = null, id=null) => 
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg);
     }
@@ -353,12 +353,12 @@ export const UpdateEquipmentFiltersApiPut = async (path, params = null, id=null)
             body: JSON.stringify(data)
         }
     )
-    if(response.status !== 400)
-        return{
+    if (response.status !== 400)
+        return {
             result: await response.json(),
             status: response.status
         }
-    else{
+    else {
         let err = await response.json();
         throw new Error(err.msg);
     }

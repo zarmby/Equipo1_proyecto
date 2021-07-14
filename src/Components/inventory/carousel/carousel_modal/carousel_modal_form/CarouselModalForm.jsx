@@ -114,18 +114,8 @@ const ModalForm = (props) => {
 
     }
 
-    const imageExists = (image_url) => {
-
-        var http = new XMLHttpRequest();
-
-        try {
-            http.open('HEAD', image_url, false);
-            http.send();
-            return http.status !== 404;
-        }
-        catch (e) {
-            return http.status === 404;
-        }
+    const handleErrorImg = (e)=>{
+        e.target.src = default_cat;
     }
 
     const handleOnChangePhoto = (e) => {
@@ -185,7 +175,7 @@ const ModalForm = (props) => {
                             accept="image/png" onChange={handleOnChangePhoto}
                             onFocus={//handleFocus} onBlur={handleBlur}
                         />*/}
-                        <img id="modal_preview_img" src={imageExists(photoURL) ? photoURL : default_cat} alt="img categoria" />
+                        <img id="modal_preview_img" src={photoURL} onError={(e)=>handleErrorImg(e)} alt="img categoria" />
                         <input
                             id="modal_form_cat_img_text" type="text"
                             className="modal_input" placeholder="URL de una imagen de internet"
