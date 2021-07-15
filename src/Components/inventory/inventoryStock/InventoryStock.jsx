@@ -138,7 +138,7 @@ class InventoryStock extends React.Component {
               enviroment = {item.enviroment}
               description = {item.equipmentdescription}
               state = {item.state}
-              campus = {item.campus}
+              campus = {item.campusname}
               assignedUser = {item.username + " " + item.lastname}
               idEquipment = {item._id}
               image = {this.state.Image}
