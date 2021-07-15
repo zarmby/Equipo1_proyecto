@@ -37,10 +37,12 @@ class SideFilters extends React.Component{
     return(
       <div>
         <nav class="main-menu">
-          <spam class="face-side">
+        <div class="face-side">
+          <spam>
             <i class="fas fa-angle-right fa-3x arrow"></i>
           </spam>
-            <ul>
+        </div>
+            <ul class="cat-list">
             <li onClick={() => this.handleCloseModal()}>
               <a id = "add-Equipment">
                 <span class="nav-text">{"Agregar - " + this.props.typeCategory}</span>

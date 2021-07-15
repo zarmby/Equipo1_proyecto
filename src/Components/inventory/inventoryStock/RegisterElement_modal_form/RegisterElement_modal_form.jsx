@@ -53,6 +53,12 @@ const RegisterElement_modal_form = (props) => {
     ];
 
     const handleSubmit = async (e) => {
+      let loggedUser = window.localStorage.getItem('UserLogged');
+      if(loggedUser){
+        let UserLogged = JSON.parse(loggedUser)
+        let campusL = UserLogged.IDcampus;
+        setCampus(campusL);
+      }
       if(props.idEquipment == null){
         e.preventDefault();
         try {

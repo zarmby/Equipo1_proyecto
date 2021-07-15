@@ -29,14 +29,14 @@ left:0;
 width:22px;
 -webkit-transition:width .05s linear;
 -webkit-transform:translateZ(0) scale(1,1);
-z-index:1;
+z-index:100;
 text-decoration: none;
 display: flex;
 overflow-x:hidden;
 }
 
 .main-menu .arrow{
-  z-index:10000000;
+  z-index:1000;
   color: #212B35;
 }
 
@@ -83,12 +83,6 @@ overflow-x:hidden;
     box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
 }
 
-.main-menu:hover .arrow{
-  display: none;
-}
-/*
--------------------------
-*/
 
 .main-menu>ul {
 margin:7px 0;
@@ -100,10 +94,22 @@ display:block;
 width:100%;
 }
 
+.cat-list{
+  z-index: 10;
+}
+
+.main-menu:hover .face-side{
+  display: none;
+}
+
 .face-side{
   position: fixed;
-  z-index: 10000;
+  display: flex;
+  align-items: center;
+  z-index: 100000000;
   align-self: center;
+  height: 100%;
+
 }
 
 .main-menu li>a {
@@ -161,4 +167,41 @@ height: 100%;
   font-style: normal;
   font-weight: 300;
   src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}
+
+@media only screen and (max-width: 520px) {
+
+    .main-menu:hover,nav.main-menu.expanded {
+    width:250px;
+    overflow:visible;
+    background:#212B35;
+    position:fixed;
+    bottom:0;
+    height:calc(100% - 50px);
+    left:0;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    -webkit-transition:width .05s linear;
+    transition:width .05s linear;
+    -webkit-transform:translateZ(0) scale(1,1);
+    z-index:1000;
+    color: rgba(0, 0, 0, 0);
+    border-right: 2px solid white;
+    }
+
+    .main-menu {
+    position:fixed;
+    color: #212B35;
+    top:50px;
+    bottom:0;
+    height:calc(100% - 70px);
+    left:0;
+    width:22px;
+    -webkit-transition:width .05s linear;
+    -webkit-transform:translateZ(0) scale(1,1);
+    z-index:100;
+    text-decoration: none;
+    display: flex;
+    overflow-x:hidden;
+    }
 }
