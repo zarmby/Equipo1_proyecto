@@ -155,7 +155,7 @@ export const RegisterEquipmentApiPost = async (path, params = null) => {
         mark: params[5],
         IDcampus: params[6],
         status: params[7],
-        enviroment: params[8],
+        enviroment: params[8]
     }
     let response = await fetch(
         url,
@@ -342,6 +342,40 @@ export const UpdateEquipmentFiltersApiPut = async (path, params = null, id=null)
         model:params[1],
         equipmentdescription: params[2],
         enviroment: params[3],
+    }
+    let response = await fetch(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if (response.status !== 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else {
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
+
+export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
+    const url = BACK_API + path + "?idEquipment=" + id;
+
+    let data = {
+      serialnumber: params[0],
+      state: params[1],
+      equipmentdescription: params[2],
+      model: params[3],
+      mark: params[4],
+      IDcampus: params[5],
+      status: params[6],
+      enviroment: params[7]
     }
     let response = await fetch(
         url,

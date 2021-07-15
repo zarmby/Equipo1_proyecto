@@ -12,7 +12,7 @@ function ElementInfo(props) {
       Alertify.confirm('Eliminar tipo de equipo', '¿Esta seguro de elimar este tipo de equipo?',
           async function() {
               try {
-                  await DeleteEquipmentApiDelete("Equipments/", false,props.codeEquipment);
+                  await DeleteEquipmentApiDelete("Equipments/", false,props.idEquipment);
                   Alertify.success("<b style='color:white;'>Eliminado correctamente</b>");
                   props.handleCategory(props.category,props.image,props.code);
                   props.handlePanelShow();
@@ -36,13 +36,18 @@ function ElementInfo(props) {
   return(
     <div class="Modal-template">
     {Modal == true ? <RegisterEquipment
+      idEquipment = {props.idEquipment}
       serialnumber = {props.serialnumber}
       description = {props.description}
       image = {props.image}
+      category = {props.category}
+      code = {props.code}
       mark = {props.mark}
       model = {props.model}
       enviroment = {props.enviroment}
+      handleCategory = {props.handleCategory}
       close = {handleCloseModal}
+      handlePanelShow = {props.handlePanelShow}
       /> : null}
       <div class="exit-row" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>
@@ -86,7 +91,7 @@ function ElementInfo(props) {
         </div>
         <div class="Asigned-Person">
           <div class="Asigned-Person-Elements">
-            <a class="person-link">{props.state != "Disponible" ? props.assignedUser : "N/A"}</a>
+            <a class="person-link">{props.state != "Disponible" ? props.assignedUser : "Sin asignar"}</a>
           </div>
         </div>
         <div class="Equipment-menu">

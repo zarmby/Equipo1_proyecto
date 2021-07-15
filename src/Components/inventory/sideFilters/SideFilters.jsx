@@ -43,7 +43,7 @@ class SideFilters extends React.Component{
             <ul>
             <li onClick={() => this.handleCloseModal()}>
               <a id = "add-Equipment">
-                <span class="nav-text">Agregar Equipo</span>
+                <span class="nav-text">{"Agregar - " + this.props.typeCategory}</span>
                 <div class="plus_container">
                   <i class="fas fa-plus-square fa-2x plus"></i>
                 </div>

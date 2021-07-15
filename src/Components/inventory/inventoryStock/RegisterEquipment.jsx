@@ -19,6 +19,7 @@ const RegisterEquipment = ((props,ref) => {
             <span id="RegisterEquipment_modal_close" onClick={() => handleCloseModal()} >X</span>
             <RegisterElement_modal_form
             image = {props.image}
+            idEquipment = {props.idEquipment}
             category = {props.category}
             code = {props.code}
             close = {handleCloseModal}
@@ -27,7 +28,8 @@ const RegisterEquipment = ((props,ref) => {
             mark = {props.mark}
             model = {props.model}
             enviroment = {props.enviroment}
-            handleCategory = {props.handleCategory}/>
+            handleCategory = {props.handleCategory}
+            handlePanelShow = {props.handlePanelShow}/>
         </div>
     </div>
   )

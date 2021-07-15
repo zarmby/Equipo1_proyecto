@@ -16,7 +16,7 @@ class SingleElement extends React.Component {
 
   return(
     <div class="card" id = {"equipement_" + this.props.id}
-    onClick={() => handlePanelShow(this.props.serialnumber,this.props.mark,this.props.model,this.props.enviroment,this.props.description,this.props.state,this.props.campus,this.props.assignedUser,this.props.codeEquipment)}>
+    onClick={() => handlePanelShow(this.props.serialnumber,this.props.mark,this.props.model,this.props.enviroment,this.props.description,this.props.state,this.props.campus,this.props.assignedUser,this.props.idEquipment)}>
         <img src={this.props.image} class="card__image" alt="" />
       <div class="card__overlay">
         <div class="card__header">

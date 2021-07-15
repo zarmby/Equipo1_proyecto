@@ -1,22 +1,24 @@
 import { useState } from 'react';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import './RegisterElement_modal_form.scss';
-import { RegisterEquipmentApiPost } from '../../../../services/utils/Api';
 import ScannerC from '../../Scanner/ScannerC'
+import './RegisterElement_modal_form.scss';
+import { RegisterEquipmentApiPost, UpdateEquipmentApiPut } from '../../../../services/utils/Api';
 import default_cat from '../../../../assets/img_cat/default_cat.png';
 
 const RegisterElement_modal_form = (props) => {
 
     const [camera, setCamera] = useState(false);
 
+    const [idEquipment, setidEquipment] = useState(props.idEquipment);
     const [photo, setPhoto] = useState();
     const [serialNumber, setserialNumber] = useState(props.serialnumber);
+    const [photoURL, setPhotoURL] = useState('');
     const [mark, setMark] = useState(props.mark);
     const [equipmentdescription, setequipmentdescription] = useState(props.description);
     const [state, setState] = useState('Disponible');
     const [model, setModel] = useState(props.model);
-    const [campus, setCampus] = useState('60c57e535507ec3760b2e3ca');
+    const [campus, setCampus] = useState();
     const [status, setStatus] = useState(true);
     const [enviroment, setEnviroment] = useState(props.enviroment);
 
@@ -39,7 +41,19 @@ const RegisterElement_modal_form = (props) => {
         enviroment
     ];
 
+    const editParams = [
+        serialNumber,
+        state,
+        equipmentdescription,
+        model,
+        mark,
+        campus,
+        status,
+        enviroment
+    ];
+
     const handleSubmit = async (e) => {
+      if(props.idEquipment == null){
         e.preventDefault();
         try {
             await RegisterEquipmentApiPost("equipments/", params);
@@ -51,21 +65,24 @@ const RegisterElement_modal_form = (props) => {
             Alertify.error(`<b style='color:white;'>${e}</b>`);
             console.log(e);
         }
-    }
-
-    const imageExists = (image_url) => {
-
-        var http = new XMLHttpRequest();
-
+      } else {
+        e.preventDefault();
         try {
-            http.open('HEAD', image_url, false);
-            http.send();
-            return http.status !== 404;
+            await UpdateEquipmentApiPut("equipments/", editParams, idEquipment);
+            Alertify.success("<b style='color:white;'>Se actualizo el equipo correctamente</b>");
+            props.close(null, true);
+            props.handleCategory(props.category,props.image,props.code)
+            props.handlePanelShow();
         }
         catch (e) {
-            return http.status === 404;
+            Alertify.success(`<b style='color:white;'>Se actualizo el equipo correctamente</b>`);
+            console.log(e);
+            props.close(null, true);
+            props.handleCategory(props.category,props.image,props.code)
+            props.handlePanelShow();
         }
     }
+  }
 
     const handleFocus = (e) => {
         switch (e.target.id) {
@@ -84,6 +101,7 @@ const RegisterElement_modal_form = (props) => {
             case 'modal_form_cat_enviroment':
                 document.getElementById('modal_enviroment_info').className = "info_container input_focus";
                 break;
+
             /*case 'modal_form_cat_img':
                 document.getElementById('modal_img_info').className = "info_container input_focus";
                 break;*/
@@ -96,14 +114,6 @@ const RegisterElement_modal_form = (props) => {
         }
     }
 
-    const handleScanner = (sn) =>{
-      setserialNumber(sn)
-    }
-
-    const handleCamera = () => {
-      setCamera(!camera)
-    }
-
     const handleBlur = (e) => {
         let inputsArray = document.getElementsByClassName('info_container');
         for (let index = 0; index < inputsArray.length; index++) {
@@ -111,13 +121,21 @@ const RegisterElement_modal_form = (props) => {
         }
     }
 
-    return (
+    const handleScanner = (sn) =>{
+     setserialNumber(sn)
+   }
+
+   const handleCamera = () => {
+     setCamera(!camera)
+   }
+
+   return (
         <div id="modal_form_container">
             {camera ? <ScannerC handleScanner = {handleScanner} handleCamera = {handleCamera}/> : null}
             {camera ? <span id="RegisterEquipment_Scanner_close" onClick={() => handleCamera()}>X</span> : null}
             {!camera ?
               <div>
-              <h2>Crear nuevo equipo</h2>
+              {props.idEquipment == null ? <h2>Agregar nuevo equipo</h2> : <h2>Editar Equipo</h2>}
               <form id="modal_form" onSubmit={handleSubmit}>
                 <div id="first_part">
                     <div id="modal_img_info" className="info_container">
