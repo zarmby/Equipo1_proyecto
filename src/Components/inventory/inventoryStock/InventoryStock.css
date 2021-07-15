@@ -1,3 +1,7 @@
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
 .grid{
   margin-left: 25px;
   margin-right: 50px;
@@ -23,6 +27,20 @@
   height: 100vh;
 }
 
+.nothing-msg{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Sans JP', sans-serif;
+  padding: 2em;
+  font-size: 2em;
+  position: fixed;
+  margin-top: 32px;
+  text-align: center;
+}
+
 @media only screen and (max-width: 1450px) {
   .grid{
     grid-template-columns: 1fr 1fr 1fr;
@@ -33,6 +51,45 @@
 @media only screen and (max-width: 950px) {
   .grid{
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 969px) {
+  .nothing-msg{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    padding: 2em;
+    font-size: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 727px) {
+  .nothing-msg{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    padding: 2em;
+    font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 584px) {
+  .nothing-msg{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    padding: 2em;
+    font-size: 1em;
   }
 }
 

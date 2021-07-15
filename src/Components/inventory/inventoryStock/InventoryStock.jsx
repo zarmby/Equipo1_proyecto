@@ -26,7 +26,8 @@ class InventoryStock extends React.Component {
       Image:"",
       typeCategory:"",
       codeCategory:"",
-      idEquipment:""
+      idEquipment:"",
+      Existences:true
     };
   }
 
@@ -42,6 +43,7 @@ class InventoryStock extends React.Component {
     catch (e) {
       console.log(e);
     }
+    this.state.Equipments.length == 0 ? this.setState({ Existences : false }) : this.setState({ Existences : true });
   }
 
   handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser,IdEquipment) => {
@@ -62,6 +64,7 @@ class InventoryStock extends React.Component {
   }
 
   handleCategory = async (typeEquipment,imgURL,code) =>{
+    this.setState({ Existences : true });
     this.setState({Equipments : []});
     this.setState({Image : imgURL});
     this.setState({typeCategory : typeEquipment});
@@ -74,6 +77,7 @@ class InventoryStock extends React.Component {
     catch (e) {
       console.log(e);
     }
+    this.state.Equipments.length == 0 ? this.setState({ Existences : false }) : this.setState({ Existences : true });
   }
 
   render() {
@@ -84,6 +88,11 @@ class InventoryStock extends React.Component {
           handleCategory={this.handleCategory}
           close={this.handleCloseModal}
           typeCategory = {this.state.typeCategory}/>
+          {this.state.Existences == false ?
+            <div class="nothing-msg">
+              <p>No hay ningun equipo de tipo (<b>{this.state.typeCategory}</b>{") en este momento."}</p>
+            </div> : null
+          }
         {this.state.Panel ?
           <ElementInfo handlePanelShow = {this.handlePanelShow}
           serialnumber = {this.state.SerialNumber}

@@ -80,6 +80,7 @@
   color: white;
   background-color: #212B35;
   border: 4px solid #212B35;
+  transition: .30s;
 }
 
 .Modal-Header{
@@ -242,6 +243,13 @@
   margin-right:5px;
 }
 
+.Equipment-menu-Asign:hover{
+  transition: .20s;
+  border: 3px solid #212B35;
+}
+
+
+
 .Equipment-menu-Delete{
   background-color: #212B35;
   color: white;
@@ -251,6 +259,11 @@
   height: 30px;
   border-radius: 60px;
   margin-left: 5px;
+}
+
+.Equipment-menu-Delete:hover{
+  transition: .20s;
+  border: 3px solid #DD1F26;
 }
 
 .asiggned_info{
