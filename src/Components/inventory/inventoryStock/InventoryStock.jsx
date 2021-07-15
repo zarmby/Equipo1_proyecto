@@ -22,6 +22,7 @@ class InventoryStock extends React.Component {
       Description:"",
       State:"",
       Campus:"",
+      CampusName:"",
       AssignedUser:"",
       Image:"",
       typeCategory:"",
@@ -32,6 +33,12 @@ class InventoryStock extends React.Component {
   }
 
   async componentDidMount(){
+    let loggedUser = window.localStorage.getItem('UserLogged');
+    if(loggedUser){
+    let UserLogged = JSON.parse(loggedUser)
+      let campusL = UserLogged.IDcampus;
+      this.setState({Campus : campusL});
+    }
     this.setState({Image : this.props.image});
     this.setState({typeCategory : this.props.typeCategory});
     this.setState({codeCategory : this.props.code});
@@ -46,14 +53,14 @@ class InventoryStock extends React.Component {
     this.state.Equipments.length == 0 ? this.setState({ Existences : false }) : this.setState({ Existences : true });
   }
 
-  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, Campus, AssignedUser,IdEquipment) => {
+  handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, CampusName, AssignedUser,IdEquipment) => {
     this.setState({ SerialNumber: SerialNumber });
     this.setState({ Mark: Mark });
     this.setState({ Model: Model });
     this.setState({ Enviroment: Enviroment });
+    this.setState({ CampusName: CampusName });
     this.setState({ Description: Description });
     this.setState({ State: State });
-    this.setState({ Campus: Campus });
     this.setState({ AssignedUser: AssignedUser });
     this.setState({ idEquipment: IdEquipment });
     this.setState({ Panel: !this.state.Panel });
@@ -101,7 +108,7 @@ class InventoryStock extends React.Component {
           enviroment = {this.state.Enviroment}
           description = {this.state.Description}
           state = {this.state.State}
-          campus = {this.state.Campus}
+          campus = {this.state.CampusName}
           assignedUser = {this.state.AssignedUser}
           idEquipment = {this.state.idEquipment}
           handleCategory = {this.handleCategory}
@@ -116,7 +123,8 @@ class InventoryStock extends React.Component {
             category = {this.state.typeCategory}
             code = {this.state.codeCategory}
             codeEquipment = {this.state.CodeEquipment}
-            handleCategory = {this.handleCategory}/> : null}
+            handleCategory = {this.handleCategory}
+            campus = {this.state.Campus}/> : null}
         <div className="Filters">
         </div>
         <div className="cont-list">
@@ -130,7 +138,7 @@ class InventoryStock extends React.Component {
               enviroment = {item.enviroment}
               description = {item.equipmentdescription}
               state = {item.state}
-              campus = {item.campusname}
+              campus = {item.campus}
               assignedUser = {item.username + " " + item.lastname}
               idEquipment = {item._id}
               image = {this.state.Image}

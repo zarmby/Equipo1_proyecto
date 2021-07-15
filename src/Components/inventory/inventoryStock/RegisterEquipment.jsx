@@ -29,7 +29,8 @@ const RegisterEquipment = ((props,ref) => {
             model = {props.model}
             enviroment = {props.enviroment}
             handleCategory = {props.handleCategory}
-            handlePanelShow = {props.handlePanelShow}/>
+            handlePanelShow = {props.handlePanelShow}
+            campus = {props.campus}/>
         </div>
     </div>
   )

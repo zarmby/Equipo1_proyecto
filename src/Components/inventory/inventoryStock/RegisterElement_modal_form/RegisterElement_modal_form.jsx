@@ -11,14 +11,12 @@ const RegisterElement_modal_form = (props) => {
     const [camera, setCamera] = useState(false);
 
     const [idEquipment, setidEquipment] = useState(props.idEquipment);
-    const [photo, setPhoto] = useState();
     const [serialNumber, setserialNumber] = useState(props.serialnumber);
-    const [photoURL, setPhotoURL] = useState('');
     const [mark, setMark] = useState(props.mark);
     const [equipmentdescription, setequipmentdescription] = useState(props.description);
     const [state, setState] = useState('Disponible');
     const [model, setModel] = useState(props.model);
-    const [campus, setCampus] = useState();
+    const [campus, setCampus] = useState(props.campus);
     const [status, setStatus] = useState(true);
     const [enviroment, setEnviroment] = useState(props.enviroment);
 
@@ -52,13 +50,8 @@ const RegisterElement_modal_form = (props) => {
         enviroment
     ];
 
+
     const handleSubmit = async (e) => {
-      let loggedUser = window.localStorage.getItem('UserLogged');
-      if(loggedUser){
-        let UserLogged = JSON.parse(loggedUser)
-        let campusL = UserLogged.IDcampus;
-        setCampus(campusL);
-      }
       if(props.idEquipment == null){
         e.preventDefault();
         try {
