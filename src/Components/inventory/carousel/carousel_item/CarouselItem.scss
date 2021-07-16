@@ -106,6 +106,7 @@
 
 @media only screen and  (min-width: 300px)  and (max-width: 800px) {
     .item_content{
+        padding: 0 !important;
         .item_img{
             width: 100% !important;
             height: auto !important;
