@@ -105,6 +105,28 @@ class User extends React.Component{
                                     </div>
                                     <div id="user_equip_container">
                                         <h2>Lista de equipos</h2>
+                                        <table id="table_equip_user">
+                                            <tr>
+                                                <th>Imagen</th>
+                                                <th>Descriptción.</th>
+                                                <th>Asignación</th>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        </table>
                                     </div>
                                     <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
                                 </div>

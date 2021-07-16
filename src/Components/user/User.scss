@@ -35,6 +35,11 @@
                 left: 360px;
                 width: calc(100% - 380px);
                 height: calc(100% - 100px);
+                #table_equip_user{
+                    background-color: chartreuse;
+                    width: 100%;
+                    border: 1;
+                }
             }
             #user_cart_submit{
                 position: absolute;
