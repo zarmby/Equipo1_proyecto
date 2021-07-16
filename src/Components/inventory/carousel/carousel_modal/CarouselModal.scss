@@ -29,9 +29,9 @@
             float: right;
             display: block;
             text-align: center;
-            padding: 11px;      
+            padding: 11px;
             -webkit-text-stroke: 1px #DD1F26;
-            border: 2px solid #DD1F26;      
+            border: 2px solid #DD1F26;
             border-radius: 100%;
             color: #fff;
             font-weight: bolder;
@@ -62,12 +62,12 @@
         }
     }
 }*/
-  
+
 @media only screen and  (max-width: 800px) {
     #carousel_modal_contain{
         #carousel_modal{
             width: 80%;
-            height: 80%;            
+            height: 80%;
             left: 10%;
             top: 10%;
             overflow: hidden;
