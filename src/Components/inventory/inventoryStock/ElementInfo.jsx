@@ -74,11 +74,25 @@ function ElementInfo(props) {
         </div>
         <div class="Info-Text">
           <div class ="Info-Text-Elements">
-            <p><strong>N/S:</strong></p><p>{props.serialnumber}</p>
-            <p><strong>Marca:</strong></p><p>{props.mark}</p>
-            <p><strong>Modelo:</strong></p><p>{props.model}</p>
-            <p><strong>Sede:</strong></p><p>{props.campus}</p>
-            <p><strong>ambiente:</strong></p><p>{props.enviroment}</p>
+            <div class="celphone-position-info-label">
+              <div>
+              <p><strong>N/S:</strong></p>
+              <p><strong>Marca:</strong></p>
+              <p><strong>Modelo:</strong></p>
+              <p><strong>Sede:</strong></p>
+              <p><strong>ambiente:</strong></p>
+              </div>
+            </div>
+            <div class="celphone-position-info-info">
+              <div>
+                <p>{" "}{props.serialnumber}</p>
+                <p>{" "}{props.mark}</p>
+                <p>{" "}{props.model}</p>
+                <p>{" "}{props.campus}</p>
+                <p>{" "}{props.enviroment}</p>
+              </div>
+            </div>
+
           </div>
         </div>
         <div class="Status-Info">
