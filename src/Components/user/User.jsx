@@ -6,6 +6,7 @@ import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import {UsersApiGet, UserApiGet} from '../../services/utils/Api';
 import Loading from '../loading/Loading';
+import search_user_icon_default from '../../assets/img/user_search_default.png';
 
 
 class User extends React.Component{
@@ -84,34 +85,57 @@ class User extends React.Component{
         return(
             <div id="user_container">                
                 <Navbar/>
-                {/*<div id="user_page">
-                    <h1>Informacion de usuario</h1>
-                    <div ref={this.input_search}  id="user_search">
-                        <input type="text" id="user_search_input" placeholder="Escriba el nombre del usuario a consultar" onFocus={this.handleFocus} onBlur={this.handleBlur} />
-                        <input type="image" src={SearchIcon} id="user_search_btn" alt="Buscar" />
-                    </div>
-                    <br />
-                    <Link to="/menu" className="link">Volver</Link>
-                </div>*/}
                 {(this.state.loading) ? <Loading /> 
                 : 
-                    <div>
+                    <div id="user_search_contain">
                         <h1>Informacion de usuario</h1>
                         <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} /> 
                         {
                             (this.state.userId!=="")
                             ?
-                                <div id="user_info_container">
-                                    <p><b>Id:</b> {this.state.userSearched._id}</p>
-                                    <p><b>Campus:</b> {this.state.userSearched.IDcampus}</p>
-                                    <p><b>Sede:</b> {this.state.userSearched.IDrole}</p>
-                                    <p><b>Nombre:</b> {this.state.userSearched.username} {this.state.userSearched.lastname}</p>
-                                    <p><b>Correo electronico:</b> {this.state.userSearched.email}</p>
-                                    <p><b>Cuenta:</b> {this.state.userSearched.account}</p>
-                                    <p><b>Telefono:</b> {this.state.userSearched.phonenumber}</p>
-                                    <p><b>Perfil del usuario:</b> {this.state.userSearched.userprofile}</p>
+                                <div id="user_contain">                                       
+                                    <div id="user_info_container">
+                                        <h2>{this.state.userSearched.username} {this.state.userSearched.lastname}</h2>
+                                        <p><b>Cuenta:</b><br /> {this.state.userSearched.account}</p>
+                                        <p><b>Correo electronico:</b><br /> {this.state.userSearched.email}</p>
+                                        <p><b>Campus:</b><br /> {this.state.userSearched.IDcampus}</p>
+                                        <p><b>Telefono:</b><br /> {this.state.userSearched.phonenumber}</p>
+                                        <p><b>Perfil del usuario:</b><br /> {this.state.userSearched.userprofile}</p>
+                                        <p><b>Rol:</b><br /> {this.state.userSearched.IDrole}</p>
+                                    </div>
+                                    <div id="user_equip_container">
+                                        <h2>Lista de equipos</h2>
+                                        <table id="table_equip_user">
+                                            <tr>
+                                                <th>Imagen</th>
+                                                <th>Descriptción.</th>
+                                                <th>Asignación</th>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
                                 </div>
-                            :null
+                            :
+                                <label htmlFor="user_search_input">
+                                    <img 
+                                        src={search_user_icon_default} title="Buscar usuario"
+                                        id="icon_usr_defautl" alt="Search User" />
+                                </label>
                         }
                     </div>
                 }

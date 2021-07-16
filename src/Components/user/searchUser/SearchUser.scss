@@ -68,6 +68,21 @@
             list-style: none;
             overflow-y: auto;
             overflow-x: hidden;
+            text-align: left;
+            z-index: 2;
+            &::-webkit-scrollbar{
+                width: 3px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #DD1F26;
+                border-radius: 3px;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: #b3b3b3;
+                box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
+            }
             li{
                 border-bottom: 1px solid #ccc;
                 padding: 10px;
