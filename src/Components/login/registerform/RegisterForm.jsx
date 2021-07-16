@@ -151,7 +151,7 @@ const RegisterForm = forwardRef((props,ref) => {
           <div id="register_password_info" className="info_container">
             <label htmlFor="register_password_input">Contraseña*</label>
             <input
-              type="password" placeholder="Caracteres y numeros"
+              type="password" placeholder="Debe tener una longitud minima de 10 caracteres usando numeros y letras"
               id="register_password_input" className="register_input"
               minLength="6" maxLength="20" required
               title="Debe tener una longitud minima de 10 caracteres usando numeros y letras"
