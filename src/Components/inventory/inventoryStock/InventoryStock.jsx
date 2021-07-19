@@ -80,16 +80,21 @@ class InventoryStock extends React.Component {
   }
 
   handleCategory = async (typeEquipment,imgURL,code) =>{
-    this.setState({Loading : true});
-    this.setState({ Existences : true });
-    this.setState({Equipments : []});
-    this.setState({Image : imgURL});
-    this.setState({typeCategory : typeEquipment});
-    this.setState({codeCategory : code});
+    this.setState({ Loading : true});
+    this.setState({ Existences : false });
+    this.setState({ Equipments : []});
+    this.setState({ Image : imgURL});
+    this.setState({ typeCategory : typeEquipment});
+    this.setState({ codeCategory : code});
     try{
-      let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + this.props.typeCategory);
+      let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + typeEquipment);
       let dataEquipments = await equipmentsGet;
       this.setState({ Equipments: dataEquipments.result.cont.equipment });
+    }
+    catch (e) {
+      console.log(e);
+    }
+    try{
       let res = await FiltersApiGet(this.state.codeCategory);
       let filters = res.result.cont.name[0];
       this.setState({ EquipmentFilters: filters});
