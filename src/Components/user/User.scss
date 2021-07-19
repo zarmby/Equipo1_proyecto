@@ -11,7 +11,6 @@
         text-align: center;
         h1{
             margin-top: 0;
-            text-align: left;
         }
         #user_contain{
             width: 100%;
@@ -24,7 +23,41 @@
                 text-align: left;
                 position: absolute;
                 width: 320px;
-                height: calc(100% - 100px);
+                height: calc(100% - 80px);
+                padding: 10px;
+                border-radius: 15px;
+                box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+                overflow: hidden;
+                .user_edit_container{
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    top: 0;
+                    right: 0;
+                    border-radius: 0 0 0 100%;
+                    z-index: 2;
+                    background-color: rgba(33, 43, 53, 0.5);
+                    overflow: hidden;
+                    transition: .5s;
+                    &:hover{
+                        width: 70px;
+                        height: 70px;
+                        background-color: #212B35;
+                        cursor: pointer;
+                        box-shadow: 0 0 6pt 3pt#dd1f25;
+                    }
+                    &:hover img{opacity: 1;}
+                    img{
+                        position: absolute;
+                        width: 50%;
+                        height: auto;
+                        opacity: 0;
+                        top: 40%;
+                        left: 60%;
+                        transform: translate(-50%, -50%);
+                        transition: .5s;
+                    }
+                } 
             }
             #user_equip_container{
                 box-sizing: border-box;
@@ -36,9 +69,31 @@
                 width: calc(100% - 380px);
                 height: calc(100% - 100px);
                 #table_equip_user{
-                    background-color: chartreuse;
                     width: 100%;
-                    border: 1;
+                    border-collapse: collapse;
+                    border-radius: 15px;
+                    overflow: hidden;
+                    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+                    thead{
+                        background-color: #DD1F26;
+                        color: #fff;
+                        text-align: center;
+                        th:nth-child(1){
+                            width: 25%;
+                        }
+                        th:nth-child(2){
+                            width: 50%;
+                        }
+                        th:nth-child(3){
+                            width: 25%;
+                        }
+                        tr{
+                            border: 1px solid #ffffff;
+                        }
+                    }
+                    tbody{
+                        border: 1px solid #888;
+                    }
                 }
             }
             #user_cart_submit{
@@ -65,7 +120,8 @@
         #icon_usr_defautl{
             opacity: .2;
             margin-top: 50px;
-            height: 400px;
+            margin-left: 50px;
+            height: 350px;
             z-index: -1;
         }
     }

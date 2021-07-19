@@ -109,8 +109,6 @@ class InventoryStock extends React.Component {
   render() {
     return (
       <div className="inv-cont">
-        {this.state.Loading ? <Loading/> : null}
-        <Navbar />
         <SideFilter
           handleCategory={this.handleCategory}
           close={this.handleCloseModal}

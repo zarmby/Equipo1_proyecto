@@ -1,6 +1,7 @@
 #search_user_container{
     height: auto;
-    width: 100%;    
+    width: 50%;  
+    margin-left: 25%;  
     .info_container{
         position: relative;
         width: 100%;
@@ -37,7 +38,7 @@
         #user_search_submit{
             background-color: #DD1F26;
             transition: 0.2s;
-            background-image: url('../../../assets/img/search.png');
+            background-image: url('../../../assets/img/search_white.png');  
             background-repeat: no-repeat;
             background-size: 30px;
             background-position: center;
