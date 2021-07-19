@@ -83,7 +83,6 @@ class InventoryStock extends React.Component {
   render() {
     return (
       <div className="inv-cont">
-        <Navbar />
         <SideFilter
           handleCategory={this.handleCategory}
           close={this.handleCloseModal}

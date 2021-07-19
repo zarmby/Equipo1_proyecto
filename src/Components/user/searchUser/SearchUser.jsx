@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState} from 'react';
 import './SearchUser.scss';
 
 const SearchUser = (props) => {
@@ -9,14 +9,6 @@ const SearchUser = (props) => {
     const ul_result = useRef();
     const [userSearched, setUserSearched] = useState("");
     const [focusInput, setFocusInput] = useState(false);
-
-    /*useEffect(() => {
-        //setUsers(props.users);
-        /*usrRecived.forEach(element => {
-            let nameUsr = `${element.username} ${element.lastname} ■ ${element.account}`;
-            usrState.push(nameUsr);
-        });*/
-    //}, []);
 
     const handleFocus = (e) => {
         input_search_container.current.className = "info_container input_focus";
@@ -51,15 +43,17 @@ const SearchUser = (props) => {
                     {
                         (userSearched !== "" & !props.users.includes(userSearched))
                         ?
-                            <ul ref={ul_result}>   
-                                {
-                                    props.users.map((item, index) => (
-                                        (item.includes(userSearched))
-                                        ? <li key={index} onClick={()=>{setUserSearched(item)}}>{item}</li>
-                                        : null
-                                    ))
-                                }
-                            </ul>
+                            //(focusInput)?
+                                <ul ref={ul_result}>   
+                                    {
+                                        props.users.map((item, index) => (
+                                            (item.toLowerCase().includes(userSearched.toLowerCase()))
+                                            ? <li key={index} onClick={()=>setUserSearched(item)}>{item}</li>
+                                            : null//<p>{ul_result.current.clientWidth}</p>
+                                        ))
+                                    }
+                                </ul>
+                            //:null
                         : null
                     }
                 </div>
