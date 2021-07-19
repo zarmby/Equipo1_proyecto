@@ -48,6 +48,7 @@ function ElementInfo(props) {
       handleCategory = {props.handleCategory}
       close = {handleCloseModal}
       handlePanelShow = {props.handlePanelShow}
+      equipmentFilters = {props.equipmentFilters}
       /> : null}
       <div class="exit-row" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>
@@ -57,39 +58,40 @@ function ElementInfo(props) {
           <img src={props.image} class="Equipement-img" />
         </div>
         <div class="Modal-Body">
-        <div class="Description-Tittle">
+        {props.equipmentFilters.equipmentdescription ?
+          <div class="Description-Tittle">
           <div class="Tittles-Container">
             <p class="Tittles-Element"><strong>Descripcion:</strong></p>
           </div>
-        </div>
+        </div> : null}
         <div class="Info-Tittle">
           <div class="Tittles-Container">
             <p class="Tittles-Element"><strong>Caracteristicas:</strong></p>
           </div>
         </div>
-        <div class="Description-Text">
+        {props.equipmentFilters.equipmentdescription ? <div class="Description-Text">
           <div class="Description-Text-Container">
             <p>{props.description}</p>
           </div>
-        </div>
+        </div> : null}
         <div class="Info-Text">
           <div class ="Info-Text-Elements">
             <div class="celphone-position-info-label">
-              <div>
+              <div class="label-grid">
               <p><strong>N/S:</strong></p>
-              <p><strong>Marca:</strong></p>
-              <p><strong>Modelo:</strong></p>
+              {props.equipmentFilters.mark ? <p><strong>Marca:</strong></p> : null }
+              {props.equipmentFilters.model ? <p><strong>Modelo:</strong></p> : null }
               <p><strong>Sede:</strong></p>
-              <p><strong>ambiente:</strong></p>
+              {props.equipmentFilters.enviroment ? <p><strong>ambiente:</strong></p> : null }
               </div>
             </div>
             <div class="celphone-position-info-info">
-              <div>
-                <p>{" "}{props.serialnumber}</p>
-                <p>{" "}{props.mark}</p>
-                <p>{" "}{props.model}</p>
-                <p>{" "}{props.campus}</p>
-                <p>{" "}{props.enviroment}</p>
+              <div class="info-grid">
+                <p>{props.serialnumber}</p>
+                {props.equipmentFilters.mark ? <p>{props.mark}</p> : null }
+                {props.equipmentFilters.model ? <p>{props.model}</p> : null }
+                <p>{props.campus}</p>
+                {props.equipmentFilters.enviroment ? <p>{props.enviroment}</p> : null }
               </div>
             </div>
 

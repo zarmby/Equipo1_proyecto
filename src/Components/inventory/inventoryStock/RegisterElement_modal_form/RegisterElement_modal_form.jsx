@@ -19,13 +19,7 @@ const RegisterElement_modal_form = (props) => {
     const [campus, setCampus] = useState(props.campus);
     const [status, setStatus] = useState(true);
     const [enviroment, setEnviroment] = useState(props.enviroment);
-
     const [idTypeEquipment, setIdtypeequipment] = useState(props.code);
-    const [filterBrand, setFilterBrand] = useState(false);
-    const [filterModel, setFilterModel] = useState(false);
-    const [filterDescription, setFilterDescription] = useState(false);
-    const [filterEnviroment, setFilterEnviroment] = useState(false);
-    const [filterSede, setFilterSede] = useState(false);
 
     const params = [
         idTypeEquipment,
@@ -49,7 +43,6 @@ const RegisterElement_modal_form = (props) => {
         status,
         enviroment
     ];
-
 
     const handleSubmit = async (e) => {
       if(props.idEquipment == null){
@@ -154,38 +147,42 @@ const RegisterElement_modal_form = (props) => {
                           <i class="fas fa-camera fa-2x scaner-icon-img" onClick={() => handleCamera()}></i>
                         </spam>
                     </div>
-                    <div id="modal_equipmentdescription_info" className="info_container">
-                        <label htmlFor="modal_form_cat_equipmentdescription">Descripcion*</label>
-                        <input
-                            type="text" id="modal_form_cat_equipmentdescription" required
-                            className="modal_input" onChange={(e) => { setequipmentdescription(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={equipmentdescription} maxLength="150"
-                        />
-                    </div>
-                    <div id="modal_mark_info" className="info_container">
-                        <label htmlFor="modal_form_cat_mark">Marca*</label>
-                        <input
-                            type="text" id="modal_form_cat_mark" required
-                            className="modal_input" onChange={(e) => { setMark(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={mark} maxLength="50"
-                        />
-                    </div>
-                    <div id="modal_model_info" className="info_container">
-                        <label htmlFor="modal_form_cat_model">Modelo*</label>
-                        <input
-                            type="text" id="modal_form_cat_model" required
-                            className="modal_input" onChange={(e) => { setModel(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={model} maxLength="50"
-                        />
-                    </div>
-                    <div id="modal_enviroment_info" className="info_container">
-                        <label htmlFor="modal_form_cat_enviroment">Ambiente*</label>
-                        <input
-                            type="text" id="modal_form_cat_enviroment" required
-                            className="modal_input" onChange={(e) => { setEnviroment(e.target.value) }}
-                            onFocus={handleFocus} onBlur={handleBlur} value={enviroment} maxLength="20"
-                        />
-                    </div>
+                    {props.equipmentFilters.equipmentdescription ?
+                      <div id="modal_equipmentdescription_info" className="info_container">
+                          <label htmlFor="modal_form_cat_equipmentdescription">Descripcion*</label>
+                          <input
+                              type="text" id="modal_form_cat_equipmentdescription" required
+                              className="modal_input" onChange={(e) => { setequipmentdescription(e.target.value) }}
+                              onFocus={handleFocus} onBlur={handleBlur} value={equipmentdescription} maxLength="150"
+                          />
+                      </div> : null}
+                    {props.equipmentFilters.mark ?
+                      <div id="modal_mark_info" className="info_container">
+                          <label htmlFor="modal_form_cat_mark">Marca*</label>
+                          <input
+                              type="text" id="modal_form_cat_mark" required
+                              className="modal_input" onChange={(e) => { setMark(e.target.value) }}
+                              onFocus={handleFocus} onBlur={handleBlur} value={mark} maxLength="50"
+                          />
+                          </div> : null}
+                    {props.equipmentFilters.model ?
+                      <div id="modal_model_info" className="info_container">
+                          <label htmlFor="modal_form_cat_model">Modelo*</label>
+                          <input
+                              type="text" id="modal_form_cat_model" required
+                              className="modal_input" onChange={(e) => { setModel(e.target.value) }}
+                              onFocus={handleFocus} onBlur={handleBlur} value={model} maxLength="50"
+                          />
+                      </div> : null}
+                    {props.equipmentFilters.enviroment ?
+                      <div id="modal_enviroment_info" className="info_container">
+                          <label htmlFor="modal_form_cat_enviroment">Ambiente*</label>
+                          <input
+                              type="text" id="modal_form_cat_enviroment" required
+                              className="modal_input" onChange={(e) => { setEnviroment(e.target.value) }}
+                              onFocus={handleFocus} onBlur={handleBlur} value={enviroment} maxLength="20"
+                          />
+                      </div> : null}
                     <div id="filter_container">
                     </div>
                 </div>

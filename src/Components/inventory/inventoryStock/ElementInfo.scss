@@ -109,6 +109,7 @@
   display: flex;
   justify-content: center;
   font-size: 20px;
+  grid-column: span 2
 }
 
 .Tittles-Container{
@@ -123,15 +124,27 @@
 
 .Description-Text{
   border-radius: 5%;
-  grid-row: 2 / 3;
+  grid-row: 2 / 5;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: justify;
 }
 
 .Description-Text-Container{
   margin: 10px;
   border-radius: 5%;
   padding-left: 10px;
+}
+
+.label-grid{
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.info-grid{
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 .Info-Text{
@@ -143,6 +156,7 @@
   overflow:visible;
   overflow: auto;
   padding-right: 50px;
+  grid-column: span 2;
 }
 
 .Info-Text-Elements{
@@ -284,7 +298,15 @@
   margin-left: 5px;
 }
 
+.celphone-position-info-label{
+  display: flex;
+  justify-content: center;
+}
 
+.celphone-position-info-info{
+  display: flex;
+  justify-content: center;
+}
 
 .alertify .ajs-dialog{
   z-index: 1000000000000000;

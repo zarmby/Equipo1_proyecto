@@ -30,7 +30,8 @@ const RegisterEquipment = ((props,ref) => {
             enviroment = {props.enviroment}
             handleCategory = {props.handleCategory}
             handlePanelShow = {props.handlePanelShow}
-            campus = {props.campus}/>
+            campus = {props.campus}
+            equipmentFilters ={props.equipmentFilters}/>
         </div>
     </div>
   )

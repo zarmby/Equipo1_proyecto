@@ -5,7 +5,8 @@ import Navbar from '../../navbar/Navbar';
 import SingleElement from './SingleElement';
 import ElementInfo from './ElementInfo';
 import RegisterEquipment from './RegisterEquipment';
-import { EquipementListGet } from '../../../services/utils/InventoryApi';
+import Loading from '../../loading/Loading';
+import { EquipementListGet, FiltersApiGet } from '../../../services/utils/InventoryApi';
 
 class InventoryStock extends React.Component {
 
@@ -13,6 +14,7 @@ class InventoryStock extends React.Component {
     super(props);
     this.state = {
       Equipments: [],
+      EquipmentFilters: [],
       Panel: false,
       Modal: false,
       SerialNumber: "",
@@ -28,9 +30,12 @@ class InventoryStock extends React.Component {
       typeCategory:"",
       codeCategory:"",
       idEquipment:"",
-      Existences:true
+      Existences:true,
+      Loading: true
     };
   }
+
+
 
   async componentDidMount(){
     let loggedUser = window.localStorage.getItem('UserLogged');
@@ -46,11 +51,15 @@ class InventoryStock extends React.Component {
       let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + this.props.typeCategory);
       let dataEquipments = await equipmentsGet;
       this.setState({ Equipments: dataEquipments.result.cont.equipment });
+      let res = await FiltersApiGet(this.state.codeCategory);
+      let filters = res.result.cont.name[0];
+      this.setState({ EquipmentFilters: filters});
     }
     catch (e) {
       console.log(e);
     }
     this.state.Equipments.length == 0 ? this.setState({ Existences : false }) : this.setState({ Existences : true });
+    this.setState({Loading : false});
   }
 
   handlePanelShow = (SerialNumber, Mark, Model, Enviroment, Description, State, CampusName, AssignedUser,IdEquipment) => {
@@ -71,25 +80,31 @@ class InventoryStock extends React.Component {
   }
 
   handleCategory = async (typeEquipment,imgURL,code) =>{
+    this.setState({Loading : true});
     this.setState({ Existences : true });
     this.setState({Equipments : []});
     this.setState({Image : imgURL});
     this.setState({typeCategory : typeEquipment});
     this.setState({codeCategory : code});
     try{
-      let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + typeEquipment);
+      let equipmentsGet = await EquipementListGet("equipments?typeequipment=" + this.props.typeCategory);
       let dataEquipments = await equipmentsGet;
-      this.setState({Equipments : dataEquipments.result.cont.equipment});
+      this.setState({ Equipments: dataEquipments.result.cont.equipment });
+      let res = await FiltersApiGet(this.state.codeCategory);
+      let filters = res.result.cont.name[0];
+      this.setState({ EquipmentFilters: filters});
     }
     catch (e) {
       console.log(e);
     }
     this.state.Equipments.length == 0 ? this.setState({ Existences : false }) : this.setState({ Existences : true });
+    this.setState({Loading : false});
   }
 
   render() {
     return (
       <div className="inv-cont">
+        {this.state.Loading ? <Loading/> : null}
         <Navbar />
         <SideFilter
           handleCategory={this.handleCategory}
@@ -116,15 +131,18 @@ class InventoryStock extends React.Component {
           category = {this.state.typeCategory}
           code = {this.state.codeCategory}
           handleCloseModal = {this.handleCloseModal}
+          equipmentFilters = {this.state.EquipmentFilters}
           /> : null}
-          {this.state.Modal == true ? <RegisterEquipment
+          {this.state.Modal == true ?
+            <RegisterEquipment
             close={this.handleCloseModal}
             image = {this.state.Image}
             category = {this.state.typeCategory}
             code = {this.state.codeCategory}
             codeEquipment = {this.state.CodeEquipment}
             handleCategory = {this.handleCategory}
-            campus = {this.state.Campus}/> : null}
+            campus = {this.state.Campus}
+            equipmentFilters = {this.state.EquipmentFilters}/> : null}
         <div className="Filters">
         </div>
         <div className="cont-list">
