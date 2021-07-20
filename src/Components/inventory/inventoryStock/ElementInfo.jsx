@@ -50,7 +50,7 @@ function ElementInfo(props) {
       handlePanelShow = {props.handlePanelShow}
       equipmentFilters = {props.equipmentFilters}
       /> : null}
-      <div class="exit-row" onClick={props.handlePanelShow}>
+      <div class="exit-row" id="exitEquipment" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>
       </div>
       <div class="Modal-box">
@@ -111,8 +111,8 @@ function ElementInfo(props) {
           </div>
         </div>
         <div class="Equipment-menu">
-          <button class="Equipment-menu-Asign" onClick={() => handleCloseModal()}>Editar</button>
-          <button class="Equipment-menu-Delete" onClick={handleDelete}>Eliminar</button>
+          <button class="Equipment-menu-Asign" id="EquipmentAssignButton" onClick={() => handleCloseModal()}>Editar</button>
+          <button class="Equipment-menu-Delete" id="EquipmentDeleteButton" onClick={handleDelete}>Eliminar</button>
         </div>
         </div>
       </div>

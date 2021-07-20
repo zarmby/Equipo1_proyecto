@@ -4,9 +4,11 @@ import SideFilter from '../sideFilters/SideFilters';
 import Navbar from '../../navbar/Navbar';
 import SingleElement from './SingleElement';
 import ElementInfo from './ElementInfo';
+import Alertify from 'alertifyjs';
 import RegisterEquipment from './RegisterEquipment';
 import Loading from '../../loading/Loading';
 import { EquipementListGet, FiltersApiGet } from '../../../services/utils/InventoryApi';
+import { UsersApiGet, UserApiGet } from '../../../services/utils/Api';
 
 class InventoryStock extends React.Component {
 
@@ -32,8 +34,12 @@ class InventoryStock extends React.Component {
       codeCategory:"",
       idEquipment:"",
       Existences:true,
-      Loading: true
+      Loading: true,
+      users : [],
+      userId : "",
+      userSearched :[]
     };
+    this.handleUserSearched = this.handleUserSearched.bind(this);
   }
 
 
@@ -59,6 +65,9 @@ class InventoryStock extends React.Component {
     catch (e) {
       console.log(e);
     }
+    this.getUsers().then(()=>{
+        this.setState({loading:false});
+    });
     this.state.Equipments.length == 0 ? this.setState({ Existences : false }) : this.setState({ Existences : true });
     this.setState({Loading : false});
   }
@@ -113,6 +122,45 @@ class InventoryStock extends React.Component {
     this.handlecloseFilters();
   }
 
+  async getUsers() {
+      try {
+          let res = await UsersApiGet("user/userName");
+          let usrRecived = res.result.cont.user;
+          this.setState({usersRecived:usrRecived});
+          let usrAux = [];
+          usrRecived.forEach(element => {
+              let nameUsr = `${element.username} ${element.lastname} ■ ${element.account}`;
+              usrAux.push(nameUsr);
+          })
+          this.setState({users : usrAux});
+      }
+      catch (e) {
+          Alertify.error(`<b style='color:white;'>${e}</b>`);
+      }
+  }
+
+  handleUserSearched(user){
+      if(this.state.users.includes(user)){
+          this.getIdUser(user).then(()=>{
+              this.getUserSearched(this.state.userId).then(()=>{
+                  this.setState({loading:false});
+              })
+          })
+      }
+      else
+          Alertify.error("Usuario no encontrado");
+  }
+
+  getIdUser(user){
+      this.setState({loading:true});
+      let aux = user.split(' ■ ');
+      this.state.usersRecived.forEach(e=>{
+          if(e.account == aux[1]){
+              this.setState({userId : e._id});
+          }
+      })
+  }
+
   render() {
     return (
       <div className="inv-cont">
@@ -156,7 +204,9 @@ class InventoryStock extends React.Component {
             codeEquipment = {this.state.CodeEquipment}
             handleCategory = {this.handleCategory}
             campus = {this.state.Campus}
-            equipmentFilters = {this.state.EquipmentFilters}/> : null}
+            equipmentFilters = {this.state.EquipmentFilters}
+            searchUser = {this.handleUserSearched}
+            users = {this.state.users}/> : null}
         <div className="Filters">
         </div>
         <div className="cont-list">

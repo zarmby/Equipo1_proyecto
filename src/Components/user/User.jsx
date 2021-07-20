@@ -7,6 +7,7 @@ import 'alertifyjs/build/css/alertify.css';
 import {UsersApiGet, UserApiGet} from '../../services/utils/Api';
 import Loading from '../loading/Loading';
 import search_user_icon_default from '../../assets/img/user_search_default.png';
+import edit from '../../assets/img/edit.png';
 
 
 class User extends React.Component{
@@ -14,12 +15,11 @@ class User extends React.Component{
         super(props);
         this.state = {
             loading : true,
-            usersRecived : [],
             users : [],
             userId : "",
             userSearched :[]
-            
-        }       
+
+        }
         this.handleUserSearched = this.handleUserSearched.bind(this);
         this.getIdUser = this.getIdUser.bind(this);
         this.getUserSearched = this.getUserSearched.bind(this);
@@ -56,7 +56,7 @@ class User extends React.Component{
                 })
             })
         }
-        else      
+        else
             Alertify.error("Usuario no encontrado");
     }
 
@@ -74,6 +74,7 @@ class User extends React.Component{
         try {
             let res = await UserApiGet(id);
             let usrRecived = res.result.cont.name;
+            console.log(res);
             this.setState({userSearched:usrRecived});
         }
         catch (e) {
@@ -83,18 +84,25 @@ class User extends React.Component{
 
     render(){
         return(
-            <div id="user_container">                
+            <div id="user_container">
                 <Navbar/>
-                {(this.state.loading) ? <Loading /> 
-                : 
+                {(this.state.loading) ? <Loading />
+                :
                     <div id="user_search_contain">
                         <h1>Informacion de usuario</h1>
-                        <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} /> 
+                        <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} />
                         {
                             (this.state.userId!=="")
                             ?
-                                <div id="user_contain">                                       
+                                <div id="user_contain">
                                     <div id="user_info_container">
+                                        <span  title="Editar usuario"
+                                            className="user_edit_container">
+                                            <img src={edit} alt="editar"
+                                                className="user_edit_icon"
+                                                id="user_editar"
+                                            />
+                                        </span>
                                         <h2>{this.state.userSearched.username} {this.state.userSearched.lastname}</h2>
                                         <p><b>Cuenta:</b><br /> {this.state.userSearched.account}</p>
                                         <p><b>Correo electronico:</b><br /> {this.state.userSearched.email}</p>
@@ -104,35 +112,39 @@ class User extends React.Component{
                                         <p><b>Rol:</b><br /> {this.state.userSearched.IDrole}</p>
                                     </div>
                                     <div id="user_equip_container">
-                                        <h2>Lista de equipos</h2>
-                                        <table id="table_equip_user">
-                                            <tr>
-                                                <th>Imagen</th>
-                                                <th>Descriptción.</th>
-                                                <th>Asignación</th>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
+                                        <h2>Equipos</h2>
+                                        <table id="table_equip_user" border="1">
+                                            <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>Descripción</th>
+                                                    <th>Asignadado por</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
                                 </div>
                             :
                                 <label htmlFor="user_search_input">
-                                    <img 
+                                    <img
                                         src={search_user_icon_default} title="Buscar usuario"
                                         id="icon_usr_defautl" alt="Search User" />
                                 </label>

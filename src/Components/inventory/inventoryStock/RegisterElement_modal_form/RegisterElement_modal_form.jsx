@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import ScannerC from '../../Scanner/ScannerC'
+import SearchUser from './SearchUser';
 import './RegisterElement_modal_form.scss';
 import { RegisterEquipmentApiPost, UpdateEquipmentApiPut } from '../../../../services/utils/Api';
 import default_cat from '../../../../assets/img_cat/default_cat.png';
@@ -19,6 +20,7 @@ const RegisterElement_modal_form = (props) => {
     const [campus, setCampus] = useState(props.campus);
     const [status, setStatus] = useState(true);
     const [enviroment, setEnviroment] = useState(props.enviroment);
+    const [iDuser, setIDuser] = useState("");
     const [idTypeEquipment, setIdtypeequipment] = useState(props.code);
 
     const params = [
@@ -30,7 +32,8 @@ const RegisterElement_modal_form = (props) => {
         mark,
         campus,
         status,
-        enviroment
+        enviroment,
+        iDuser
     ];
 
     const editParams = [
@@ -121,6 +124,10 @@ const RegisterElement_modal_form = (props) => {
      setCamera(!camera)
    }
 
+   const handleAssigned = (idUser) => {
+     setIDuser(idUser)
+   }
+
    return (
         <div id="modal_form_container">
             {camera ? <ScannerC handleScanner = {handleScanner} handleCamera = {handleCamera}/> : null}
@@ -134,6 +141,11 @@ const RegisterElement_modal_form = (props) => {
                         <label htmlFor="modal_form_cat_img_text">{props.category}</label>
                         <img id="modal_preview_img" src={props.image} alt="img categoria" />
                     </div>
+                    <div className="assignedSearch">
+                      <SearchUser
+                      searchUser = {props.searchUser}
+                      users = {props.users}/>
+                    </div>
                 </div>
                 <div id="second_part">
                     <div id="modal_serialNumber_info" className="info_container">
@@ -143,7 +155,7 @@ const RegisterElement_modal_form = (props) => {
                             className="modal_input" onChange={(e) => { setserialNumber(e.target.value) }}
                             onFocus={handleFocus} onBlur={handleBlur} value={serialNumber} maxLength="50"
                         />
-                        <spam class="scaner-icon">
+                        <spam class="scaner-icon" id="ScannerEquipment">
                           <i class="fas fa-camera fa-2x scaner-icon-img" onClick={() => handleCamera()}></i>
                         </spam>
                     </div>
