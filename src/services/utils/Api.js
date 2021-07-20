@@ -155,7 +155,8 @@ export const RegisterEquipmentApiPost = async (path, params = null) => {
         mark: params[5],
         IDcampus: params[6],
         status: params[7],
-        enviroment: params[8]
+        enviroment: params[8],
+        IDuser: params[9]
     }
     let response = await fetch(
         url,

@@ -18,8 +18,8 @@ class User extends React.Component{
             users : [],
             userId : "",
             userSearched :[]
-            
-        }       
+
+        }
         this.handleUserSearched = this.handleUserSearched.bind(this);
         this.getIdUser = this.getIdUser.bind(this);
         this.getUserSearched = this.getUserSearched.bind(this);
@@ -56,7 +56,7 @@ class User extends React.Component{
                 })
             })
         }
-        else      
+        else
             Alertify.error("Usuario no encontrado");
     }
 
@@ -84,22 +84,22 @@ class User extends React.Component{
 
     render(){
         return(
-            <div id="user_container">                
+            <div id="user_container">
                 <Navbar/>
-                {(this.state.loading) ? <Loading /> 
-                : 
+                {(this.state.loading) ? <Loading />
+                :
                     <div id="user_search_contain">
                         <h1>Informacion de usuario</h1>
-                        <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} /> 
+                        <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} />
                         {
                             (this.state.userId!=="")
                             ?
-                                <div id="user_contain">                                       
-                                    <div id="user_info_container">                                        
-                                        <span  title="Editar usuario" 
+                                <div id="user_contain">
+                                    <div id="user_info_container">
+                                        <span  title="Editar usuario"
                                             className="user_edit_container">
                                             <img src={edit} alt="editar"
-                                                className="user_edit_icon" 
+                                                className="user_edit_icon"
                                                 id="user_editar"
                                             />
                                         </span>
@@ -144,7 +144,7 @@ class User extends React.Component{
                                 </div>
                             :
                                 <label htmlFor="user_search_input">
-                                    <img 
+                                    <img
                                         src={search_user_icon_default} title="Buscar usuario"
                                         id="icon_usr_defautl" alt="Search User" />
                                 </label>

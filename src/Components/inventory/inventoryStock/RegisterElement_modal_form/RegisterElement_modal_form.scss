@@ -167,7 +167,7 @@
         left: 0;
         #modal_img_info{
             position: relative;
-            width: 80%;
+            width: 100%;
             height: auto;
             left: 10%;
             padding: 15px 15px 0 15px;
@@ -179,8 +179,8 @@
                 opacity: 0;
             }
             img{
-                width: 100%;
-                height: auto;
+              width: 100%;
+              height: auto;
             }
         }
         #modal_form_cat_img_text{
@@ -278,4 +278,10 @@
         font-weight: bolder;
         cursor: pointer;
     }
+  }
+
+  .assignedSearch{
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }

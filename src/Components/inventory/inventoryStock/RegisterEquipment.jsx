@@ -31,7 +31,9 @@ const RegisterEquipment = ((props,ref) => {
             handleCategory = {props.handleCategory}
             handlePanelShow = {props.handlePanelShow}
             campus = {props.campus}
-            equipmentFilters ={props.equipmentFilters}/>
+            equipmentFilters ={props.equipmentFilters}
+            searchUser = {props.searchUser}
+            users = {props.users}/>
         </div>
     </div>
   )
