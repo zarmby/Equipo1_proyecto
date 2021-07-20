@@ -143,7 +143,7 @@ const RegisterElement_modal_form = (props) => {
                             className="modal_input" onChange={(e) => { setserialNumber(e.target.value) }}
                             onFocus={handleFocus} onBlur={handleBlur} value={serialNumber} maxLength="50"
                         />
-                        <spam class="scaner-icon">
+                        <spam class="scaner-icon" id="ScannerEquipment">
                           <i class="fas fa-camera fa-2x scaner-icon-img" onClick={() => handleCamera()}></i>
                         </spam>
                     </div>

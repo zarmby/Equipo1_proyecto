@@ -50,7 +50,7 @@ function ElementInfo(props) {
       handlePanelShow = {props.handlePanelShow}
       equipmentFilters = {props.equipmentFilters}
       /> : null}
-      <div class="exit-row" onClick={props.handlePanelShow}>
+      <div class="exit-row" id="exitEquipment" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>
       </div>
       <div class="Modal-box">
