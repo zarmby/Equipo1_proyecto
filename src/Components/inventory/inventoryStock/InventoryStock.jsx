@@ -17,6 +17,7 @@ class InventoryStock extends React.Component {
       EquipmentFilters: [],
       Panel: false,
       Modal: false,
+      closeFilters: true,
       SerialNumber: "",
       Mark: "",
       Model:"",
@@ -79,7 +80,12 @@ class InventoryStock extends React.Component {
     this.setState({ Modal: !this.state.Modal });
   }
 
+  handlecloseFilters= () => {
+    this.setState({ closeFilters: !this.state.closeFilters });
+  }
+
   handleCategory = async (typeEquipment,imgURL,code) =>{
+    this.handlecloseFilters();
     this.setState({ Loading : true});
     this.setState({ Existences : false });
     this.setState({ Equipments : []});
@@ -104,17 +110,20 @@ class InventoryStock extends React.Component {
     }
     this.state.Equipments.length == 0 ? this.setState({ Existences : false }) : this.setState({ Existences : true });
     this.setState({Loading : false});
+    this.handlecloseFilters();
   }
 
   render() {
     return (
       <div className="inv-cont">
         {this.state.Loading ? <Loading/> : null}
-        <Navbar />
-        <SideFilter
+        <Navbar/>
+        {this.state.closeFilters ?
+          <SideFilter
           handleCategory={this.handleCategory}
           close={this.handleCloseModal}
-          typeCategory = {this.state.typeCategory}/>
+          typeCategory = {this.state.typeCategory}
+          /> : null}
           {this.state.Existences == false ?
             <div class="nothing-msg">
               <p>No hay ningun equipo de tipo (<b>{this.state.typeCategory}</b>{") en este momento."}</p>

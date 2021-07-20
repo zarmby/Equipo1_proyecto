@@ -99,8 +99,8 @@ function ElementInfo(props) {
         </div>
         <div class="Status-Info">
           <div class="Status-Info-Elements">
-            <p class="Status-Info-Text"><strong>{props.state}</strong></p>
             <div class="Status-Info-Icon-container">
+              <div class="Status-Info-Text"><p><strong>{props.state}</strong></p></div>
               <div class={status_icon} ></div>
             </div>
           </div>

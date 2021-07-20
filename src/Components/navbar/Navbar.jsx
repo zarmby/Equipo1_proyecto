@@ -29,7 +29,7 @@ class Navbar extends React.Component{
         let loggedUser = window.localStorage.getItem('UserLogged');
         if(loggedUser){
         let UserLogged = JSON.parse(loggedUser)
-        let nameUser = UserLogged.username + " " + UserLogged.lastname; 
+        let nameUser = UserLogged.username + " " + UserLogged.lastname;
         this.setState({username : nameUser});
         }
     }
@@ -46,11 +46,10 @@ class Navbar extends React.Component{
                 <input type="button" id="navbar_icono_menu" ref={this.buttonMenu} onClick={this.handleOpenSideMenu}/>
                 <div id="navbar_menu_container" ref={this.sidenMenu}>
                     <div className="dropdown" id="navbar_menu">
-                        {/*<a href="/HomePage">*/}<button className="dropbtn">Menu</button>{/*</a>*/}
+                        {<a href="/HomePage"><button className="dropbtn">Menu</button></a>}
                         <div className="dropdown-content">
                             <a href="/InventoryCenter">Inventario</a>
                             <a href="/user">Usuario</a>
-                            <a href="/scanner">Scanner</a>
                         </div>
                     </div>
                     <div className="dropdown" id="navbar_user">

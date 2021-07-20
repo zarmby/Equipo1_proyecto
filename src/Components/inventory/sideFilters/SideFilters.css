@@ -96,6 +96,12 @@ width:100%;
 
 .cat-list{
   z-index: 10;
+  visibility: hidden;
+}
+
+.main-menu:hover .cat-list{
+  visibility:visible;
+  transition: 5s;
 }
 
 .main-menu:hover .face-side{
@@ -123,7 +129,6 @@ text-decoration:none;
 -webkit-transform:translateZ(0) scale(1,1);
 -webkit-transition:all .1s linear;
 transition:all .1s linear;
-
 }
 
 .main-menu .nav-text {
@@ -172,7 +177,7 @@ height: 100%;
 @media only screen and (max-width: 520px) {
 
     .main-menu:hover,nav.main-menu.expanded {
-    width:250px;
+    width:300px;
     overflow:visible;
     background:#212B35;
     position:fixed;
@@ -187,6 +192,7 @@ height: 100%;
     z-index:1000;
     color: rgba(0, 0, 0, 0);
     border-right: 2px solid white;
+    text-align: center;
     }
 
     .main-menu {
