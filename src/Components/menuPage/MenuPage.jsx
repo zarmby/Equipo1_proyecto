@@ -15,14 +15,14 @@ function MenuPage() {
       <div>
         <Navbar />
         <div className="content-option">
-          <Link to="InventoryCenter" style={{ textDecoration: 'none' }}>
+          <Link to="InventoryCenter" id="InventoryOption" style={{ textDecoration: 'none' }}>
             <div className="option"  onMouseEnter={() => setImg1State(inventarioS)} onMouseLeave={() => setImg1State(inventarioU)}>
               <div className="icon "><img className="material-icons md-18" src = {img1State} alt="Inventario"></img></div>
                 <p className="title">Inventario</p>
                 <p className="text">Administra el inventario de equipos y mira la informacion disponible sobre ellos.</p>
               </div>
           </Link>
-          <Link to="/user" className="link">
+          <Link to="/user" id="UserOption" className="link">
             <div className="option"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
               <div className="icon"><img className="material-icons md-18" src = {img2State} alt="Usuario"></img></div>
                 <p className="title">Reportes y Notificaciones</p>
