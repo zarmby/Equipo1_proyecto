@@ -38,6 +38,7 @@ const SearchUser = (props) => {
                       type="text" id="user_search_input" ref={input_search}
                       className="search_inputR" onChange={onChangeUserSearch}
                       onFocus={handleFocus} onBlur={handleBlur} value={userSearched}
+                      placeholder={props.assigned}
                   />
                   {
                       (userSearched !== "" & !props.users.includes(userSearched))

@@ -49,7 +49,11 @@ function ElementInfo(props) {
       close = {handleCloseModal}
       handlePanelShow = {props.handlePanelShow}
       equipmentFilters = {props.equipmentFilters}
-      /> : null}
+      searchUser = {props.searchUser}
+      users = {props.users}
+      userId = {props.userId}
+      assigned = {props.assignedUser}/>
+       : null}
       <div class="exit-row" id="exitEquipment" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>
       </div>

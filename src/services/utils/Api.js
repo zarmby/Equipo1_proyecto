@@ -383,16 +383,31 @@ export const UpdateEquipmentFiltersApiPut = async (path, params = null, id=null)
 export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
     const url = BACK_API + path + "?idEquipment=" + id;
 
-    let data = {
-      serialnumber: params[0],
-      state: params[1],
-      equipmentdescription: params[2],
-      model: params[3],
-      mark: params[4],
-      IDcampus: params[5],
-      status: params[6],
-      enviroment: params[7]
+    if (params[8] == ""){
+      var data = {
+          serialnumber: params[0],
+          state: params[1],
+          equipmentdescription: params[2],
+          model: params[3],
+          mark: params[4],
+          IDcampus: params[5],
+          status: params[6],
+          enviroment: params[7]
+        }
+    } else {
+      var data = {
+          serialnumber: params[0],
+          state: params[1],
+          equipmentdescription: params[2],
+          model: params[3],
+          mark: params[4],
+          IDcampus: params[5],
+          status: params[6],
+          enviroment: params[7],
+          IDuser: params[8]
+      }
     }
+
     let response = await fetch(
         url,
         {

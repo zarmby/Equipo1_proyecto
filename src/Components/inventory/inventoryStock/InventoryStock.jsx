@@ -83,6 +83,7 @@ class InventoryStock extends React.Component {
     this.setState({ AssignedUser: AssignedUser });
     this.setState({ idEquipment: IdEquipment });
     this.setState({ Panel: !this.state.Panel });
+    this.setState({ userId: ""});
   }
 
   handleCloseModal = () => {
@@ -207,6 +208,9 @@ class InventoryStock extends React.Component {
           code = {this.state.codeCategory}
           handleCloseModal = {this.handleCloseModal}
           equipmentFilters = {this.state.EquipmentFilters}
+          searchUser = {this.handleUserSearched}
+          users = {this.state.users}
+          userId = {this.state.userId}/> : null}
           /> : null}
           {this.state.Modal == true ?
             <RegisterEquipment

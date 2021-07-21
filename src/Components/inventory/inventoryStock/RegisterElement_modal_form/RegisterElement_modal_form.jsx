@@ -38,13 +38,14 @@ const RegisterElement_modal_form = (props) => {
 
     const editParams = [
         serialNumber,
-        state,
+        props.userId == "" ? "Disponible" : state,
         equipmentdescription,
         model,
         mark,
         campus,
         status,
-        enviroment
+        enviroment,
+        props.userId
     ];
 
     const handleSubmit = async (e) => {
@@ -140,7 +141,8 @@ const RegisterElement_modal_form = (props) => {
                     <div className="assignedSearch">
                       <SearchUser
                       searchUser = {props.searchUser}
-                      users = {props.users}/>
+                      users = {props.users}
+                      assigned = {props.assigned}/>
                     </div>
                 </div>
                 <div id="second_part">
