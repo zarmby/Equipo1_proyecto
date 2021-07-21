@@ -397,3 +397,4 @@ export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
         throw new Error(err.msg);
     }
 }
+

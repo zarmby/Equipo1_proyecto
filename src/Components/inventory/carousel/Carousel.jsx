@@ -7,6 +7,7 @@ import "@glidejs/glide/src/assets/sass/glide.core.scss";
 // Optional Theme Stylesheet
 import "@glidejs/glide/src/assets/sass/glide.theme.scss";
 
+import { useRef } from 'react';
 import NavBar from '../../navbar/Navbar';
 import CarouselItem from './carousel_item/CarouselItem';
 import CarouselModal from './carousel_modal/CarouselModal';
@@ -27,6 +28,7 @@ const Carousel = (props) => {
     const [image, setImage] = useState("");
     const [typeCategory, setTypeCategory] = useState("");
     const [code, setCode] = useState("");
+    const child_navbar = useRef();
 
     const handleShowInventory = (image, typeCategory, code) => {
         setISDisplay(true);
@@ -100,18 +102,19 @@ const Carousel = (props) => {
 
     return (
         <div className="carousel_container">
-            <NavBar />
+            <NavBar ref={child_navbar} />
             {ISDisplay == true
                 ? <InventoryStock
                     image={image}
                     typeCategory={typeCategory}
-                    code={code} />
+                    code={code} 
+                    CloseMenu={child_navbar.current.closeSideMenuNabvar}/>
                 :
                 (loading)
                     ?
                     <Loading />
                     :
-                    <div id="carousel_items_contain">
+                    <div id="carousel_items_contain" onClick={child_navbar.current.closeSideMenuNabvar}>
                         <div className="glide">
                             <div className="glide__arrows" data-glide-el="controls">
                                 <button className="glide__arrow glide__arrow--left" data-glide-dir="<">

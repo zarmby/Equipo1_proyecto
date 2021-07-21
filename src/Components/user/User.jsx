@@ -8,6 +8,7 @@ import {UsersApiGet, UserApiGet} from '../../services/utils/Api';
 import Loading from '../loading/Loading';
 import search_user_icon_default from '../../assets/img/user_search_default.png';
 import edit from '../../assets/img/edit.png';
+import UserModal from './userModal/UserModal';
 
 
 class User extends React.Component{
@@ -17,12 +18,17 @@ class User extends React.Component{
             loading : true,
             users : [],
             userId : "",
-            userSearched :[]
+            userSearched :[],
+            modal : false
             
         }       
         this.handleUserSearched = this.handleUserSearched.bind(this);
         this.getIdUser = this.getIdUser.bind(this);
         this.getUserSearched = this.getUserSearched.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.setLoading = this.setLoading.bind(this);
+        this.child_navbar = React.createRef();
     }
 
     componentDidMount(){
@@ -64,7 +70,7 @@ class User extends React.Component{
         this.setState({loading:true});
         let aux = user.split(' ■ ');
         this.state.usersRecived.forEach(e=>{
-            if(e.account == aux[1]){
+            if(e.account === aux[1]){
                 this.setState({userId : e._id});
             }
         })
@@ -82,13 +88,23 @@ class User extends React.Component{
         }
     }
 
+    handleCloseModal(){
+        this.setState({modal:false});
+    }
+    handleOpenModal(){
+        this.setState({modal:false});
+    }
+    setLoading(value){
+        this.setState({loading: value});
+    }
+
     render(){
         return(
             <div id="user_container">                
-                <Navbar/>
+                <Navbar ref={this.child_navbar}/>
                 {(this.state.loading) ? <Loading /> 
                 : 
-                    <div id="user_search_contain">
+                    <div id="user_search_contain" onClick={this.child_navbar.current.closeSideMenuNabvar}>
                         <h1>Informacion de usuario</h1>
                         <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} /> 
                         {
@@ -151,6 +167,8 @@ class User extends React.Component{
                         }
                     </div>
                 }
+                
+                {(this.state.modal) ? <UserModal close={this.handleCloseModal} loading={this.setLoading} /> : null}
 
             </div>
         );

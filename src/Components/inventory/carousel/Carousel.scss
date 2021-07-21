@@ -87,8 +87,17 @@
 @media only screen and (max-width: 450px) {
     #carousel_items_contain{
         width: 100% !important;
+        height: 100% !important;
+        margin-top: 0 !important;
         margin-left: 0 !important;
+        &::after{
+            top: 180px !important;
+        }
+        &::before{
+            top: 180px !important;
+        }
         .glide{
+            margin-top: 150px;
             .glide__arrows{
                 display: none;
             }

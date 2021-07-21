@@ -108,7 +108,7 @@ class InventoryStock extends React.Component {
 
   render() {
     return (
-      <div className="inv-cont">
+      <div className="inv-cont" onClick={this.props.CloseMenu}>
         <SideFilter
           handleCategory={this.handleCategory}
           close={this.handleCloseModal}
