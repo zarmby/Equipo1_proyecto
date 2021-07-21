@@ -5,11 +5,11 @@ import logoMenu from '../../assets/img/icono_menu.png';
 import logoClose from '../../assets/img/icono_close.png';
 
 const Navbar = forwardRef((props,ref) => {
-    const [username, setUserName] = useState("");   
+    const [username, setUserName] = useState("");
     const [openMenu, setOpenMenu] = useState(false);
     const buttonMenu = useRef();
     const sidenMenu = useRef();
-    
+
     useImperativeHandle(ref, () => ({
         closeSideMenuNabvar(){
             setOpenMenu(false);
@@ -33,8 +33,8 @@ const Navbar = forwardRef((props,ref) => {
 
     const handleBlurSideMenu = (e)=>{
         if(
-            e.target.id!=="navbar_menu" & 
-            e.target.id!=="navbar_user" & 
+            e.target.id!=="navbar_menu" &
+            e.target.id!=="navbar_user" &
             e.target.id!=="navbar_menu_btn"&
             e.target.id!=="navbar_user_btn"&
             e.target.id!=="navbar_icono_menu"
@@ -66,15 +66,15 @@ const Navbar = forwardRef((props,ref) => {
     return (
         <nav id="navbar_principal" onClick={(e) => handleBlurSideMenu(e)}>
             <img id="navbar_logo" src={logo} alt="Logo Arkus" />
-            <input type="button" id="navbar_icono_menu" 
+            <input type="button" id="navbar_icono_menu"
             ref={buttonMenu} onClick={handleOpenSideMenu} />
             <div id="navbar_menu_container" ref={sidenMenu}>
                 <div className="dropdown" id="navbar_menu">
                     <button className="dropbtn" id="navbar_menu_btn">Menu</button>
                     <div className="dropdown-content">
+                        <a href="/MenuPage">Pagina principal</a>
                         <a href="/InventoryCenter">Inventario</a>
                         <a href="/user">Usuario</a>
-                        <a href="/scanner">Scanner</a>
                     </div>
                 </div>
                 <div className="dropdown" id="navbar_user">
