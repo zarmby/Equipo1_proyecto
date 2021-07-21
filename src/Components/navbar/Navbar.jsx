@@ -46,8 +46,9 @@ class Navbar extends React.Component {
                 <input type="button" id="navbar_icono_menu" ref={this.buttonMenu} onClick={this.handleOpenSideMenu} />
                 <div id="navbar_menu_container" ref={this.sidenMenu}>
                     <div className="dropdown" id="navbar_menu">
-                        {<a href="/HomePage"><button className="dropbtn">Menu</button></a>}
+                        {<a><button className="dropbtn">Menu</button></a>}
                         <div className="dropdown-content">
+                            <a href="/HomePage">Menu principal</a>
                             <a href="/InventoryCenter">Inventario</a>
                             <a href="/user">Usuario</a>
                         </div>
