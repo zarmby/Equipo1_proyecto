@@ -62,7 +62,7 @@ class User extends React.Component{
                 })
             })
         }
-        else      
+        else
             Alertify.error("Usuario no encontrado");
     }
 
@@ -106,16 +106,16 @@ class User extends React.Component{
                 : 
                     <div id="user_search_contain" onClick={this.child_navbar.current.closeSideMenuNabvar}>
                         <h1>Informacion de usuario</h1>
-                        <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} /> 
+                        <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} />
                         {
                             (this.state.userId!=="")
                             ?
-                                <div id="user_contain">                                       
-                                    <div id="user_info_container">                                        
-                                        <span  title="Editar usuario" 
+                                <div id="user_contain">
+                                    <div id="user_info_container">
+                                        <span  title="Editar usuario"
                                             className="user_edit_container">
                                             <img src={edit} alt="editar"
-                                                className="user_edit_icon" 
+                                                className="user_edit_icon"
                                                 id="user_editar"
                                             />
                                         </span>
@@ -160,7 +160,7 @@ class User extends React.Component{
                                 </div>
                             :
                                 <label htmlFor="user_search_input">
-                                    <img 
+                                    <img
                                         src={search_user_icon_default} title="Buscar usuario"
                                         id="icon_usr_defautl" alt="Search User" />
                                 </label>

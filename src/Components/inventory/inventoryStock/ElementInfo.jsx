@@ -7,6 +7,8 @@ import { DeleteEquipmentApiDelete } from '../../../services/utils/Api';
 function ElementInfo(props) {
 
   const [Modal, setModal] = useState(false);
+  const [asigned, setAsigned] = useState(props.assignedUser)
+  const [asignedName, setAsignedName] = useState(asigned.split(' ■ '));
 
   const handleDelete = () => {
       Alertify.confirm('Eliminar tipo de equipo', '¿Esta seguro de elimar este tipo de equipo?',
@@ -31,7 +33,7 @@ function ElementInfo(props) {
   }
 
   var status_icon = "";
-  props.state == "asignado" ? status_icon = "asiggned_info" : status_icon = "avalible_info";
+  props.state == "Asignado" ? status_icon = "asiggned_info" : status_icon = "avalible_info";
 
   return(
     <div class="Modal-template">
@@ -49,8 +51,12 @@ function ElementInfo(props) {
       close = {handleCloseModal}
       handlePanelShow = {props.handlePanelShow}
       equipmentFilters = {props.equipmentFilters}
-      /> : null}
-      <div class="exit-row" onClick={props.handlePanelShow}>
+      searchUser = {props.searchUser}
+      users = {props.users}
+      userId = {props.userId}
+      assigned = {props.assignedUser}/>
+       : null}
+      <div class="exit-row" id="exitEquipment" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>
       </div>
       <div class="Modal-box">
@@ -99,20 +105,20 @@ function ElementInfo(props) {
         </div>
         <div class="Status-Info">
           <div class="Status-Info-Elements">
-            <p class="Status-Info-Text"><strong>{props.state}</strong></p>
             <div class="Status-Info-Icon-container">
+              <div class="Status-Info-Text"><p><strong>{props.state}</strong></p></div>
               <div class={status_icon} ></div>
             </div>
           </div>
         </div>
         <div class="Asigned-Person">
           <div class="Asigned-Person-Elements">
-            <a class="person-link">{props.state != "Disponible" ? props.assignedUser : "Sin asignar"}</a>
+            <a class="person-link">{props.state != "Disponible" ? asignedName[0] : "Sin asignar"}</a>
           </div>
         </div>
         <div class="Equipment-menu">
-          <button class="Equipment-menu-Asign" onClick={() => handleCloseModal()}>Editar</button>
-          <button class="Equipment-menu-Delete" onClick={handleDelete}>Eliminar</button>
+          <button class="Equipment-menu-Asign" id="EquipmentAssignButton" onClick={() => handleCloseModal()}>Editar</button>
+          <button class="Equipment-menu-Delete" id="EquipmentDeleteButton" onClick={handleDelete}>Eliminar</button>
         </div>
         </div>
       </div>

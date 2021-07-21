@@ -57,7 +57,8 @@ class SideFilters extends React.Component{
                 imagen = {item.imagen}
                 code = {item._id}
                 index = {index}
-                handleCategory = {this.props.handleCategory}/>
+                handleCategory = {this.props.handleCategory}
+                />
               ))}
             </ul>
         </nav>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import ScannerC from '../../Scanner/ScannerC'
+import SearchUser from './SearchUser';
 import './RegisterElement_modal_form.scss';
 import { RegisterEquipmentApiPost, UpdateEquipmentApiPut } from '../../../../services/utils/Api';
 import default_cat from '../../../../assets/img_cat/default_cat.png';
@@ -14,34 +15,37 @@ const RegisterElement_modal_form = (props) => {
     const [serialNumber, setserialNumber] = useState(props.serialnumber);
     const [mark, setMark] = useState(props.mark);
     const [equipmentdescription, setequipmentdescription] = useState(props.description);
-    const [state, setState] = useState('Disponible');
+    const [state, setState] = useState('Asignado');
     const [model, setModel] = useState(props.model);
     const [campus, setCampus] = useState(props.campus);
     const [status, setStatus] = useState(true);
     const [enviroment, setEnviroment] = useState(props.enviroment);
+    const [idUser, setIdUser] = useState(props.userId);
     const [idTypeEquipment, setIdtypeequipment] = useState(props.code);
 
     const params = [
         idTypeEquipment,
         serialNumber,
-        state,
+        props.userId == "" ? "Disponible" : state,
         equipmentdescription,
         model,
         mark,
         campus,
         status,
-        enviroment
+        enviroment,
+        props.userId
     ];
 
     const editParams = [
         serialNumber,
-        state,
+        props.userId == "" ? "Disponible" : state,
         equipmentdescription,
         model,
         mark,
         campus,
         status,
-        enviroment
+        enviroment,
+        props.userId
     ];
 
     const handleSubmit = async (e) => {
@@ -134,6 +138,12 @@ const RegisterElement_modal_form = (props) => {
                         <label htmlFor="modal_form_cat_img_text">{props.category}</label>
                         <img id="modal_preview_img" src={props.image} alt="img categoria" />
                     </div>
+                    <div className="assignedSearch">
+                      <SearchUser
+                      searchUser = {props.searchUser}
+                      users = {props.users}
+                      assigned = {props.assigned}/>
+                    </div>
                 </div>
                 <div id="second_part">
                     <div id="modal_serialNumber_info" className="info_container">
@@ -143,7 +153,7 @@ const RegisterElement_modal_form = (props) => {
                             className="modal_input" onChange={(e) => { setserialNumber(e.target.value) }}
                             onFocus={handleFocus} onBlur={handleBlur} value={serialNumber} maxLength="50"
                         />
-                        <spam class="scaner-icon">
+                        <spam class="scaner-icon" id="ScannerEquipment">
                           <i class="fas fa-camera fa-2x scaner-icon-img" onClick={() => handleCamera()}></i>
                         </spam>
                     </div>

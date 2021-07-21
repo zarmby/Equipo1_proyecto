@@ -36,9 +36,6 @@ const App = () => {
         <Route path="/HomePage">
           <MenuPage />
         </Route>
-        <Route path="/InventoryStock">
-          <InventoryStock />
-        </Route>
         <Route path="/InventoryCenter">
           <Carousel />
         </Route>
@@ -70,23 +67,8 @@ const App = () => {
         <Route path="/Login">
           <Login />
         </Route>
-        <Route path="/HomePage">
-          <MenuPage />
-        </Route>
-        <Route path="/InventoryCenter">
-          <Carousel />
-        </Route>
-        <Route path="/user">
-          <User />
-        </Route>
-        <Route path="/Scanner">
-          <ScannerC />
-        </Route>
-        <Route path="/test">
-          <ElementInfo />
-        </Route>
         <Route path="/*">
-          <Login />
+          <MenuPage />
         </Route>
       </Switch>
     )

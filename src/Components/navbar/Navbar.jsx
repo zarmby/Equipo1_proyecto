@@ -60,7 +60,7 @@ const Navbar = forwardRef((props,ref) => {
 
     const handleLogout = ()=>{
         window.localStorage.removeItem("UserLogged");
-        window.location.href = "/";
+        window.location.href = "/Login";
     }
 
     return (
