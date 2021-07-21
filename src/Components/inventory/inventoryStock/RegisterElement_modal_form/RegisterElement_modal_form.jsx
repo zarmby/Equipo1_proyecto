@@ -15,25 +15,25 @@ const RegisterElement_modal_form = (props) => {
     const [serialNumber, setserialNumber] = useState(props.serialnumber);
     const [mark, setMark] = useState(props.mark);
     const [equipmentdescription, setequipmentdescription] = useState(props.description);
-    const [state, setState] = useState('Disponible');
+    const [state, setState] = useState('Asignado');
     const [model, setModel] = useState(props.model);
     const [campus, setCampus] = useState(props.campus);
     const [status, setStatus] = useState(true);
     const [enviroment, setEnviroment] = useState(props.enviroment);
-    const [iDuser, setIDuser] = useState("");
+    const [idUser, setIdUser] = useState(props.userId);
     const [idTypeEquipment, setIdtypeequipment] = useState(props.code);
 
     const params = [
         idTypeEquipment,
         serialNumber,
-        state,
+        props.userId == "" ? "Disponible" : state,
         equipmentdescription,
         model,
         mark,
         campus,
         status,
         enviroment,
-        iDuser
+        props.userId
     ];
 
     const editParams = [
@@ -122,10 +122,6 @@ const RegisterElement_modal_form = (props) => {
 
    const handleCamera = () => {
      setCamera(!camera)
-   }
-
-   const handleAssigned = (idUser) => {
-     setIDuser(idUser)
    }
 
    return (

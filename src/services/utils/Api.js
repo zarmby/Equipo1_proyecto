@@ -146,18 +146,33 @@ export const RegisterTypeEquipmentFiltersApiPost = async (path, params = null, i
 export const RegisterEquipmentApiPost = async (path, params = null) => {
     const url = BACK_API + path;
 
-    let data = {
-        IDtypeequipment: params[0],
-        serialnumber: params[1],
-        state: params[2],
-        equipmentdescription: params[3],
-        model: params[4],
-        mark: params[5],
-        IDcampus: params[6],
-        status: params[7],
-        enviroment: params[8],
-        IDuser: params[9]
+    if (params[9] == ""){
+      var data = {
+          IDtypeequipment: params[0],
+          serialnumber: params[1],
+          state: params[2],
+          equipmentdescription: params[3],
+          model: params[4],
+          mark: params[5],
+          IDcampus: params[6],
+          status: params[7],
+          enviroment: params[8]
+      }
+    } else {
+      var data = {
+          IDtypeequipment: params[0],
+          serialnumber: params[1],
+          state: params[2],
+          equipmentdescription: params[3],
+          model: params[4],
+          mark: params[5],
+          IDcampus: params[6],
+          status: params[7],
+          enviroment: params[8],
+          IDuser: params[9]
+      }
     }
+
     let response = await fetch(
         url,
         {

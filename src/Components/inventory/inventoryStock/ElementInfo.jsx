@@ -31,7 +31,7 @@ function ElementInfo(props) {
   }
 
   var status_icon = "";
-  props.state == "asignado" ? status_icon = "asiggned_info" : status_icon = "avalible_info";
+  props.state == "Asignado" ? status_icon = "asiggned_info" : status_icon = "avalible_info";
 
   return(
     <div class="Modal-template">

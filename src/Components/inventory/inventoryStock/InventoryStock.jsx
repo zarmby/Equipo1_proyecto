@@ -87,6 +87,7 @@ class InventoryStock extends React.Component {
 
   handleCloseModal = () => {
     this.setState({ Modal: !this.state.Modal });
+    this.setState({ userId: ""});
   }
 
   handlecloseFilters= () => {
@@ -96,7 +97,7 @@ class InventoryStock extends React.Component {
   handleCategory = async (typeEquipment,imgURL,code) =>{
     this.handlecloseFilters();
     this.setState({ Loading : true});
-    this.setState({ Existences : false });
+    this.setState({ Existences : true });
     this.setState({ Equipments : []});
     this.setState({ Image : imgURL});
     this.setState({ typeCategory : typeEquipment});
@@ -151,7 +152,7 @@ class InventoryStock extends React.Component {
           Alertify.error("Usuario no encontrado");
   }
 
-  getIdUser(user){
+  async getIdUser(user){
       this.setState({loading:true});
       let aux = user.split(' ■ ');
       this.state.usersRecived.forEach(e=>{
@@ -159,6 +160,18 @@ class InventoryStock extends React.Component {
               this.setState({userId : e._id});
           }
       })
+  }
+
+  async getUserSearched(id){
+      try {
+          let res = await UserApiGet(id);
+          let usrRecived = res.result.cont.name;
+          console.log(res);
+          this.setState({userSearched:usrRecived});
+      }
+      catch (e) {
+          Alertify.error(`<b style='color:white;'>${e}</b>`);
+      }
   }
 
   render() {
@@ -204,6 +217,7 @@ class InventoryStock extends React.Component {
             codeEquipment = {this.state.CodeEquipment}
             handleCategory = {this.handleCategory}
             campus = {this.state.Campus}
+            userId = {this.state.userId}
             equipmentFilters = {this.state.EquipmentFilters}
             searchUser = {this.handleUserSearched}
             users = {this.state.users}/> : null}

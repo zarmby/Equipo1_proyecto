@@ -33,7 +33,8 @@ const RegisterEquipment = ((props,ref) => {
             campus = {props.campus}
             equipmentFilters ={props.equipmentFilters}
             searchUser = {props.searchUser}
-            users = {props.users}/>
+            users = {props.users}
+            userId = {props.userId}/>
         </div>
     </div>
   )

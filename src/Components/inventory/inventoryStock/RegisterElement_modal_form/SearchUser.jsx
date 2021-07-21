@@ -18,12 +18,11 @@ const SearchUser = (props) => {
     const handleBlur = (e) => {
         input_search_container.current.className = "info_containerR";
         setFocusInput(false);
-
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        props.searchUser(userSearched);
+    const handleSelect = (item) => {
+      setUserSearched(item);
+      props.searchUser(item);
     }
 
     const onChangeUserSearch = (e) => {
@@ -32,7 +31,7 @@ const SearchUser = (props) => {
 
     return (
       <div id="search_user_containerR">
-          <form id="user_form" onSubmit={handleSubmit} autoComplete="off">
+          <form id="user_form" autoComplete="off">
               <div ref={input_search_container} id="user_search" className="info_containerR">
                   <label htmlFor="user_search_input">Asignado</label>
                   <input
@@ -48,7 +47,7 @@ const SearchUser = (props) => {
                                   {
                                       props.users.map((item, index) => (
                                           (item.toLowerCase().includes(userSearched.toLowerCase()))
-                                          ? <li key={index} onClick={()=>setUserSearched(item)}>{item}</li>
+                                          ? <li key={index} onClick={()=>handleSelect(item)}>{item}</li>
                                           : null//<p>{ul_result.current.clientWidth}</p>
                                       ))
                                   }
