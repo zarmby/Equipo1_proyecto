@@ -38,7 +38,7 @@ function MenuPage() {
           <div className="option"  onMouseEnter={() => setImg2State(usuarioR)} onMouseLeave={() => setImg2State(usuarioA)}>
             <div className="icon"><img className="material-icons md-18" src = {img2State} alt="Usuario"></img></div>
               <p className="title">Reportes y Notificaciones</p>
-              <p className="text">Descripcion del modulo</p>
+              <p className="text">Administra usuarios y mira la lista de los equipos asignados</p>
             </div>
         </Link>
       </div>}
