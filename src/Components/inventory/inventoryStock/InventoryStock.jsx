@@ -40,6 +40,7 @@ class InventoryStock extends React.Component {
       userSearched :[]
     };
     this.handleUserSearched = this.handleUserSearched.bind(this);
+    this.child_navbar = React.createRef();
   }
 
 
@@ -186,75 +187,79 @@ class InventoryStock extends React.Component {
   render() {
     return (
       <div className="inv-cont" onClick={this.props.CloseMenu}>
-        {this.state.Loading ? <Loading/> : null}
-        {this.state.closeFilters ?
-          <SideFilter
-          handleCategory={this.handleCategory}
-          close={this.handleCloseModal}
-          typeCategory = {this.state.typeCategory}
-          /> : null}
-          {this.state.Existences == false ?
-            <div class="nothing-msg">
-              <p>No hay ningun equipo de tipo (<b>{this.state.typeCategory}</b>{") en este momento."}</p>
-            </div> : null
-          }
-        {this.state.Panel ?
-          <ElementInfo handlePanelShow = {this.handlePanelShow}
-          serialnumber = {this.state.SerialNumber}
-          mark = {this.state.Mark}
-          model = {this.state.Model}
-          enviroment = {this.state.Enviroment}
-          description = {this.state.Description}
-          state = {this.state.State}
-          campus = {this.state.CampusName}
-          assignedUser = {this.state.AssignedUser}
-          idEquipment = {this.state.idEquipment}
-          handleCategory = {this.handleCategory}
-          image = {this.state.Image}
-          category = {this.state.typeCategory}
-          code = {this.state.codeCategory}
-          handleCloseModal = {this.handleCloseModal}
-          equipmentFilters = {this.state.EquipmentFilters}
-          searchUser = {this.handleUserSearched}
-          users = {this.state.users}
-          userId = {this.state.userId}/> : null}
-          /> : null}
-          {this.state.Modal == true ?
-            <RegisterEquipment
-            close={this.handleCloseModal}
-            image = {this.state.Image}
-            category = {this.state.typeCategory}
-            code = {this.state.codeCategory}
-            codeEquipment = {this.state.CodeEquipment}
-            handleCategory = {this.handleCategory}
-            campus = {this.state.Campus}
-            userId = {this.state.userId}
-            equipmentFilters = {this.state.EquipmentFilters}
-            searchUser = {this.handleUserSearched}
-            users = {this.state.users}
-            assigned = ""/> : null}
-        <div className="Filters">
-        </div>
-        <div className="cont-list">
-          <div className="grid">
-            {this.state.Equipments.map((item, index) => (
-              <SingleElement
-              status = {item.state}
-              serialnumber = {item.serialnumber}
-              mark = {item.mark}
-              model = {item.model}
-              enviroment = {item.enviroment}
-              description = {item.equipmentdescription}
-              state = {item.state}
-              campus = {item.campusname}
-              assignedUser = {item.username + " " + item.lastname + " ■ " + item.account}
-              idEquipment = {item._id}
+        {this.state.Loading ? <Loading/> 
+        :
+          <div>
+            {this.state.closeFilters ?
+              <SideFilter
+              handleCategory={this.handleCategory}
+              close={this.handleCloseModal}
+              typeCategory = {this.state.typeCategory}
+              /> : null}
+              {this.state.Existences == false ?
+                <div class="nothing-msg">
+                  <p>No hay ningun equipo de tipo (<b>{this.state.typeCategory}</b>{") en este momento."}</p>
+                </div> : null
+              }
+            {this.state.Panel ?
+              <ElementInfo handlePanelShow = {this.handlePanelShow}
+              serialnumber = {this.state.SerialNumber}
+              mark = {this.state.Mark}
+              model = {this.state.Model}
+              enviroment = {this.state.Enviroment}
+              description = {this.state.Description}
+              state = {this.state.State}
+              campus = {this.state.CampusName}
+              assignedUser = {this.state.AssignedUser}
+              idEquipment = {this.state.idEquipment}
+              handleCategory = {this.handleCategory}
               image = {this.state.Image}
-              id = {index}
-              handlePanelShow = {this.handlePanelShow}/>
-            ))}
+              category = {this.state.typeCategory}
+              code = {this.state.codeCategory}
+              handleCloseModal = {this.handleCloseModal}
+              equipmentFilters = {this.state.EquipmentFilters}
+              searchUser = {this.handleUserSearched}
+              users = {this.state.users}
+              userId = {this.state.userId}/> : null}
+              /> : null}
+              {this.state.Modal == true ?
+                <RegisterEquipment
+                close={this.handleCloseModal}
+                image = {this.state.Image}
+                category = {this.state.typeCategory}
+                code = {this.state.codeCategory}
+                codeEquipment = {this.state.CodeEquipment}
+                handleCategory = {this.handleCategory}
+                campus = {this.state.Campus}
+                userId = {this.state.userId}
+                equipmentFilters = {this.state.EquipmentFilters}
+                searchUser = {this.handleUserSearched}
+                users = {this.state.users}
+                assigned = ""/> : null}
+            <div className="Filters">
+            </div>
+            <div className="cont-list">
+              <div className="grid">
+                {this.state.Equipments.map((item, index) => (
+                  <SingleElement
+                  status = {item.state}
+                  serialnumber = {item.serialnumber}
+                  mark = {item.mark}
+                  model = {item.model}
+                  enviroment = {item.enviroment}
+                  description = {item.equipmentdescription}
+                  state = {item.state}
+                  campus = {item.campusname}
+                  assignedUser = {item.username + " " + item.lastname + " ■ " + item.account}
+                  idEquipment = {item._id}
+                  image = {this.state.Image}
+                  id = {index}
+                  handlePanelShow = {this.handlePanelShow}/>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        }
       </div>
     );
   }

@@ -9,15 +9,18 @@ const Navbar = forwardRef((props,ref) => {
     const [openMenu, setOpenMenu] = useState(false);
     const buttonMenu = useRef();
     const sidenMenu = useRef();
+    const navBar = useRef();
     
     useImperativeHandle(ref, () => ({
-        closeSideMenuNabvar(){
-            setOpenMenu(false);
-            let url_imagen = logoMenu;
-            let side_height = '0';
-            buttonMenu.current.style.backgroundImage = 'url(' + url_imagen + ')';
-            sidenMenu.current.style.height = side_height + '%';
-            sidenMenu.current.style.overflow = 'hidden';
+        closeSideMenuNabvar(){let width_container  = navBar.current.clientWidth;
+            if(width_container <= 520){
+                setOpenMenu(false);
+                let url_imagen = logoMenu;
+                let side_height = '0';
+                buttonMenu.current.style.backgroundImage = 'url(' + url_imagen + ')';
+                sidenMenu.current.style.height = side_height + '%';
+                sidenMenu.current.style.overflow = 'hidden';
+            }
         }
 
     }));
@@ -32,20 +35,23 @@ const Navbar = forwardRef((props,ref) => {
     }
 
     const handleBlurSideMenu = (e)=>{
-        if(
-            e.target.id!=="navbar_menu" & 
-            e.target.id!=="navbar_user" & 
-            e.target.id!=="navbar_menu_btn"&
-            e.target.id!=="navbar_user_btn"&
-            e.target.id!=="navbar_icono_menu"
+        let width_container  = navBar.current.clientWidth;
+        if(width_container <= 520){
+            if(
+                e.target.id!=="navbar_menu" & 
+                e.target.id!=="navbar_user" & 
+                e.target.id!=="navbar_menu_btn"&
+                e.target.id!=="navbar_user_btn"&
+                e.target.id!=="navbar_icono_menu"
 
-            ){
-            setOpenMenu(false);
-            let url_imagen = logoMenu;
-            let side_height = '0';
-            buttonMenu.current.style.backgroundImage = 'url(' + url_imagen + ')';
-            sidenMenu.current.style.height = side_height + '%';
-            sidenMenu.current.style.overflow = 'hidden';
+                ){
+                setOpenMenu(false);
+                let url_imagen = logoMenu;
+                let side_height = '0';
+                buttonMenu.current.style.backgroundImage = 'url(' + url_imagen + ')';
+                sidenMenu.current.style.height = side_height + '%';
+                sidenMenu.current.style.overflow = 'hidden';
+            }
         }
     }
 
@@ -64,7 +70,7 @@ const Navbar = forwardRef((props,ref) => {
     }
 
     return (
-        <nav id="navbar_principal" onClick={(e) => handleBlurSideMenu(e)}>
+        <nav id="navbar_principal" ref={navBar} onClick={(e) => handleBlurSideMenu(e)}>
             <img id="navbar_logo" src={logo} alt="Logo Arkus" />
             <input type="button" id="navbar_icono_menu" 
             ref={buttonMenu} onClick={handleOpenSideMenu} />
