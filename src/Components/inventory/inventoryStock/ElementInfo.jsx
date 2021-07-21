@@ -7,6 +7,8 @@ import { DeleteEquipmentApiDelete } from '../../../services/utils/Api';
 function ElementInfo(props) {
 
   const [Modal, setModal] = useState(false);
+  const [asigned, setAsigned] = useState(props.assignedUser)
+  const [asignedName, setAsignedName] = useState(asigned.split(' ■ '));
 
   const handleDelete = () => {
       Alertify.confirm('Eliminar tipo de equipo', '¿Esta seguro de elimar este tipo de equipo?',
@@ -111,7 +113,7 @@ function ElementInfo(props) {
         </div>
         <div class="Asigned-Person">
           <div class="Asigned-Person-Elements">
-            <a class="person-link">{props.state != "Disponible" ? props.assignedUser : "Sin asignar"}</a>
+            <a class="person-link">{props.state != "Disponible" ? asignedName[0] : "Sin asignar"}</a>
           </div>
         </div>
         <div class="Equipment-menu">

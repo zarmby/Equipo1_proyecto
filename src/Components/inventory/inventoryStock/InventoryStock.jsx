@@ -65,6 +65,14 @@ class InventoryStock extends React.Component {
     catch (e) {
       console.log(e);
     }
+    try{
+      let res = await FiltersApiGet(this.state.codeCategory);
+      let filters = res.result.cont.name[0];
+      this.setState({ EquipmentFilters: filters});
+    }
+    catch (e) {
+      console.log(e);
+    }
     this.getUsers().then(()=>{
         this.setState({loading:false});
     });
@@ -224,7 +232,8 @@ class InventoryStock extends React.Component {
             userId = {this.state.userId}
             equipmentFilters = {this.state.EquipmentFilters}
             searchUser = {this.handleUserSearched}
-            users = {this.state.users}/> : null}
+            users = {this.state.users}
+            assigned = ""/> : null}
         <div className="Filters">
         </div>
         <div className="cont-list">
@@ -239,7 +248,7 @@ class InventoryStock extends React.Component {
               description = {item.equipmentdescription}
               state = {item.state}
               campus = {item.campusname}
-              assignedUser = {item.username + " " + item.lastname}
+              assignedUser = {item.username + " " + item.lastname + " ■ " + item.account}
               idEquipment = {item._id}
               image = {this.state.Image}
               id = {index}

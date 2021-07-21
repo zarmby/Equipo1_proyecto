@@ -1,4 +1,5 @@
 const BACK_API = "https://arkus-inventory.herokuapp.com/api/";
+const EMPTY_USER ="60f834a631497ba4d5a6e40c";
 
 export const LoginApiPost = async (path, params = null) => {
     const url = BACK_API + path;
@@ -392,7 +393,8 @@ export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
           mark: params[4],
           IDcampus: params[5],
           status: params[6],
-          enviroment: params[7]
+          enviroment: params[7],
+          IDuser: EMPTY_USER
         }
     } else {
       var data = {
