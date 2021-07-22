@@ -20,8 +20,8 @@ class User extends React.Component{
             userId : "",
             userSearched :[],
             modal : false
-            
-        }       
+
+        }
         this.handleUserSearched = this.handleUserSearched.bind(this);
         this.getIdUser = this.getIdUser.bind(this);
         this.getUserSearched = this.getUserSearched.bind(this);
@@ -100,10 +100,10 @@ class User extends React.Component{
 
     render(){
         return(
-            <div id="user_container">                
+            <div id="user_container">
                 <Navbar ref={this.child_navbar}/>
-                {(this.state.loading) ? <Loading /> 
-                : 
+                {(this.state.loading) ? <Loading />
+                :
                     <div id="user_search_contain" onClick={this.child_navbar.current.closeSideMenuNabvar}>
                         <h1>Informacion de usuario</h1>
                         <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} />
@@ -122,10 +122,10 @@ class User extends React.Component{
                                         <h2>{this.state.userSearched.username} {this.state.userSearched.lastname}</h2>
                                         <p><b>Cuenta:</b><br /> {this.state.userSearched.account}</p>
                                         <p><b>Correo electronico:</b><br /> {this.state.userSearched.email}</p>
-                                        <p><b>Campus:</b><br /> {this.state.userSearched.IDcampus}</p>
+                                        <p><b>Campus:</b><br /> {this.state.userSearched.campusname}</p>
                                         <p><b>Telefono:</b><br /> {this.state.userSearched.phonenumber}</p>
                                         <p><b>Perfil del usuario:</b><br /> {this.state.userSearched.userprofile}</p>
-                                        <p><b>Rol:</b><br /> {this.state.userSearched.IDrole}</p>
+                                        <p><b>Rol:</b><br /> {this.state.userSearched.rolename}</p>
                                     </div>
                                     <div id="user_equip_container">
                                         <h2>Equipos</h2>
@@ -167,7 +167,7 @@ class User extends React.Component{
                         }
                     </div>
                 }
-                
+
                 {(this.state.modal) ? <UserModal close={this.handleCloseModal} loading={this.setLoading} /> : null}
 
             </div>
