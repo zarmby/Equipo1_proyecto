@@ -55,7 +55,7 @@ export const RegisterUserApiPost = async (path, params = null) => {
         email: params[2],
         phonenumber: params[3],
         userprofile: 'dev',
-        IDrole: "60d359daaf6db9078415f90d",
+        IDrole: "60f8dfa496f4eb00156a8356",
         account: params[2].split('@')[0],
         password: params[4],
         confirmPass: params[5]
@@ -430,4 +430,3 @@ export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
         throw new Error(err.msg);
     }
 }
-
