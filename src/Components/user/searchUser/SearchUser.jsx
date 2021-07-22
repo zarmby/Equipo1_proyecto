@@ -1,5 +1,4 @@
-import React from 'react';
-import { useRef, useState} from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './SearchUser.scss';
 
 const SearchUser = (props) => {
@@ -7,8 +6,13 @@ const SearchUser = (props) => {
     const input_search_container = useRef();
     const input_search = useRef();
     const ul_result = useRef();
+    const [users, setUsers] = useState([]);
     const [userSearched, setUserSearched] = useState("");
     const [focusInput, setFocusInput] = useState(false);
+
+    useEffect(()=>{
+        setUsers(props.users.sort());
+    },[]);
 
     const handleFocus = (e) => {
         input_search_container.current.className = "info_container input_focus";
@@ -22,7 +26,13 @@ const SearchUser = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.searchUser(userSearched);
+        let us = userSearched;
+        if(ul_result.current)
+            if(ul_result.current.hasChildNodes())
+                us = ul_result.current.firstChild.innerHTML;
+
+        setUserSearched(us);
+        props.searchUser(us);
     }
 
     const onChangeUserSearch = (e) => {
@@ -46,10 +56,22 @@ const SearchUser = (props) => {
                             //(focusInput)?
                                 <ul ref={ul_result}>   
                                     {
-                                        props.users.map((item, index) => (
+                                        /*users.map((item, index) => (
                                             (item.toLowerCase().includes(userSearched.toLowerCase()))
                                             ? <li key={index} onClick={()=>setUserSearched(item)}>{item}</li>
                                             : null//<p>{ul_result.current.clientWidth}</p>
+                                        ))*/
+                                        /*(users.length>0)
+                                            ?
+                                                users.map((item, index) => (
+                                                    <li key={index} onClick={()=>setUserSearched(item)}>{item}</li>
+                                                ))
+                                            :
+                                                <li>nada</li>*/
+                                        users.map((item, index) => (
+                                            (item.toLowerCase().includes(userSearched.toLowerCase()))
+                                            ? <li key={index} onClick={()=>setUserSearched(item)}>{item}</li>
+                                            : null
                                         ))
                                     }
                                 </ul>

@@ -147,7 +147,7 @@ export const RegisterTypeEquipmentFiltersApiPost = async (path, params = null, i
 export const RegisterEquipmentApiPost = async (path, params = null) => {
     const url = BACK_API + path;
 
-    if (params[9] == ""){
+    if (params[9] === ""){
       var data = {
           IDtypeequipment: params[0],
           serialnumber: params[1],
@@ -384,7 +384,7 @@ export const UpdateEquipmentFiltersApiPut = async (path, params = null, id=null)
 export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
     const url = BACK_API + path + "?idEquipment=" + id;
 
-    if (params[8] == ""){
+    if (params[8] === ""){
       var data = {
           serialnumber: params[0],
           state: params[1],
