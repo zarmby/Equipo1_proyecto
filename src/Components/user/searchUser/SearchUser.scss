@@ -115,6 +115,8 @@
 
 @media only screen and (max-width: 520px) {
     #search_user_container{  
+        width: 100% !important;  
+        margin-left: 0 !important; 
         .info_container{
             grid-template-columns: 85% 15%;
             label{

@@ -63,7 +63,7 @@ class User extends React.Component{
             })
         }
         else
-            Alertify.error("Usuario no encontrado");
+            Alertify.error("<b style='color:white;'>Usuario no encontrado</b>");
     }
 
     async getIdUser(user){
@@ -129,34 +129,38 @@ class User extends React.Component{
                                     </div>
                                     <div id="user_equip_container">
                                         <h2>Equipos</h2>
-                                        <table id="table_equip_user" border="1">
-                                            <thead>
-                                                <tr>
-                                                    <th>&nbsp;</th>
-                                                    <th>Descripción</th>
-                                                    <th>Asignadado por</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div id="table_contain">
+                                            <table id="table_equip_user" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>&nbsp;</th>
+                                                        <th>Descripción</th>
+                                                        <th>Asignadado por</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
+                                    <div>                                            
+                                        <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
+                                    </div>
                                 </div>
                             :
                                 <label htmlFor="user_search_input">
