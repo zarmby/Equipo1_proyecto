@@ -68,7 +68,7 @@ const App = () => {
           <Login />
         </Route>
         <Route path="/*">
-          <MenuPage />
+          <Login />
         </Route>
       </Switch>
     )
