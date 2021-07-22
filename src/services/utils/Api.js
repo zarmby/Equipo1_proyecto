@@ -311,7 +311,7 @@ export const UsersApiGet = async (path) => {
 }
 
 export const UserApiGet = async (params=null) =>{
-    const url = BACK_API + "user/?idUser=" + params;
+    const url = BACK_API + "user/infoUser/?email=" + params;
     let response = await fetch(url);
     if (response.ok || response.status === 400)
         return {

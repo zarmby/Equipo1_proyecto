@@ -39,7 +39,7 @@ class User extends React.Component{
 
     async getUsers() {
         try {
-            let res = await UsersApiGet("user/userName");
+            let res = await UsersApiGet("user");
             let usrRecived = res.result.cont.user;
             this.setState({usersRecived:usrRecived});
             let usrAux = [];
@@ -71,15 +71,15 @@ class User extends React.Component{
         let aux = user.split(' ■ ');
         this.state.usersRecived.forEach(e=>{
             if(e.account === aux[1]){
-                this.setState({userId : e._id});
+                this.setState({userId : e.email});
             }
         })
     }
 
-    async getUserSearched(id){
+    async getUserSearched(email){
         try {
-            let res = await UserApiGet(id);
-            let usrRecived = res.result.cont.name;
+            let res = await UserApiGet(email);
+            let usrRecived = res.result.cont.name[0];
             console.log(res);
             this.setState({userSearched:usrRecived});
         }
