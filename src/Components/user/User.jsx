@@ -4,7 +4,7 @@ import Navbar from '../navbar/Navbar';
 import SearchUser from './searchUser/SearchUser';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import {UsersApiGet, UserApiGet} from '../../services/utils/Api';
+import {UsersApiGet, UserApiGet, UserEquipsApiGet } from '../../services/utils/Api';
 import Loading from '../loading/Loading';
 import search_user_icon_default from '../../assets/img/user_search_default.png';
 import edit from '../../assets/img/edit.png';
@@ -17,14 +17,16 @@ class User extends React.Component{
         this.state = {
             loading : true,
             users : [],
-            userId : "",
+            userEmail : "",
             userSearched :[],
+            userEquips :[],
             modal : false
 
         }
         this.handleUserSearched = this.handleUserSearched.bind(this);
-        this.getIdUser = this.getIdUser.bind(this);
+        this.getEmailUser = this.getEmailUser.bind(this);
         this.getUserSearched = this.getUserSearched.bind(this);
+        this.getUserSearchedEquips = this.getUserSearchedEquips.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.setLoading = this.setLoading.bind(this);
@@ -56,32 +58,46 @@ class User extends React.Component{
 
     handleUserSearched(user){
         if(this.state.users.includes(user)){
-            this.getIdUser(user).then(()=>{
-                this.getUserSearched(this.state.userId).then(()=>{
-                    this.setState({loading:false});
-                })
-            })
+            this.getEmailUser(user).then(()=>{
+                this.getUserSearched(this.state.userEmail).then(()=>{
+                    this.getUserSearchedEquips(this.state.userEmail).then(()=>{
+                        this.setState({loading:false});
+                    });
+                });
+            });
         }
         else
             Alertify.error("<b style='color:white;'>Usuario no encontrado</b>");
     }
 
-    async getIdUser(user){
+
+    async getEmailUser(user){
         this.setState({loading:true});
         let aux = user.split(' ■ ');
         this.state.usersRecived.forEach(e=>{
             if(e.account === aux[1]){
-                this.setState({userId : e._id});
+                this.setState({userEmail : e.email});
             }
         })
     }
 
-    async getUserSearched(id){
+    async getUserSearched(email){
         try {
-            let res = await UserApiGet(id);
-            let usrRecived = res.result.cont.name;
-            console.log(res);
+            let res = await UserApiGet(email);
+            let usrRecived = res.result.cont.name[0];
             this.setState({userSearched:usrRecived});
+        }
+        catch (e) {
+            Alertify.error(`<b style='color:white;'>${e}</b>`);
+        }
+    }
+
+    async getUserSearchedEquips(email){
+        try {
+            let res = await UserEquipsApiGet(email);
+            let equipsRecived = res.result.cont.name;
+            console.log(equipsRecived);
+            this.setState({userEquips:equipsRecived});
         }
         catch (e) {
             Alertify.error(`<b style='color:white;'>${e}</b>`);
@@ -108,7 +124,7 @@ class User extends React.Component{
                         <h1>Informacion de usuario</h1>
                         <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} />
                         {
-                            (this.state.userId!=="")
+                            (this.state.userEmail!=="")
                             ?
                                 <div id="user_contain">
                                     <div id="user_info_container">
@@ -122,7 +138,7 @@ class User extends React.Component{
                                         <h2>{this.state.userSearched.username} {this.state.userSearched.lastname}</h2>
                                         <p><b>Cuenta:</b><br /> {this.state.userSearched.account}</p>
                                         <p><b>Correo electronico:</b><br /> {this.state.userSearched.email}</p>
-                                        <p><b>Campus:</b><br /> {this.state.userSearched.campusname}</p>
+                                        <p><b>Sede:</b><br /> {this.state.userSearched.campusname}</p>
                                         <p><b>Telefono:</b><br /> {this.state.userSearched.phonenumber}</p>
                                         <p><b>Perfil del usuario:</b><br /> {this.state.userSearched.userprofile}</p>
                                         <p><b>Rol:</b><br /> {this.state.userSearched.rolename}</p>
@@ -139,21 +155,15 @@ class User extends React.Component{
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
+                                                    {
+                                                        this.state.userEquips.map((item, index) => (
+                                                            <tr key={index}>
+                                                                <td><img src={item.imagen} alt="imagen" /></td>
+                                                                <td>{item.tename}-{item.equipmentdescription}</td>
+                                                                <td>{item.serialnumber}</td>
+                                                            </tr>
+                                                        ))
+                                                    }
                                                 </tbody>
                                             </table>
                                         </div>
