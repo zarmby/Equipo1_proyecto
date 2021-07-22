@@ -444,3 +444,31 @@ export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
         throw new Error(err.msg);
     }
 }
+
+export const GenerateEmail = async (path,email,ITemail,ITname) => {
+    const url = BACK_API + path + "?email=" + email;
+
+    let data = {
+        ITemail: ITemail,
+        ITname: ITname
+    }
+    let response = await fetch(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if (response.status !== 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else {
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}

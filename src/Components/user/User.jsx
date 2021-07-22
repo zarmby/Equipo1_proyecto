@@ -4,7 +4,7 @@ import Navbar from '../navbar/Navbar';
 import SearchUser from './searchUser/SearchUser';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import {UsersApiGet, UserApiGet, UserEquipsApiGet } from '../../services/utils/Api';
+import {UsersApiGet, UserApiGet, GenerateEmail, UserEquipsApiGet } from '../../services/utils/Api';
 import Loading from '../loading/Loading';
 import search_user_icon_default from '../../assets/img/user_search_default.png';
 import edit from '../../assets/img/edit.png';
@@ -21,7 +21,6 @@ class User extends React.Component{
             userSearched :[],
             userEquips :[],
             modal : false
-
         }
         this.handleUserSearched = this.handleUserSearched.bind(this);
         this.getEmailUser = this.getEmailUser.bind(this);
@@ -41,7 +40,7 @@ class User extends React.Component{
 
     async getUsers() {
         try {
-            let res = await UsersApiGet("user/userName");
+            let res = await UsersApiGet("user");
             let usrRecived = res.result.cont.user;
             this.setState({usersRecived:usrRecived});
             let usrAux = [];
@@ -96,7 +95,6 @@ class User extends React.Component{
         try {
             let res = await UserEquipsApiGet(email);
             let equipsRecived = res.result.cont.name;
-            console.log(equipsRecived);
             this.setState({userEquips:equipsRecived});
         }
         catch (e) {
@@ -112,6 +110,17 @@ class User extends React.Component{
     }
     setLoading(value){
         this.setState({loading: value});
+    }
+
+    async handleSubmit(email,ITemail,ITname) {
+      try {
+          await GenerateEmail("pdf/generateReport",email,ITemail,ITname)
+          Alertify.success("<b style='color:white;'>Se genero la carta correctamente</b>");
+      }
+      catch (e) {
+          Alertify.error(`<b style='color:white;'>Se genero la carta correctameente</b>`);
+          console.log(e);
+      }
     }
 
     render(){
@@ -169,7 +178,7 @@ class User extends React.Component{
                                         </div>
                                     </div>
                                     <div>                                            
-                                        <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
+                                        <input onClick={()=>this.handleSubmit("MurilloR.Carlos@outlook.com","Victor@arkusnexus.com","Victor")} type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
                                     </div>
                                 </div>
                             :
