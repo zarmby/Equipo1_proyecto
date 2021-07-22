@@ -19,7 +19,8 @@ class User extends React.Component{
             users : [],
             userId : "",
             userSearched :[],
-            modal : false
+            modal : false,
+            generate: false
         }
         this.handleUserSearched = this.handleUserSearched.bind(this);
         this.getIdUser = this.getIdUser.bind(this);
@@ -27,6 +28,7 @@ class User extends React.Component{
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.setLoading = this.setLoading.bind(this);
+        this.generateFile = this.generateFile.bind(this);
         this.child_navbar = React.createRef();
     }
 
@@ -97,14 +99,16 @@ class User extends React.Component{
         this.setState({loading: value});
     }
 
-    async handleSubmit(email,ITemail,ITname) {
-      try {
-          await GenerateEmail("pdf/generateReport",email,ITemail,ITname)
-          Alertify.success("<b style='color:white;'>Se genero la carta correctamente</b>");
-      }
-      catch (e) {
-          Alertify.error(`<b style='color:white;'>Se genero la carta correctameente</b>`);
-          console.log(e);
+    async generateFile(email,ITemail,ITname) {
+      if (this.state.generate == true){
+        try {
+            await GenerateEmail("pdf/generateReport",email,ITemail,ITname)
+            Alertify.success("<b style='color:white;'>Se genero la carta correctamente</b>");
+        }
+        catch (e) {
+            Alertify.error(`<b style='color:white;'>${e}</b>`);
+            console.log(e);
+        }
       }
     }
 
@@ -166,7 +170,7 @@ class User extends React.Component{
                                             </tbody>
                                         </table>
                                     </div>
-                                    <input onClick={this.handleSubmit("MurilloR.Carlos@outlook.com","Victor@arkusnexus.com","Victor")} type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
+                                    <input Type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
                                 </div>
                             :
                                 <label htmlFor="user_search_input">

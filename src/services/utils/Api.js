@@ -448,7 +448,7 @@ export const GenerateEmail = async (path,email,ITemail,ITname) => {
             body: JSON.stringify(data)
         }
     )
-    if (response.status !== 400)
+    if (response.status == 400)
         return {
             result: await response.json(),
             status: response.status
