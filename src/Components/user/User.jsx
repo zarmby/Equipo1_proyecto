@@ -34,6 +34,7 @@ class User extends React.Component {
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.setLoading = this.setLoading.bind(this);
         this.generateFile = this.generateFile.bind(this);
+        this.capitalLeter = this.capitalLeter.bind(this);
         this.child_navbar = React.createRef();
         this.input_IT_container = React.createRef();
     }
@@ -140,6 +141,15 @@ class User extends React.Component {
         this.setLoading(false);
     }
 
+    capitalLeter(stringRecived){
+        if(stringRecived !== "" & stringRecived !== undefined){
+            let stringMod = stringRecived.replace(/^\w/, (c) => c.toUpperCase());
+            return stringMod;
+        }
+        else
+            return "";
+    }
+
     render() {
         return (
             <div id="user_container">
@@ -162,19 +172,19 @@ class User extends React.Component {
                                                 id="user_editar"
                                             />
                                         </span>
-                                        <h2>{this.state.userSearched.username.replace(/^\w/, (c) => c.toUpperCase())} {this.state.userSearched.lastname.replace(/^\w/, (c) => c.toUpperCase())}</h2>
-                                        <p><b>Cuenta:</b><br /> {this.state.userSearched.account.replace(/^\w/, (c) => c.toUpperCase())}</p>
-                                        <p><b>Correo electronico:</b><br /> {this.state.userSearched.email}</p>
-                                        <p><b>Sede:</b><br /> {this.state.userSearched.campusname.replace(/^\w/, (c) => c.toUpperCase())}</p>
-                                        <p><b>Telefono:</b><br /> {this.state.userSearched.phonenumber.replace(/^\w/, (c) => c.toUpperCase())}</p>
-                                        <p><b>Perfil del usuario:</b><br /> {this.state.userSearched.userprofile.replace(/^\w/, (c) => c.toUpperCase())}</p>
-                                        <p><b>Rol:</b><br /> {this.state.userSearched.rolename.replace(/^\w/, (c) => c.toUpperCase())}</p>
+                                        <h2>{this.capitalLeter(this.state.userSearched.username)} {this.capitalLeter(this.state.userSearched.lastname)}</h2>
+                                        <p><b>Cuenta:</b><br /> {this.capitalLeter(this.state.userSearched.account)}</p>
+                                        <p><b>Correo electronico:</b><br /> {this.capitalLeter(this.state.userSearched.email)}</p>
+                                        <p><b>Sede:</b><br /> {this.capitalLeter(this.state.userSearched.campusname)}</p>
+                                        <p><b>Telefono:</b><br /> {this.capitalLeter(this.state.userSearched.phonenumber)}</p>
+                                        <p><b>Perfil del usuario:</b><br /> {this.capitalLeter(this.state.userSearched.userprofile)}</p>
+                                        <p><b>Rol:</b><br /> {this.capitalLeter(this.state.userSearched.rolename)}</p>
                                     </div>
                                     <div id="user_equip_container">
                                         <h2>Equipos</h2>
                                         <div id="table_contain">
                                             {
-                                            (this.state.userEquips > 0) 
+                                            (this.state.userEquips.length > 0) 
                                             ?
                                                 <table id="table_equip_user" border="1">
                                                     <thead>
