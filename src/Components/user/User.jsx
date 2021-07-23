@@ -182,7 +182,7 @@ class User extends React.Component{
                                             </table>
                                         </div>
                                     </div>
-                                    <div>                                            
+                                    <div>
                                         <input onClick={()=>this.generateFile("MurilloR.Carlos@outlook.com","Victor@arkusnexus.com","Victor")} type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
                                     </div>
                                 </div>
