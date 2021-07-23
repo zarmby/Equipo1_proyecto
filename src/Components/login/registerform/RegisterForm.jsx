@@ -2,7 +2,7 @@ import { useState, forwardRef, useImperativeHandle } from "react";
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 
-import { RegisterUserApiPost } from '../../../services/utils/Api';
+import { RegisterUserApiPost, LoginApiPost } from '../../../services/utils/Api';
 import './RegisterForm.scss';
 
 const RegisterForm = forwardRef((props,ref) => {
@@ -42,13 +42,27 @@ const RegisterForm = forwardRef((props,ref) => {
       await RegisterUserApiPost("user/", param);
       Alertify.success("<b style='color:white;'>Registro completo</b>");
       cleanInputs();
-      handleCancelRegister();
+      //handleCancelRegister();
+      LoginNewUser(email,pass).then(()=>props.loaded());
     }
     catch (e) {
       Alertify.error(`<b style='color:white;'>${e}</b>`);
       console.log(e.status);
     }
     props.loaded();
+  }
+
+  const LoginNewUser = async (emailRecived,passRecived)=> {
+    try {
+      const res = await LoginApiPost("user/login", [emailRecived, passRecived]);
+      localStorage.setItem("UserLogged", JSON.stringify(res.result));
+      Alertify.success("<b style='color:white;'>Bienvenido</b>");
+      window.location.href = '/HomePage';
+    }
+    catch (err) {
+        Alertify.error(`<b style='color:white;'>${err}</b>`);
+        props.loaded();
+    }
   }
 
   const cleanInputs = () => {

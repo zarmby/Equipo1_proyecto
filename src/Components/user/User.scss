@@ -67,8 +67,7 @@
                 top: 20px;
                 left: 360px;
                 width: calc(100% - 380px);
-                height: calc(100% - 100px);
-                background-color: white;                
+                height: calc(100% - 100px);                
                 #table_contain{
                     overflow-y: scroll;
                     width: 100%;
@@ -120,6 +119,9 @@
                                 height: auto;
                             }
                             border: 1px solid #888;
+                            #no_item{
+                                text-align: center;
+                            }
                         }
                     }
                 }
@@ -142,6 +144,49 @@
                     cursor: pointer;
                     font-weight: bold;
                     background-color: #212B35;
+                }
+            }
+            .info_container{
+                position: absolute;
+                bottom: 20px;
+                right: 220px;
+                width: 250px;
+                height: 35px;
+                border: 2px solid #ced4da;
+                border-radius: 5px; 
+                transition: 0.2s;
+                box-sizing: border-box;
+                overflow: visible;
+            }                        
+            .input_focus{
+                box-shadow: 0 0 2pt 2pt#dd1f259d;
+            }
+            #user_IT_info{
+                label{
+                    position: absolute;
+                    display: block;
+                    background-color: #fff;
+                    font-size: 12px;
+                    color: #555;
+                    padding: 0px 10px;
+                    margin-left: 10px;
+                    top: -10px;
+                    border-radius: 50px;
+                    z-index:2;
+                }   
+                select{
+                    position: relative;
+                    background-color: #fff;
+                    color: #777;
+                    height: 100%;
+                    width: 100%;
+                    border: 1px solid #fff !important;
+                    -webkit-appearance: none;
+                    padding: 0 10px;
+                    &:focus{ outline: none;}
+                    option{
+                      color: #000;
+                    }
                 }
             }
         }
