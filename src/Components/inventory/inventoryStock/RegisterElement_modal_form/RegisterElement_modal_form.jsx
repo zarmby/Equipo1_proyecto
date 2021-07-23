@@ -33,7 +33,8 @@ const RegisterElement_modal_form = (props) => {
         campus,
         status,
         enviroment,
-        props.userId
+        props.userId,
+        props.userAsign
     ];
 
     const editParams = [
@@ -45,7 +46,8 @@ const RegisterElement_modal_form = (props) => {
         campus,
         status,
         enviroment,
-        props.userId
+        props.userId,
+        props.userAsign
     ];
 
     const handleSubmit = async (e) => {
@@ -63,21 +65,21 @@ const RegisterElement_modal_form = (props) => {
         }
       } else {
         e.preventDefault();
-        try {
-            await UpdateEquipmentApiPut("equipments/", editParams, idEquipment);
-            Alertify.success("<b style='color:white;'>Se actualizo el equipo correctamente</b>");
-            props.close(null, true);
-            props.handleCategory(props.category,props.image,props.code)
-            props.handlePanelShow();
+          try {
+              await UpdateEquipmentApiPut("equipments/", editParams, idEquipment);
+              Alertify.success("<b style='color:white;'>Se actualizo el equipo correctamente</b>");
+              props.close(null, true);
+              props.handleCategory(props.category,props.image,props.code)
+              props.handlePanelShow();
+          }
+          catch (e) {
+              Alertify.success(`<b style='color:white;'>Se actualizo el equipo correctamente</b>`);
+              console.log(e);
+              props.close(null, true);
+              props.handleCategory(props.category,props.image,props.code)
+              props.handlePanelShow();
+          }
         }
-        catch (e) {
-            Alertify.success(`<b style='color:white;'>Se actualizo el equipo correctamente</b>`);
-            console.log(e);
-            props.close(null, true);
-            props.handleCategory(props.category,props.image,props.code)
-            props.handlePanelShow();
-        }
-    }
   }
 
     const handleFocus = (e) => {
@@ -124,6 +126,7 @@ const RegisterElement_modal_form = (props) => {
    const handleCamera = () => {
      setCamera(!camera)
    }
+
 
    return (
         <div id="modal_form_container">
