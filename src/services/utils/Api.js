@@ -476,3 +476,31 @@ export const GenerateEmail = async (path,email,ITemail,ITname) => {
         throw new Error(err.msg);
     }
 }
+
+export const SendToRepai = async (path, id=null) => {
+    const url = BACK_API + path + "?idEquipment=" + id;
+
+      var data = {
+          state: "En reparación"
+        }
+
+    let response = await fetch(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if (response.status !== 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else {
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
