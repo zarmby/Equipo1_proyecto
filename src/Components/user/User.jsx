@@ -96,6 +96,7 @@ class User extends React.Component{
         try {
             let res = await UserEquipsApiGet(email);
             let equipsRecived = res.result.cont.name;
+            console.log(equipsRecived);
             this.setState({userEquips:equipsRecived});
         }
         catch (e) {
@@ -114,7 +115,7 @@ class User extends React.Component{
     }
 
     async generateFile(email,ITemail,ITname) {
-      if (this.state.generate == true){
+        this.setLoading(true);
         try {
             await GenerateEmail("pdf/generateReport",email,ITemail,ITname)
             Alertify.success("<b style='color:white;'>Se genero la carta correctamente</b>");
@@ -123,7 +124,7 @@ class User extends React.Component{
             Alertify.error(`<b style='color:white;'>${e}</b>`);
             console.log(e);
         }
-      }
+        this.setLoading(false);
     }
 
     render(){
@@ -133,6 +134,7 @@ class User extends React.Component{
                 {(this.state.loading) ? <Loading />
                 :
                     <div id="user_search_contain" onClick={this.child_navbar.current.closeSideMenuNabvar}>
+                        {(this.state.modal)?<UserModal/>:null}
                         <h1>Informacion de usuario</h1>
                         <SearchUser searchUser = {this.handleUserSearched} users = {this.state.users} />
                         {
@@ -141,7 +143,7 @@ class User extends React.Component{
                                 <div id="user_contain">
                                     <div id="user_info_container">
                                         <span  title="Editar usuario"
-                                            className="user_edit_container">
+                                            className="user_edit_container" onClick={this.handleOpenModal}>
                                             <img src={edit} alt="editar"
                                                 className="user_edit_icon"
                                                 id="user_editar"
@@ -172,7 +174,7 @@ class User extends React.Component{
                                                             <tr key={index}>
                                                                 <td><img src={item.imagen} alt="imagen" /></td>
                                                                 <td>{item.tename}-{item.equipmentdescription}</td>
-                                                                <td>{item.serialnumber}</td>
+                                                                <td>{item.assignedBy}</td>
                                                             </tr>
                                                         ))
                                                     }
@@ -181,7 +183,7 @@ class User extends React.Component{
                                         </div>
                                     </div>
                                     <div>                                            
-                                        <input onClick={()=>this.handleSubmit("MurilloR.Carlos@outlook.com","Victor@arkusnexus.com","Victor")} type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
+                                        <input onClick={()=>this.generateFile("MurilloR.Carlos@outlook.com","Victor@arkusnexus.com","Victor")} type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
                                     </div>
                                 </div>
                             :
