@@ -30,6 +30,7 @@ function ElementInfo(props) {
 
   const handleCloseModal = () => {
     setModal(!Modal);
+    props.searchUser(props.assignedUser);
   }
 
   var status_icon = "";
@@ -54,7 +55,8 @@ function ElementInfo(props) {
       searchUser = {props.searchUser}
       users = {props.users}
       userId = {props.userId}
-      assigned = {props.assignedUser}/>
+      assigned = {props.assignedUser}
+      userAsign = {props.userAsign}/>
        : null}
       <div class="exit-row" id="exitEquipment" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>

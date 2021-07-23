@@ -43,7 +43,7 @@ const App = () => {
           <InventoryStock />
         </Route>
         <Route path="/user">
-          <User />
+          <User/>
         </Route>
         <Route path="/InventoryStock">
           <InventoryStock />

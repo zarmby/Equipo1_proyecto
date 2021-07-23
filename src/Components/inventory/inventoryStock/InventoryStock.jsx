@@ -33,6 +33,7 @@ class InventoryStock extends React.Component {
       typeCategory:"",
       codeCategory:"",
       idEquipment:"",
+      userAsign:"",
       Existences:true,
       Loading: true,
       users : [],
@@ -43,14 +44,14 @@ class InventoryStock extends React.Component {
     this.child_navbar = React.createRef();
   }
 
-
-
   async componentDidMount(){
     let loggedUser = window.localStorage.getItem('UserLogged');
     if(loggedUser){
     let UserLogged = JSON.parse(loggedUser)
       let campusL = UserLogged.IDcampus;
+      let userName = UserLogged.username + " " + UserLogged.lastname;
       this.setState({Campus : campusL});
+      this.setState({userAsign : userName});
     }
     this.setState({Image : this.props.image});
     this.setState({typeCategory : this.props.typeCategory});
@@ -159,12 +160,13 @@ class InventoryStock extends React.Component {
           })
       }
       else
-          Alertify.error("Usuario no encontrado");
+          this.setState({userId : ""});
   }
 
   async getIdUser(user){
       this.setState({loading:true});
       let aux = user.split(' ■ ');
+      this.setState({userId : ""});
       this.state.usersRecived.forEach(e=>{
           if(e.account == aux[1]){
               this.setState({userId : e._id});
@@ -187,7 +189,7 @@ class InventoryStock extends React.Component {
   render() {
     return (
       <div className="inv-cont" onClick={this.props.CloseMenu}>
-        {this.state.Loading ? <Loading/> 
+        {this.state.Loading ? <Loading/>
         :
           <div>
             {this.state.closeFilters ?
@@ -220,7 +222,8 @@ class InventoryStock extends React.Component {
               equipmentFilters = {this.state.EquipmentFilters}
               searchUser = {this.handleUserSearched}
               users = {this.state.users}
-              userId = {this.state.userId}/> : null}
+              userId = {this.state.userId}
+              userAsign = {this.state.userAsign}/> : null}
               /> : null}
               {this.state.Modal == true ?
                 <RegisterEquipment
@@ -235,7 +238,8 @@ class InventoryStock extends React.Component {
                 equipmentFilters = {this.state.EquipmentFilters}
                 searchUser = {this.handleUserSearched}
                 users = {this.state.users}
-                assigned = ""/> : null}
+                assigned = ""
+                userAsign = {this.state.userAsign}/> : null}
             <div className="Filters">
             </div>
             <div className="cont-list">

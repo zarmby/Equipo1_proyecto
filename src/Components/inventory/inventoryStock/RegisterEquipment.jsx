@@ -3,6 +3,8 @@ import RegisterElement_modal_form from './RegisterElement_modal_form/RegisterEle
 
 const RegisterEquipment = ((props,ref) => {
 
+
+
   const handleCloseModal = (object = null, add = false) => {
       if(object === null){
           props.close(add);
@@ -12,6 +14,8 @@ const RegisterEquipment = ((props,ref) => {
               props.close(add);
       }
   }
+
+
 
   return (
     <div id="RegisterEquipment_modal_contain">
@@ -35,7 +39,8 @@ const RegisterEquipment = ((props,ref) => {
             searchUser = {props.searchUser}
             users = {props.users}
             userId = {props.userId}
-            assigned = {props.assigned}/>
+            assigned = {props.assigned}
+            userAsign = {props.userAsign}/>
         </div>
     </div>
   )

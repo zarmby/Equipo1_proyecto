@@ -7,12 +7,14 @@ const SearchUser = (props) => {
     const input_search_container = useRef();
     const input_search = useRef();
     const ul_result = useRef();
-    const [userSearched, setUserSearched] = useState(props.assigned);
+    const [userSearched, setUserSearched] = useState(props.assigned == "undefined undefined ■ undefined" ? "" : props.assigned);
     const [focusInput, setFocusInput] = useState(false);
 
     const handleFocus = (e) => {
         input_search_container.current.className = "info_containerR input_focusR";
         setFocusInput(true);
+        setUserSearched("");
+        props.searchUser("");
       }
 
     const handleBlur = (e) => {
