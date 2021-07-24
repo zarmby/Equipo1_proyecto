@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './ElementInfo.scss'
 import Alertify from 'alertifyjs';
 import RegisterEquipment from './RegisterEquipment';
-import { DeleteEquipmentApiDelete } from '../../../services/utils/Api';
+import { DeleteEquipmentApiDelete, SendToRepai } from '../../../services/utils/Api';
 
 function ElementInfo(props) {
 
@@ -28,13 +28,33 @@ function ElementInfo(props) {
       );
   }
 
+  const sendToRepair = () => {
+      Alertify.confirm('Poner el equipo en reparacion', '¿Esta seguro de mandar a reparar este equipo?',
+          async function() {
+              try {
+                  await SendToRepai("Equipments/", props.idEquipment);
+                  Alertify.success("<b style='color:white;'>Se mando a reparar el equipo correctamente</b>");
+                  props.handleCategory(props.category,props.image,props.code);
+                  props.handlePanelShow();
+                  setTimeout(true, 200);
+              }
+              catch (e) {
+                Alertify.success("<b style='color:white;'>Se mando a reparar el equipo correctamente</b>");
+                props.handleCategory(props.category,props.image,props.code);
+                props.handlePanelShow();
+              }
+          },
+          function(){}
+      );
+  }
+
   const handleCloseModal = () => {
     setModal(!Modal);
     props.searchUser(props.assignedUser);
   }
 
   var status_icon = "";
-  props.state == "Asignado" ? status_icon = "asiggned_info" : status_icon = "avalible_info";
+  props.state == "Asignado" ? status_icon = "asiggned_info" : props.state == "En reparación" ? status_icon = "repair_info" : status_icon = "avalible_info";
 
   return(
     <div class="Modal-template">
@@ -119,6 +139,7 @@ function ElementInfo(props) {
           </div>
         </div>
         <div class="Equipment-menu">
+          <button class="Equipment-menu-repair" id="EquipmentrepairButton" onClick={() => sendToRepair()}>Reparar</button>
           <button class="Equipment-menu-Asign" id="EquipmentAssignButton" onClick={() => handleCloseModal()}>Editar</button>
           <button class="Equipment-menu-Delete" id="EquipmentDeleteButton" onClick={handleDelete}>Eliminar</button>
         </div>
