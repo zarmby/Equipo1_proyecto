@@ -291,7 +291,23 @@
   margin-right:5px;
 }
 
+.Equipment-menu-repair-AIR{
+  background-color: #62CDF1;
+  color: white;
+  outline: none;
+  border: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 60px;
+  margin-right:5px;
+}
+
 .Equipment-menu-repair:hover{
+  transition: .20s;
+  border: 3px solid #212B35;
+}
+
+.Equipment-menu-repair-AIR:hover{
   transition: .20s;
   border: 3px solid #212B35;
 }
