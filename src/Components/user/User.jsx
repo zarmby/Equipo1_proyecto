@@ -4,7 +4,7 @@ import Navbar from '../navbar/Navbar';
 import SearchUser from './searchUser/SearchUser';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import { UsersApiGet, UserApiGet, GenerateEmail, UserEquipsApiGet } from '../../services/utils/Api';
+import { UsersApiGet, UserApiGet, GenerateEmail, UserEquipsApiGet, ApiGet } from '../../services/utils/Api';
 import Loading from '../loading/Loading';
 import search_user_icon_default from '../../assets/img/user_search_default.png';
 import edit from '../../assets/img/edit.png';
@@ -21,8 +21,9 @@ class User extends React.Component {
             userSearched: [],
             modal: false,
             generate: false,
-            TI: [["a", "ajalas"], ["b", "bueno"], ["c", "cmamo"]],
-            TISelected: ""
+            IT: [],
+            ITSelected: "",
+            userEquips : []
         }
         this.handleBlur = this.handleBlur.bind(this);
         this.handleFocus = this.handleFocus.bind(this);
@@ -35,13 +36,16 @@ class User extends React.Component {
         this.setLoading = this.setLoading.bind(this);
         this.generateFile = this.generateFile.bind(this);
         this.capitalLeter = this.capitalLeter.bind(this);
+        this.getIT = this.getIT.bind(this);
         this.child_navbar = React.createRef();
         this.input_IT_container = React.createRef();
     }
 
     componentDidMount() {
         this.getUsers().then(() => {
-            this.setState({ loading: false });
+            this.getIT().then(()=>{
+                this.setState({ loading: false });
+            })
         });
     }
 
@@ -122,23 +126,43 @@ class User extends React.Component {
         this.setState({ modal: false });
     }
     handleOpenModal() {
-        this.setState({ modal: false });
+        this.setState({ modal: true });
     }
     setLoading(value) {
         this.setState({ loading: value });
     }
 
-    async generateFile(email, ITemail, ITname) {
+    async generateFile(e) {
+        e.preventDefault();
         this.setLoading(true);
+        let email = this.state.userSearched.email;
+        let ITemail = this.state.ITSelected;
+        let ITname = "";
+        this.state.IT.forEach((item)=>{
+            if(item.ITemail === ITemail)
+                ITname = item.ITname;
+        })
         try {
             await GenerateEmail("pdf/generateReport", email, ITemail, ITname)
             Alertify.success("<b style='color:white;'>Se genero la carta correctamente</b>");
         }
+        catch (er) {
+            Alertify.error(`<b style='color:white;'>${er}</b>`);
+            console.log(er);
+        }
+        //alert(`${email}---${ITemail}---${ITname}`);
+        this.setLoading(false);
+    }
+
+    async getIT (){
+        try {
+            let res = await ApiGet("IT");
+            let aux = res.result.cont.user;
+            this.setState({IT : aux});
+        }
         catch (e) {
-            Alertify.error(`<b style='color:white;'>${e}</b>`);
             console.log(e);
         }
-        this.setLoading(false);
     }
 
     capitalLeter(stringRecived){
@@ -157,7 +181,7 @@ class User extends React.Component {
                 {(this.state.loading) ? <Loading />
                     :
                     <div id="user_search_contain" onClick={this.child_navbar.current.closeSideMenuNabvar}>
-                        {(this.state.modal) ? <UserModal /> : null}
+                        {(this.state.modal) ? <UserModal close={this.handleCloseModal} loading={this.setLoading} /> : null}
                         <h1>Informacion de usuario</h1>
                         <SearchUser searchUser={this.handleUserSearched} users={this.state.users} />
                         {
@@ -199,7 +223,14 @@ class User extends React.Component {
                                                             this.state.userEquips.map((item, index) => (
                                                                 <tr key={index}>
                                                                     <td><img src={item.imagen} alt="imagen" /></td>
-                                                                    <td>{item.tename}-{item.equipmentdescription}</td>
+                                                                    <td>
+                                                                        <p><b>{item.tename}</b></p>
+                                                                        {(item.equipmentdescription) ?<p><b>Descripcion:</b>{item.equipmentdescription}</p> : null}
+                                                                        {(item.serialnumber) ?<p><b>N/S:</b>{item.serialnumber}</p> : null}
+                                                                        {(item.model) ?<p><b>Modelo:</b>{item.model}</p> : null}
+                                                                        {(item.mark) ?<p><b>Marca:</b>{item.mark}</p> : null}
+                                                                        {(item.enviroment) ?<p><b>Ambiente:</b>{item.enviroment}</p> : null}
+                                                                    </td>
                                                                     <td>{item.assignedBy}</td>
                                                                 </tr>
                                                             ))
@@ -213,22 +244,29 @@ class User extends React.Component {
                                             
                                         </div>
                                     </div>
-                                    <div>
-                                        <div id="user_IT_info" className="info_container" ref={this.input_IT_container}>
-                                            <label htmlFor="register_sede_input">TI*</label>
-                                            <select
-                                                id="user_IT_input" className="user_input" value={this.state.TISelected}
-                                                required onFocus={(e)=>this.handleFocus(e)} onBlur={(e)=>this.handleBlur(e)}
-                                                onChange={(e) => { this.setState({ TISelected: e.target.value }); e.target.style.color = 'black'; }}
-                                            >
-                                                <option value="" hidden disabled>Seleccione el usuario de IT</option>
-                                                {this.state.TI.map((item, index) => (
-                                                    <option key={index} value={item[0]}>{item[1]}</option>
-                                                ))}
-                                            </select>
+                                    {
+                                        (this.state.userEquips.length > 0) 
+                                        ?
+                                        <div>
+                                            <form id="user_form_cart"  onSubmit={this.generateFile}>
+                                                <div id="user_IT_info" className="info_container" ref={this.input_IT_container}>
+                                                    <label htmlFor="register_sede_input">TI*</label>
+                                                    <select
+                                                        id="user_IT_input" className="user_input" value={this.state.ITSelected}
+                                                        required onFocus={(e)=>this.handleFocus(e)} onBlur={(e)=>this.handleBlur(e)}
+                                                        onChange={(e) => { this.setState({ ITSelected: e.target.value }); e.target.style.color = 'black'; }}
+                                                    >
+                                                        <option value="" hidden disabled>Seleccione el usuario de IT</option>
+                                                        {this.state.IT.map((item, index) => (
+                                                            <option key={index} value={item.ITemail}>{item.ITname}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" /> 
+                                            </form>
                                         </div>
-                                        <input onClick={() => this.generateFile("MurilloR.Carlos@outlook.com", "Victor@arkusnexus.com", "Victor")} type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
-                                    </div>
+                                    : null
+                                }
                                 </div>
                                 :
                                 <label htmlFor="user_search_input">
@@ -239,8 +277,6 @@ class User extends React.Component {
                         }
                     </div>
                 }
-
-                {(this.state.modal) ? <UserModal close={this.handleCloseModal} loading={this.setLoading} /> : null}
 
             </div>
         );

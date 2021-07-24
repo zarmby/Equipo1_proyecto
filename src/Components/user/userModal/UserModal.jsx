@@ -10,6 +10,8 @@ const UserModal = (props) =>{
             if(object.target.id === 'carousel_modal_contain' || object.target.id === 'carousel_modal_close')
                 props.close(add);
         }*/
+        if(object.target.id === 'user_modal_contain' || object.target.id === 'user_modal_close')
+            props.close();
     } 
 
     return(
