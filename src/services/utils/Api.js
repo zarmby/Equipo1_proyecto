@@ -410,7 +410,7 @@ export const UpdateEquipmentApiPut = async (path, params = null, id=null) => {
           status: params[6],
           enviroment: params[7],
           IDuser: EMPTY_USER,
-          assignedBy: "no asignado"
+          assignedBy: "No asignado"
         }
     } else {
         var data = {
@@ -476,12 +476,48 @@ export const GenerateEmail = async (path,email,ITemail,ITname) => {
     }
 }
 
-export const SendToRepai = async (path, id=null) => {
+export const SendToRepai = async (path, id=null, user=null) => {
     const url = BACK_API + path + "?idEquipment=" + id;
 
-      var data = {
-          state: "En reparación"
+
+        var data = {
+            state: "En reparación",
+          }
+
+
+    let response = await fetch(
+        url,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         }
+    )
+    if (response.status !== 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else {
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
+
+export const Repair = async (path, id=null, user=null) => {
+    const url = BACK_API + path + "?idEquipment=" + id;
+
+      if (user == "undefined undefined"){
+        var data = {
+            state: "Disponible"
+        }
+      } else {
+        var data = {
+            state: "Asignado"
+        }
+      }
 
     let response = await fetch(
         url,

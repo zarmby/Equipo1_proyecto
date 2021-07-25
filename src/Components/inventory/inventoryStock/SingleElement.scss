@@ -112,7 +112,7 @@ body {
   display: block;
   margin: 1em 0;
   font-family: "MockFlowFont";
-  font-size: .8em;
+  font-size: 1em;
   color: white;
 }
 
@@ -145,24 +145,24 @@ body {
 
 .assigned{
   background-color: #31A24C;
-  width: 25px;
-  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
   border-radius: 50px;
   border: 2px solid #212B35;
 }
 
 .avalible{
   background-color: #ED0019;
-  width: 25px;
-  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
   border-radius: 50px;
   border: 2px solid #212B35;
 }
 
 .repair{
   background-color: #F9F106;
-  width: 25px;
-  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
   border-radius: 50px;
   border: 2px solid #212B35;
 }
@@ -170,6 +170,7 @@ body {
 .card__header-text{
   display: grid;
   grid-template-columns: 90% 10%;
+  width: 100%;
 }
 
 .singleElementContainer{

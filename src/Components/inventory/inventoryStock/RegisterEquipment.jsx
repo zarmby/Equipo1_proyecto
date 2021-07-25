@@ -40,7 +40,8 @@ const RegisterEquipment = ((props,ref) => {
             users = {props.users}
             userId = {props.userId}
             assigned = {props.assigned}
-            userAsign = {props.userAsign}/>
+            userAsign = {props.userAsign}
+            state = {props.state}/>
         </div>
     </div>
   )

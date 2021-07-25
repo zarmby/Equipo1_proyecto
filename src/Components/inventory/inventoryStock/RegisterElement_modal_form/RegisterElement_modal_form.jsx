@@ -39,7 +39,7 @@ const RegisterElement_modal_form = (props) => {
 
     const editParams = [
         serialNumber,
-        props.userId == "" ? "Disponible" : state,
+        props.userId == "" && props.state != "En reparación" ? "Disponible" : props.userId != "" && props.state != "En reparación" ? "Asignado" : props.state,
         equipmentdescription,
         model,
         mark,

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './ElementInfo.scss'
 import Alertify from 'alertifyjs';
 import RegisterEquipment from './RegisterEquipment';
-import { DeleteEquipmentApiDelete, SendToRepai } from '../../../services/utils/Api';
+import { DeleteEquipmentApiDelete, SendToRepai, Repair } from '../../../services/utils/Api';
 
 function ElementInfo(props) {
 
@@ -48,6 +48,26 @@ function ElementInfo(props) {
       );
   }
 
+  const repairEquipment = () => {
+      Alertify.confirm('Arreglar el equipo', '¿poner el equipo otra vez disponible?',
+          async function() {
+              try {
+                  await Repair("Equipments/", props.idEquipment, asignedName[0]);
+                  Alertify.success("<b style='color:white;'>Se Cambio el estatus del equipo correctamente</b>");
+                  props.handleCategory(props.category,props.image,props.code);
+                  props.handlePanelShow();
+                  setTimeout(true, 200);
+              }
+              catch (e) {
+                Alertify.success("<b style='color:white;'>Se Cambio el estatus del equipo correctamente</b>");
+                props.handleCategory(props.category,props.image,props.code);
+                props.handlePanelShow();
+              }
+          },
+          function(){}
+      );
+  }
+
   const handleCloseModal = () => {
     setModal(!Modal);
     props.searchUser(props.assignedUser);
@@ -76,7 +96,8 @@ function ElementInfo(props) {
       users = {props.users}
       userId = {props.userId}
       assigned = {props.assignedUser}
-      userAsign = {props.userAsign}/>
+      userAsign = {props.userAsign}
+      state = {props.state}/>
        : null}
       <div class="exit-row" id="exitEquipment" onClick={props.handlePanelShow}>
         <spam class="Exit-icon">X</spam>
@@ -135,11 +156,13 @@ function ElementInfo(props) {
         </div>
         <div class="Asigned-Person">
           <div class="Asigned-Person-Elements">
-            <a class="person-link">{props.state != "Disponible" ? asignedName[0] : "Sin asignar"}</a>
+            <a class="person-link">{props.state == "Asignado" ? asignedName[0] : props.state == "Disponible" ?
+             "No asignado" : asignedName[0] != "undefined undefined" ? asignedName[0] : "No asignado" }</a>
           </div>
         </div>
         <div class="Equipment-menu">
-          <button class="Equipment-menu-repair" id="EquipmentrepairButton" onClick={() => sendToRepair()}>Reparar</button>
+          {props.state == "En reparación" ? <button class="Equipment-menu-repair-AIR" id="EquipmentrepairButton" onClick={() => repairEquipment()}>Reparar</button> :
+          <button class="Equipment-menu-repair" id="EquipmentrepairButton" onClick={() => sendToRepair()}>Reparar</button>}
           <button class="Equipment-menu-Asign" id="EquipmentAssignButton" onClick={() => handleCloseModal()}>Editar</button>
           <button class="Equipment-menu-Delete" id="EquipmentDeleteButton" onClick={handleDelete}>Eliminar</button>
         </div>
