@@ -61,7 +61,6 @@ export const RegisterUserApiPost = async (path, params = null) => {
         confirmPass: params[5]
     }
 
-    console.log(data);
     let response = await fetch(
         url,
         {
@@ -492,6 +491,58 @@ export const SendToRepai = async (path, id=null) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+        }
+    )
+    if (response.status !== 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else {
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
+
+
+
+export const RegisterITApiPost = async (path, params = null) => {
+    const url = BACK_API + path;
+
+    let data = {
+        ITname: params[0],
+        ITemail: params[1],
+    }
+    let response = await fetch(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if (response.status !== 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else {
+        let err = await response.json();
+        throw new Error(err.infoError);
+    }
+}
+
+export const DeleteITApiDelete = async (path,id = null) => {
+    const url = BACK_API + path + "?idit=" + id;
+    let response = await fetch(
+        url,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }
     )
     if (response.status !== 400)

@@ -86,6 +86,8 @@ const Navbar = forwardRef((props,ref) => {
                 <div className="dropdown" id="navbar_user">
                     <button className="dropbtn" id="navbar_user_btn">{username}</button>
                     <div className="dropdown-content">
+                        <a href="/ConfigPage">Configuración</a>
+                        <hr />
                         <a href="#navbar_principal" onClick={handleLogout} >Salir</a>
                     </div>
                 </div>

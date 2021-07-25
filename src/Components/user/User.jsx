@@ -106,7 +106,6 @@ class User extends React.Component {
         try {
             let res = await UserEquipsApiGet(email);
             let equipsRecived = res.result.cont.name;
-            console.log(equipsRecived);
             this.setState({ userEquips: equipsRecived });
         }
         catch (e) {

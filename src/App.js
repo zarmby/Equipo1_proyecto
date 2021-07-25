@@ -2,13 +2,14 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 
 ///Components///
-import Login from './Components/login/Login'
-import MenuPage from './Components/menuPage/MenuPage'
-import User from './Components/user/User'
+import Login from './Components/login/Login';
+import MenuPage from './Components/menuPage/MenuPage';
+import User from './Components/user/User';
 import InventoryStock from './Components/inventory/inventoryStock/InventoryStock'
-import ScannerC from './Components/inventory/Scanner/ScannerC'
+import ScannerC from './Components/inventory/Scanner/ScannerC';
 import Carousel from './Components/inventory/carousel/Carousel';
-import ElementInfo from './Components/inventory/inventoryStock/ElementInfo'
+import ElementInfo from './Components/inventory/inventoryStock/ElementInfo';
+import ConfigPage from './Components/configPage/ConfigPage';
 ////Images///
 
 //Routes
@@ -53,6 +54,9 @@ const App = () => {
         </Route>
         <Route path="/test">
           <ElementInfo />
+        </Route>
+        <Route path="/ConfigPage">
+          <ConfigPage />
         </Route>
         <Route path="/*">
           <MenuPage />
