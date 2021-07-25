@@ -1,5 +1,6 @@
 import './ConfigPage.scss';
 import IT from './itCrud/ItCrud';
+import Sede from './sedeCrud/SedeCrud';
 import Navbar from '../navbar/Navbar';
 import Loading from '../loading/Loading';
 import { useState } from 'react';
@@ -13,7 +14,8 @@ const ConfigPage = () => {
             <Navbar/>
             {(loading) ? <Loading /> : null}
             <div id="configPage_cont">
-                <IT loading={setLoading}/>
+                <IT loading={setLoading} />
+                <Sede loading={setLoading} />
             </div>
         </div>
     )

@@ -1,8 +1,9 @@
-#IT_container{
-    #form_IT{
+#sede_container{
+    margin-top: 30px;
+    #form_sede{
         display: flex;
-    }    
-    #table_IT{
+    } 
+    #table_sede{
         width: 100%;
         border-collapse: collapse;
         overflow: hidden;
@@ -14,12 +15,9 @@
                 width: 5%;
             }
             th:nth-child(2){
-                width: 40%;
+                width: 90%;
             }
             th:nth-child(3){
-                width: 50%;
-            }
-            th:nth-child(4){
                 width: 5%;
             }
             tr{
@@ -41,5 +39,4 @@
             border: 1px solid #888;
         }
     }
-
 }

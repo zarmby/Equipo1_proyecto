@@ -4,5 +4,76 @@
         background-color: yellow;
         padding: 20px;
         height: auto;
+        .info_container{
+            width: 300px;
+            height: 35px;
+            border: 2px solid #ced4da;
+            border-radius: 5px; 
+            transition: 0.2s;
+            box-sizing: border-box;
+            overflow: visible;
+            margin-right: 20px;
+            label{
+                position: absolute;
+                display: block;
+                background-color: #fff;
+                font-size: 12px;
+                width: auto;
+                color: #555;
+                padding: 0px 10px;
+                margin-left: 10px;
+                margin-top: -10px;
+                border-radius: 50px;
+                z-index:2;
+            } 
+            input{
+                padding-left: 5px;
+                outline: none;
+                border: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }   
+        .btn_submit{
+            width: 100px;
+            height: 35px;
+            border: 0;
+            border-radius: 5px;
+            color: white;
+            padding: auto 32px;
+            box-sizing: border-box;
+            transition: 0.4s;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+            background-color: #212B35;
+            &:hover{
+              background-color: #DD1F26;
+              cursor: pointer;
+              font-weight: bold;
+            }
+        }                           
+        .input_focus{
+            box-shadow: 0 0 2pt 2pt#dd1f259d;
+        }
+        .table_contain{
+            overflow-y: scroll;
+            width: 70%;
+            max-height: 150px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-top: 30px;
+            &::-webkit-scrollbar{
+                width: 3px;
+            }
+    
+            &::-webkit-scrollbar-thumb {
+                background: #DD1F26;
+                border-radius: 3px;
+            }
+    
+            &::-webkit-scrollbar-thumb:hover {
+                background: #b3b3b3;
+                box-shadow:  0 2px 20px rgba(0, 0, 0, 1);
+            }
+        }
     }
 }

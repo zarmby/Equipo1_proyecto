@@ -54,16 +54,20 @@ const IT = (props) => {
     }
 
     const handleDeleteIT = async (id) => {
-        props.loading(true);
-        try {
-            await DeleteITApiDelete("IT", id);
-            Alertify.success("<b style='color:white;'>Borrado exitosamente</b>");
-            getIT();
-        }
-        catch (e) {
-            Alertify.error(`<b style='color:white;'>${e}</b>`);
-        }
-        props.loading(false);
+        Alertify.confirm('Borrar IT', '¿Esta seguro de querer borrar esta persona de IT?', 
+            async function(){ 
+                props.loading(true);
+                try {
+                    await DeleteITApiDelete("IT", id);
+                    Alertify.success("<b style='color:white;'>Borrado exitosamente</b>");
+                    getIT();
+                }
+                catch (e) {
+                    Alertify.error(`<b style='color:white;'>${e}</b>`);
+                }
+                props.loading(false);
+             }, 
+            function(){ Alertify.error("<b style='color:white;'>Operacion cancelada<b>")});
     }
 
     const handleFocus = (e) => {
@@ -110,10 +114,10 @@ const IT = (props) => {
                 </div>
                 <input id="IT_submit" type="submit" value="Guardar" className="btn_submit" />
             </form>
-            <div id="table_contain">
-                {
-                    (IT.length > 0)
-                        ?
+            {
+                (IT.length > 0)
+                ?
+                <div className="table_contain">
                         <table id="table_IT" border="1">
                             <thead>
                                 <tr>
@@ -142,12 +146,10 @@ const IT = (props) => {
                                 }
                             </tbody>
                         </table>
-
-                        :
-                        <h3>Sin personas en IT.</h3>
-                }
-
-            </div>
+                    </div>
+                :
+                <h3>Sin personas en IT.</h3>
+            }
         </div>
     )
 }
