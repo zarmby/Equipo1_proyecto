@@ -62,7 +62,8 @@ const Navbar = forwardRef((props,ref) => {
         let loggedUser = window.localStorage.getItem('UserLogged');
         if (loggedUser) {
             let UserLogged = JSON.parse(loggedUser)
-            let nameUser = UserLogged.username + " " + UserLogged.lastname;
+            let last = (UserLogged.lastname) ? UserLogged.lastname : "" ;
+            let nameUser = UserLogged.username + " " + last;
             setUserName(nameUser);
             setUserRole(UserLogged.IDrole)
         }

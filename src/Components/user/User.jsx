@@ -4,7 +4,7 @@ import Navbar from '../navbar/Navbar';
 import SearchUser from './searchUser/SearchUser';
 import Alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import { UsersApiGet, UserApiGet, GenerateEmail, UserEquipsApiGet, ApiGet } from '../../services/utils/Api';
+import { UsersApiGet, UserApiGet, GenerateEmail, UserEquipsApiGet, ApiGet, UpdateUserPermissionApiPut } from '../../services/utils/Api';
 import Loading from '../loading/Loading';
 import search_user_icon_default from '../../assets/img/user_search_default.png';
 import edit from '../../assets/img/edit.png';
@@ -22,10 +22,10 @@ class User extends React.Component {
             generate: false,
             IT: [],
             ITSelected: "",
-            userEquips : [],
+            userEquips: [],
             roles: [],
-            userRole:"",
-            IDAdmon : "60f8df9e96f4eb00156a8353"
+            userRole: "",
+            IDAdmon: "60f8df9e96f4eb00156a8353"
         }
         this.handleBlur = this.handleBlur.bind(this);
         this.handleFocus = this.handleFocus.bind(this);
@@ -39,6 +39,7 @@ class User extends React.Component {
         this.setLoading = this.setLoading.bind(this);
         this.generateFile = this.generateFile.bind(this);
         this.capitalLeter = this.capitalLeter.bind(this);
+
         this.child_navbar = React.createRef();
         this.input_IT_container = React.createRef();
     }
@@ -46,26 +47,29 @@ class User extends React.Component {
     componentDidMount() {
         let loggedUser = window.localStorage.getItem('UserLogged');
         let UserLogged = JSON.parse(loggedUser)
-        this.setState({userRole : UserLogged.IDrole});
-        
-        if(UserLogged.IDrole === this.state.IDAdmon){
+        this.setState({ userRole: UserLogged.IDrole });
+
+        if (UserLogged.IDrole === this.state.IDAdmon) {
             this.getUsers().then(() => {
-                this.getIT().then(()=>{
+                this.getIT().then(() => {
                     this.getRole();
                     this.setState({ loading: false });
                 })
             });
         }
-        else{
-            this.setState({userEmail : UserLogged.email});
-            this.getIT().then(()=>{
+        else {
+            this.setState({ userEmail: UserLogged.email });
+            this.getIT().then(() => {
                 this.getUserSearched(UserLogged.email);
                 this.getRole();
                 this.setState({ loading: false });
             })
         }
 
-        
+
+    }
+    setLoading(value){
+        this.setState({ loading: value });
     }
 
     async getUsers() {
@@ -75,8 +79,10 @@ class User extends React.Component {
             this.setState({ usersRecived: usrRecived });
             let usrAux = [];
             usrRecived.forEach(element => {
-                let nameUsr = `${element.username} ${element.lastname} ■ ${element.account}`;
-                usrAux.push(nameUsr);
+                if(element.username !== "root"){
+                    let nameUsr = `${element.username} ${element.lastname} ■ ${element.account}`;
+                    usrAux.push(nameUsr);
+                }
             })
             this.setState({ users: usrAux });
         }
@@ -131,39 +137,37 @@ class User extends React.Component {
         }
     }
 
-     async handleChangePermission() {
+    async handleChangePermission() {
         let titleConfirm = "";
         let msgConfirm = "";
-        if(this.state.userSearched.rolename === "Administrador"){
+        if (this.state.userSearched.rolename === "Administrador") {
             titleConfirm = "Quitar permisos";
             msgConfirm = "¿Esta seguro de quitar los permisos de adminstrador a este usuario?";
         }
-        else{
+        else {
             titleConfirm = "Otorgar permisos";
             msgConfirm = "¿Esta seguro de otorgar los permisos de adminstrador a este usuario?";
         }
-        Alertify.confirm(titleConfirm, msgConfirm, 
-            async function(){ 
-                /*props.loading(true);
+        Alertify.confirm(titleConfirm, msgConfirm,
+            async () => {
+                this.setLoading(true);
+                let nuevotype = "";
+                this.state.roles.forEach((item) => {
+                    if (item.rolename !== this.state.userSearched.rolename)
+                        nuevotype = item._id;
+                });
                 try {
-                    await DeleteSedeApiDelete("campus", id);
-                    Alertify.success("<b style='color:white;'>Borrada exitosamente</b>");
-                    getSedes();
+                    await UpdateUserPermissionApiPut("user", nuevotype, this.state.userSearched._id);
+                    Alertify.success("<b style='color:white;'>Actualizado exitosamente</b>");
+                    this.getUserSearched(this.state.userSearched.email);
                 }
                 catch (e) {
                     Alertify.error(`<b style='color:white;'>${e}</b>`);
                 }
-                props.loading(false);*/
-             }, 
-            function(){ Alertify.error("<b style='color:white;'>Operacion cancelada<b>")}
-        );
-        let nuevotype = "";
-        this.state.roles.forEach((item)=>{
-            if(item.rolename !== this.state.userSearched.rolename)
-                nuevotype=item._id;
-        });
-        alert(nuevotype);
-        this.getUserSearched(this.state.userSearched.email);
+                this.setLoading(false);
+            },
+            function () { Alertify.error("<b style='color:white;'>Operacion cancelada<b>") }
+        );        
     }
 
     handleFocus(e) {
@@ -173,19 +177,15 @@ class User extends React.Component {
     handleBlur(e) {
         this.input_IT_container.current.className = "info_container";
     }
-    
-    setLoading(value) {
-        this.setState({ loading: value });
-    }
 
     async generateFile(e) {
         e.preventDefault();
-        this.setLoading(true);
+        this.setState({ loading: true });
         let email = this.state.userSearched.email;
         let ITemail = this.state.ITSelected;
         let ITname = "";
-        this.state.IT.forEach((item)=>{
-            if(item.ITemail === ITemail)
+        this.state.IT.forEach((item) => {
+            if (item.ITemail === ITemail)
                 ITname = item.ITname;
         })
         try {
@@ -197,33 +197,33 @@ class User extends React.Component {
             console.log(er);
         }
         //alert(`${email}---${ITemail}---${ITname}`);
-        this.setLoading(false);
+        this.setState({ loading: false });
     }
 
-    async getIT (){
+    async getIT() {
         try {
             let res = await ApiGet("IT");
             let aux = res.result.cont.user;
-            this.setState({IT : aux});
+            this.setState({ IT: aux });
         }
         catch (e) {
             console.log(e);
         }
     }
 
-    async getRole (){
+    async getRole() {
         try {
             let res = await ApiGet("role");
             let aux = res.result.cont.role;
-            this.setState({roles : aux});
+            this.setState({ roles: aux });
         }
         catch (e) {
             console.log(e);
         }
     }
 
-    capitalLeter(stringRecived){
-        if(stringRecived !== "" & stringRecived !== undefined){
+    capitalLeter(stringRecived) {
+        if (stringRecived !== "" & stringRecived !== undefined) {
             let stringMod = stringRecived.replace(/^\w/, (c) => c.toUpperCase());
             return stringMod;
         }
@@ -239,9 +239,9 @@ class User extends React.Component {
                     :
                     <div id="user_search_contain" onClick={this.child_navbar.current.closeSideMenuNabvar}>
                         <h1>Informacion de usuario</h1>
-                        {(this.state.userRole === this.state.IDrole)
-                        ?<SearchUser searchUser={this.handleUserSearched} users={this.state.users} />
-                        :null
+                        {(this.state.userRole === this.state.IDAdmon)
+                            ? <SearchUser searchUser={this.handleUserSearched} users={this.state.users} />
+                            : null
                         }
                         {
                             (this.state.userEmail !== "")
@@ -257,7 +257,7 @@ class User extends React.Component {
                                         </span>
                                         <h2>{this.capitalLeter(this.state.userSearched.username)} {this.capitalLeter(this.state.userSearched.lastname)}</h2>
                                         <p><b>Cuenta:</b><br /> {this.capitalLeter(this.state.userSearched.account)}</p>
-                                        <p><b>Correo electronico:</b><br /> {this.capitalLeter(this.state.userSearched.email)}</p>
+                                        <p><b>Correo electronico:</b><br /> {this.state.userSearched.email}</p>
                                         <p><b>Sede:</b><br /> {this.capitalLeter(this.state.userSearched.campusname)}</p>
                                         <p><b>Telefono:</b><br /> {this.capitalLeter(this.state.userSearched.phonenumber)}</p>
                                         <p><b>Perfil del usuario:</b><br /> {this.capitalLeter(this.state.userSearched.userprofile)}</p>
@@ -267,65 +267,65 @@ class User extends React.Component {
                                         <h2>Equipos</h2>
                                         <div id="table_contain">
                                             {
-                                            (this.state.userEquips.length > 0) 
-                                            ?
-                                                <table id="table_equip_user" border="1">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>&nbsp;</th>
-                                                            <th>Descripción</th>
-                                                            <th>Asignadado por</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {
-                                                            this.state.userEquips.map((item, index) => (
-                                                                <tr key={index}>
-                                                                    <td><img src={item.imagen} alt="imagen" /></td>
-                                                                    <td>
-                                                                        <p><b>{item.tename}</b></p>
-                                                                        {(item.equipmentdescription) ?<p><b>Descripcion:</b>{item.equipmentdescription}</p> : null}
-                                                                        {(item.serialnumber) ?<p><b>N/S:</b>{item.serialnumber}</p> : null}
-                                                                        {(item.model) ?<p><b>Modelo:</b>{item.model}</p> : null}
-                                                                        {(item.mark) ?<p><b>Marca:</b>{item.mark}</p> : null}
-                                                                        {(item.enviroment) ?<p><b>Ambiente:</b>{item.enviroment}</p> : null}
-                                                                    </td>
-                                                                    <td>{item.assignedBy}</td>
-                                                                </tr>
-                                                            ))
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                                
-                                            :
-                                                <h3>Sin equipos asignados.</h3>
+                                                (this.state.userEquips.length > 0)
+                                                    ?
+                                                    <table id="table_equip_user" border="1">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>&nbsp;</th>
+                                                                <th>Descripción</th>
+                                                                <th>Asignadado por</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {
+                                                                this.state.userEquips.map((item, index) => (
+                                                                    <tr key={index}>
+                                                                        <td><img src={item.imagen} alt="imagen" /></td>
+                                                                        <td>
+                                                                            <p><b>{item.tename}</b></p>
+                                                                            {(item.equipmentdescription) ? <p><b>Descripcion:</b>{item.equipmentdescription}</p> : null}
+                                                                            {(item.serialnumber) ? <p><b>N/S:</b>{item.serialnumber}</p> : null}
+                                                                            {(item.model) ? <p><b>Modelo:</b>{item.model}</p> : null}
+                                                                            {(item.mark) ? <p><b>Marca:</b>{item.mark}</p> : null}
+                                                                            {(item.enviroment) ? <p><b>Ambiente:</b>{item.enviroment}</p> : null}
+                                                                        </td>
+                                                                        <td>{item.assignedBy}</td>
+                                                                    </tr>
+                                                                ))
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                    :
+                                                    <h3>Sin equipos asignados.</h3>
                                             }
-                                            
+
                                         </div>
                                     </div>
                                     {
-                                        (this.state.userEquips.length > 0) 
-                                        ?
-                                        <div>
-                                            <form id="user_form_cart"  onSubmit={this.generateFile}>
-                                                <div id="user_IT_info" className="info_container" ref={this.input_IT_container}>
-                                                    <label htmlFor="register_sede_input">TI*</label>
-                                                    <select
-                                                        id="user_IT_input" className="user_input" value={this.state.ITSelected}
-                                                        required onFocus={(e)=>this.handleFocus(e)} onBlur={(e)=>this.handleBlur(e)}
-                                                        onChange={(e) => { this.setState({ ITSelected: e.target.value }); e.target.style.color = 'black'; }}
-                                                    >
-                                                        <option value="" hidden disabled>Seleccione el usuario de IT</option>
-                                                        {this.state.IT.map((item, index) => (
-                                                            <option key={index} value={item.ITemail}>{item.ITname}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                                <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" /> 
-                                            </form>
-                                        </div>
-                                    : null
-                                }
+                                        (this.state.userEquips.length > 0)
+                                            ?
+                                            <div>
+                                                <form id="user_form_cart" onSubmit={this.generateFile}>
+                                                    <div id="user_IT_info" className="info_container" ref={this.input_IT_container}>
+                                                        <label htmlFor="register_sede_input">TI*</label>
+                                                        <select
+                                                            id="user_IT_input" className="user_input" value={this.state.ITSelected}
+                                                            required onFocus={(e) => this.handleFocus(e)} onBlur={(e) => this.handleBlur(e)}
+                                                            onChange={(e) => { this.setState({ ITSelected: e.target.value }); e.target.style.color = 'black'; }}
+                                                        >
+                                                            <option value="" hidden disabled>Seleccione el usuario de IT</option>
+                                                            {this.state.IT.map((item, index) => (
+                                                                <option key={index} value={item.ITemail}>{item.ITname}</option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+                                                    <input type="submit" id="user_cart_submit" className="search_input" value="Crear carta responsiva" />
+                                                </form>
+                                            </div>
+                                            : null
+                                    }
                                 </div>
                                 :
                                 <label htmlFor="user_search_input">
