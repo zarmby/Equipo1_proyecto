@@ -200,8 +200,8 @@ class User extends React.Component {
             Alertify.success("<b style='color:white;'>Se genero la carta correctamente</b>");
         }
         catch (er) {
-            Alertify.error(`<b style='color:white;'>${er}</b>`);
-            console.log(er);
+            Alertify.error(`<b style='color:white;'>Error al enviar la carta</b>`);
+            this.getUserSearchedEquips(this.state.userSearched.email);
         }
         //alert(`${email}---${ITemail}---${ITname}`);
         this.setState({ loading: false });
