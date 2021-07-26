@@ -149,6 +149,7 @@ const RegisterElement_modal_form = (props) => {
                     </div>
                 </div>
                 <div id="second_part">
+                  {props.idEquipment == null ?
                     <div id="modal_serialNumber_info" className="info_container">
                         <label htmlFor="modal_form_cat_serialNumber">Numero de serie*</label>
                         <input
@@ -159,7 +160,18 @@ const RegisterElement_modal_form = (props) => {
                         <spam class="scaner-icon" id="ScannerEquipment">
                           <i class="fas fa-camera fa-2x scaner-icon-img" onClick={() => handleCamera()}></i>
                         </spam>
-                    </div>
+                    </div> : <div id="modal_serialNumber_info" className="info_container">
+                        <label htmlFor="modal_form_cat_serialNumber">Numero de serie*</label>
+                        <input
+                            type="text" id="modal_form_cat_serialNumber" required
+                            disabled className="modal_input" onChange={(e) => { setserialNumber(e.target.value) }}
+                            onFocus={handleFocus} onBlur={handleBlur} value={serialNumber} maxLength="50"
+                        />
+                        <spam class="scaner-icon" id="ScannerEquipment">
+                          <i class="fas fa-camera fa-2x scaner-icon-img"></i>
+                        </spam>
+                    </div>}
+
                     {props.equipmentFilters.equipmentdescription ?
                       <div id="modal_equipmentdescription_info" className="info_container">
                           <label htmlFor="modal_form_cat_equipmentdescription">Descripcion*</label>
