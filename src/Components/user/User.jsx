@@ -19,34 +19,53 @@ class User extends React.Component {
             users: [],
             userEmail: "",
             userSearched: [],
-            modal: false,
             generate: false,
             IT: [],
             ITSelected: "",
-            userEquips : []
+            userEquips : [],
+            roles: [],
+            userRole:"",
+            IDAdmon : "60f8df9e96f4eb00156a8353"
         }
         this.handleBlur = this.handleBlur.bind(this);
         this.handleFocus = this.handleFocus.bind(this);
         this.handleUserSearched = this.handleUserSearched.bind(this);
+        this.handleChangePermission = this.handleChangePermission.bind(this);
         this.getEmailUser = this.getEmailUser.bind(this);
         this.getUserSearched = this.getUserSearched.bind(this);
         this.getUserSearchedEquips = this.getUserSearchedEquips.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
-        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.getIT = this.getIT.bind(this);
+        this.getRole = this.getRole.bind(this);
         this.setLoading = this.setLoading.bind(this);
         this.generateFile = this.generateFile.bind(this);
         this.capitalLeter = this.capitalLeter.bind(this);
-        this.getIT = this.getIT.bind(this);
         this.child_navbar = React.createRef();
         this.input_IT_container = React.createRef();
     }
 
     componentDidMount() {
-        this.getUsers().then(() => {
+        let loggedUser = window.localStorage.getItem('UserLogged');
+        let UserLogged = JSON.parse(loggedUser)
+        this.setState({userRole : UserLogged.IDrole});
+        
+        if(UserLogged.IDrole === this.state.IDAdmon){
+            this.getUsers().then(() => {
+                this.getIT().then(()=>{
+                    this.getRole();
+                    this.setState({ loading: false });
+                })
+            });
+        }
+        else{
+            this.setState({userEmail : UserLogged.email});
             this.getIT().then(()=>{
+                this.getUserSearched(UserLogged.email);
+                this.getRole();
                 this.setState({ loading: false });
             })
-        });
+        }
+
+        
     }
 
     async getUsers() {
@@ -80,7 +99,6 @@ class User extends React.Component {
             Alertify.error("<b style='color:white;'>Usuario no encontrado</b>");
     }
 
-
     async getEmailUser(user) {
         this.setState({ loading: true });
         let aux = user.split(' ■ ');
@@ -113,6 +131,41 @@ class User extends React.Component {
         }
     }
 
+     async handleChangePermission() {
+        let titleConfirm = "";
+        let msgConfirm = "";
+        if(this.state.userSearched.rolename === "Administrador"){
+            titleConfirm = "Quitar permisos";
+            msgConfirm = "¿Esta seguro de quitar los permisos de adminstrador a este usuario?";
+        }
+        else{
+            titleConfirm = "Otorgar permisos";
+            msgConfirm = "¿Esta seguro de otorgar los permisos de adminstrador a este usuario?";
+        }
+        Alertify.confirm(titleConfirm, msgConfirm, 
+            async function(){ 
+                /*props.loading(true);
+                try {
+                    await DeleteSedeApiDelete("campus", id);
+                    Alertify.success("<b style='color:white;'>Borrada exitosamente</b>");
+                    getSedes();
+                }
+                catch (e) {
+                    Alertify.error(`<b style='color:white;'>${e}</b>`);
+                }
+                props.loading(false);*/
+             }, 
+            function(){ Alertify.error("<b style='color:white;'>Operacion cancelada<b>")}
+        );
+        let nuevotype = "";
+        this.state.roles.forEach((item)=>{
+            if(item.rolename !== this.state.userSearched.rolename)
+                nuevotype=item._id;
+        });
+        alert(nuevotype);
+        this.getUserSearched(this.state.userSearched.email);
+    }
+
     handleFocus(e) {
         this.input_IT_container.current.className = "info_container input_focus";
     }
@@ -120,13 +173,7 @@ class User extends React.Component {
     handleBlur(e) {
         this.input_IT_container.current.className = "info_container";
     }
-
-    handleCloseModal() {
-        this.setState({ modal: false });
-    }
-    handleOpenModal() {
-        this.setState({ modal: true });
-    }
+    
     setLoading(value) {
         this.setState({ loading: value });
     }
@@ -164,6 +211,17 @@ class User extends React.Component {
         }
     }
 
+    async getRole (){
+        try {
+            let res = await ApiGet("role");
+            let aux = res.result.cont.role;
+            this.setState({roles : aux});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
     capitalLeter(stringRecived){
         if(stringRecived !== "" & stringRecived !== undefined){
             let stringMod = stringRecived.replace(/^\w/, (c) => c.toUpperCase());
@@ -180,16 +238,18 @@ class User extends React.Component {
                 {(this.state.loading) ? <Loading />
                     :
                     <div id="user_search_contain" onClick={this.child_navbar.current.closeSideMenuNabvar}>
-                        {(this.state.modal) ? <UserModal close={this.handleCloseModal} loading={this.setLoading} /> : null}
                         <h1>Informacion de usuario</h1>
-                        <SearchUser searchUser={this.handleUserSearched} users={this.state.users} />
+                        {(this.state.userRole === this.state.IDrole)
+                        ?<SearchUser searchUser={this.handleUserSearched} users={this.state.users} />
+                        :null
+                        }
                         {
                             (this.state.userEmail !== "")
                                 ?
                                 <div id="user_contain">
                                     <div id="user_info_container">
-                                        <span title="Editar usuario"
-                                            className="user_edit_container" onClick={this.handleOpenModal}>
+                                        <span title="Editar permisos"
+                                            className="user_edit_container" onClick={this.handleChangePermission}>
                                             <img src={edit} alt="editar"
                                                 className="user_edit_icon"
                                                 id="user_editar"

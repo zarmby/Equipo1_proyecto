@@ -591,3 +591,52 @@ export const DeleteITApiDelete = async (path,id = null) => {
         throw new Error(err.msg);
     }
 }
+
+export const RegisterSedeApiPost = async (path, params = null) => {
+    const url = BACK_API + path;
+
+    let data = {
+        campusname: params[0]
+    }
+    let response = await fetch(
+        url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+    if (response.status !== 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else {
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}
+
+export const DeleteSedeApiDelete = async (path,id = null) => {
+    const url = BACK_API + path + "?idCampus=" + id;
+    let response = await fetch(
+        url,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    )
+    if (response.status !== 400)
+        return {
+            result: await response.json(),
+            status: response.status
+        }
+    else {
+        let err = await response.json();
+        throw new Error(err.msg);
+    }
+}

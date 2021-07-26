@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import './SedeCrud.scss';
+import Alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 import deleteIcon from '../../../assets/img/delete_icon.png';
-import { ApiGet } from '../../../services/utils/Api';
+import { ApiGet,  RegisterSedeApiPost, DeleteSedeApiDelete  } from '../../../services/utils/Api';
 
 const Sede = (props) => {
     const [name, setName] = useState("");
@@ -31,13 +33,40 @@ const Sede = (props) => {
         sede_name_contain.current.className = "info_container";
     }
 
-    const handleSubmit = (e) =>{
-        e.prevenDefault();
-        alert("jaja");
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        let params = [
+            name
+        ]
+        props.loading(true);
+        try {
+            await RegisterSedeApiPost("campus/", params);
+            Alertify.success("<b style='color:white;'>Registro completo</b>");
+            setName("");
+            getSedes();
+        }
+        catch (e) {
+            Alertify.error(`<b style='color:white;'>${e}</b>`);
+        }
+        props.loading(false);
     }
 
     const handleDeleteSede = (id)=>{
-        alert(id);
+        Alertify.confirm('Borrar sede', '¿Esta seguro de querer borrar esta sede?', 
+            async function(){ 
+                props.loading(true);
+                try {
+                    await DeleteSedeApiDelete("campus", id);
+                    Alertify.success("<b style='color:white;'>Borrada exitosamente</b>");
+                    getSedes();
+                }
+                catch (e) {
+                    Alertify.error(`<b style='color:white;'>${e}</b>`);
+                }
+                props.loading(false);
+             }, 
+            function(){ Alertify.error("<b style='color:white;'>Operacion cancelada<b>")}
+        );
     }
 
     return(

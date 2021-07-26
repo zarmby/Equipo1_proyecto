@@ -14,8 +14,14 @@ function MenuPage() {
   const [img1State,setImg1State] = useState (inventarioU);
   const [img2State,setImg2State] = useState (usuarioA);
   const child_navbar = useRef();
+  
+  const IDAdmon = "60f8df9e96f4eb00156a8353";
 
   useEffect(()=>{
+    let loggedUser = window.localStorage.getItem('UserLogged');
+    let UserLogged = JSON.parse(loggedUser)
+    if(UserLogged.IDrole !== IDAdmon)
+      window.location.href = '/user';
     loadingPage();
   },[])
 

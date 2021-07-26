@@ -30,6 +30,8 @@ const Carousel = (props) => {
     const [code, setCode] = useState("");
     const child_navbar = useRef();
 
+    const IDAdmon = "60f8df9e96f4eb00156a8353";
+
     const handleShowInventory = (image, typeCategory, code) => {
         setISDisplay(true);
         setImage(image);
@@ -70,10 +72,16 @@ const Carousel = (props) => {
     }
 
     useEffect(() => {
-        getTypeEquipment().then(() => {
-            setLoading(false);
-            Glider.mount({ Breakpoints });
-        });
+        let loggedUser = window.localStorage.getItem('UserLogged');
+        let UserLogged = JSON.parse(loggedUser)
+        if(UserLogged.IDrole !== IDAdmon)
+            window.location.href = '/user';
+        else{
+            getTypeEquipment().then(() => {
+                setLoading(false);
+                Glider.mount({ Breakpoints });
+            });
+        }
     }, [])
 
     const getTypeEquipment = async () => {

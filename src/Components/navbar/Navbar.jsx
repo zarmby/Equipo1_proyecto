@@ -5,11 +5,14 @@ import logoMenu from '../../assets/img/icono_menu.png';
 import logoClose from '../../assets/img/icono_close.png';
 
 const Navbar = forwardRef((props,ref) => {
+    const [userRole, setUserRole] = useState("");
     const [username, setUserName] = useState("");
     const [openMenu, setOpenMenu] = useState(false);
     const buttonMenu = useRef();
     const sidenMenu = useRef();
     const navBar = useRef();
+
+    const IDAdmon = "60f8df9e96f4eb00156a8353";
     
     useImperativeHandle(ref, () => ({
         closeSideMenuNabvar(){let width_container  = navBar.current.clientWidth;
@@ -61,6 +64,7 @@ const Navbar = forwardRef((props,ref) => {
             let UserLogged = JSON.parse(loggedUser)
             let nameUser = UserLogged.username + " " + UserLogged.lastname;
             setUserName(nameUser);
+            setUserRole(UserLogged.IDrole)
         }
     },[]);
 
@@ -74,24 +78,37 @@ const Navbar = forwardRef((props,ref) => {
             <img id="navbar_logo" src={logo} alt="Logo Arkus" />
             <input type="button" id="navbar_icono_menu"
             ref={buttonMenu} onClick={handleOpenSideMenu} />
-            <div id="navbar_menu_container" ref={sidenMenu}>
-                <div className="dropdown" id="navbar_menu">
-                    <button className="dropbtn" id="navbar_menu_btn">Menu</button>
-                    <div className="dropdown-content">
-                        <a href="/MenuPage">Pagina principal</a>
-                        <a href="/InventoryCenter">Inventario</a>
-                        <a href="/user">Usuario</a>
+            {
+                (userRole === IDAdmon)
+                ?
+                    <div id="navbar_menu_container" ref={sidenMenu}>
+                        <div className="dropdown" id="navbar_menu">
+                            <button className="dropbtn" id="navbar_menu_btn">Menu</button>
+                            <div className="dropdown-content">
+                                <a href="/MenuPage">Pagina principal</a>
+                                <a href="/InventoryCenter">Inventario</a>
+                                <a href="/user">Usuario</a>
+                            </div>
+                        </div>
+                        <div className="dropdown" id="navbar_user">
+                            <button className="dropbtn" id="navbar_user_btn">{username}</button>
+                            <div className="dropdown-content">
+                                <a href="/ConfigPage">Configuración</a>
+                                <hr />
+                                <a href="#navbar_principal" onClick={handleLogout} >Salir</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="dropdown" id="navbar_user">
-                    <button className="dropbtn" id="navbar_user_btn">{username}</button>
-                    <div className="dropdown-content">
-                        <a href="/ConfigPage">Configuración</a>
-                        <hr />
-                        <a href="#navbar_principal" onClick={handleLogout} >Salir</a>
+                :
+                    <div id="navbar_menu_container" ref={sidenMenu}>
+                        <div className="dropdown" id="navbar_user">
+                            <button className="dropbtn" id="navbar_user_btn">{username}</button>
+                            <div className="dropdown-content">
+                                <a href="#navbar_principal" onClick={handleLogout} >Salir</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+            }
         </nav>
     );
 });
