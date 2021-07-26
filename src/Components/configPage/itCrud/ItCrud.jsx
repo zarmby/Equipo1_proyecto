@@ -93,7 +93,7 @@ const IT = (props) => {
 
     return (
         <div id="IT_container">
-            <h1>Mienbros de IT</h1>
+            <h1>Miembros de IT</h1>
             <form id="form_IT" onSubmit={handleSubmit}>
                 <div id="IT_name_info" className="info_container">
                     <label htmlFor="IT_name_input" id="IT_name_label">Nombre</label>
