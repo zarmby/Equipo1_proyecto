@@ -203,7 +203,6 @@ class User extends React.Component {
             Alertify.error(`<b style='color:white;'>Error al enviar la carta</b>`);
             this.getUserSearchedEquips(this.state.userSearched.email);
         }
-        //alert(`${email}---${ITemail}---${ITname}`);
         this.setState({ loading: false });
     }
 
@@ -255,13 +254,17 @@ class User extends React.Component {
                                 ?
                                 <div id="user_contain">
                                     <div id="user_info_container">
-                                        <span title="Editar permisos"
-                                            className="user_edit_container" onClick={this.handleChangePermission}>
-                                            <img src={edit} alt="editar"
-                                                className="user_edit_icon"
-                                                id="user_editar"
-                                            />
-                                        </span>
+                                    {(this.state.userRole === this.state.IDAdmon)
+                                        ? 
+                                            <span title="Editar permisos"
+                                                className="user_edit_container" onClick={this.handleChangePermission}>
+                                                <img src={edit} alt="editar"
+                                                    className="user_edit_icon"
+                                                    id="user_editar"
+                                                />
+                                            </span>
+                                        : null
+                                    }
                                         <h2>{this.capitalLeter(this.state.userSearched.username)} {this.capitalLeter(this.state.userSearched.lastname)}</h2>
                                         <p><b>Cuenta:</b><br /> {this.capitalLeter(this.state.userSearched.account)}</p>
                                         <p><b>Correo electronico:</b><br /> {this.state.userSearched.email}</p>
