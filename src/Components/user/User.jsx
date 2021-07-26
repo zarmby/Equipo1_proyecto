@@ -49,12 +49,18 @@ class User extends React.Component {
         let UserLogged = JSON.parse(loggedUser)
         this.setState({ userRole: UserLogged.IDrole });
 
+        let queryString = window.location.search;
+        let urlParams = new URLSearchParams(queryString);
+        let accountParam = urlParams.get('account');
+
         if (UserLogged.IDrole === this.state.IDAdmon) {
             this.getUsers().then(() => {
                 this.getIT().then(() => {
                     this.getRole();
+                    if(accountParam !== null)
+                        this.handleUserSearched(accountParam);
                     this.setState({ loading: false });
-                })
+                });
             });
         }
         else {
@@ -119,6 +125,7 @@ class User extends React.Component {
         try {
             let res = await UserApiGet(email);
             let usrRecived = res.result.cont.name[0];
+            console.log(usrRecived);
             this.setState({ userSearched: usrRecived });
         }
         catch (e) {
